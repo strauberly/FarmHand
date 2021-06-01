@@ -1,0 +1,92 @@
+FarmHandReadMe - 
+
+This application is built as a demonstration of ability in Java for consideration by employers. It is my first solo application. :)
+
+This application is built as a demonstration of ability in Java and problem solving for consideration by employers. It is my first solo application. :)
+
+
+Its goal is to serve as a means to help a small team manage tasks on a small scale farm or small hobby farm.
+
+Functionality is built in for weather observation, planning tasks in accordance, monitoring progress and completion of tasks. As well, there is functionality for basic messaging between team members.
+
+The following are production notes and updates. Thank you for reading this and for checking out the project. Cheers!
+_________________________________________________________
+
+- 31 May 2021 --
+
+Was not receiving desired results and so began re-evaluting means to parse data from JSON response. New discoveries ARE returning desired results and so formatting and of desired data has begun. Hooray!
+Next steps will include continued formatting followed by setting the data to a label to be displayed on  "Stations" sub window.
+
+"Never forget those who gave their all in order for us to enjoy what we have today."
+
+-------------------------------------------------------------------------------------------- 
+
+- 27 May 2021 -
+
+Found means to parse returned JSON keys and accompanying data. Next steps will include parsing nested data and formatting. Pushed to repository.
+
+----------------------------------------------------------------------------
+
+-19 May 2021-
+
+Began work on methods for Weather sub window. Started with api inclusion for reading data out of a station. Verified obtaining the field input through print out. Next will be a string variable formatted to accept the field values and insert into the url address used for the API call. 
+
+Following will be parsing the returned JSON keys and applying them to a java map and variables in order to log data to the upcoming weather data base and display conditions.
+
+Have decided to hold off on transferring to GIT hub for source control when I have already started with BitBucket.
+
+Have not seen a great difference in functionality and really appreciate that BitBucket isn't trying to log my every sign in or machine. Call it what you want but Microsoft freaks me out.
+
+Will begin next day of development work with pushing current build into repository.
+
+-------------------------------------------------------------------------------  
+
+
+- 18 May 2021 -
+
+Relocation mostly complete. Began adding UI for Stations function and fleshed out more of the functionality.
+Will be migrating the project to GitHub from BitBucket in near future as per current industry standard. Would love to see that change.
+
+
+ --------------------------------------------------------
+
+ - 5 May 2021 -
+
+Implemented web viewer with buttons for switching between online weather services. Created WebServicesController and updated WebServices.fxml
+
+Beginning reasearch on JSON parsing. Plan is to implent
+Open Weather Map API for stations section. Then it will be on to creating database for logging weather and comparing data. Followed by methods for observations.
+
+Development will be on hold while relocating.
+
+Happy Cinco de Mayo! Vivo la Mexico!
+
+
+---------------------------------------------------------
+
+- 4 May 2021 -
+
+Began creating user interface for Weather sub window.
+ 
+// Created InstrumentsFXML, InstrumentsController, ObservationsFXML, WebServicesFXML and WebServicesController.
+
+// Implemented WebServicesFXML and InstrumentsFXML in WeatherController in order to switch displays on Weather SubWindow.
+
+//Added instruction to WeatherCSS
+
+! Continue with implementing webview in WebServices and corresponding buttons !
+
+! Look at creating a method in order to quickly create scene changes !   
+ 
+-------------------------------------------------------
+ 
+- 3 May 2021 -
+
+Base template of GUI completed and uploaded to Git.
+
+// A Main Window for launching 3 sub-windows for Weather, Chores and Inventory with buttons for selecting sub window and minimize and close. 
+
+// Considering swapping Inventory functionality for basic messaging functionality as database integration will be demonstrated in the application through the other sub sets.
+
+Would still like to develop inventory functionality, but at a later time. 
+   
