@@ -15,7 +15,6 @@ import java.util.Objects;
 
 public class InstrumentsController {
 
-
     public Button logButton;
     public Button observationsButton;
 

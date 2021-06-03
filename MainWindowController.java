@@ -21,6 +21,10 @@ public class MainWindowController extends Main {
 
     @FXML
     private Button weatherButton;
+
+    public MainWindowController() throws IOException {
+    }
+
     @FXML
     private void onWeatherEntered(MouseEvent enter) {
         weatherButton.setEffect(new Glow(.25));

@@ -73,8 +73,8 @@ public class WeatherController {
     }
     public void stationsReleased(MouseEvent mouseEvent) throws IOException {
         stationsButton.setEffect(new Glow(.0));
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Weather/stations/Stations.fxml")));
-        Stage stage = (Stage) ((Node)mouseEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Weather/stations/StationOutput.fxml")));
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);

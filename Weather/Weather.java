@@ -11,7 +11,9 @@ import java.util.Scanner;
 
 public class Weather {
 
-    public static void getConditions() throws IOException {
+    private static String conditions;
+
+    public static String getConditions() throws IOException {
         // takes the information entered as lat. and long. and applies values to api url
         String urlLat = StationsController.getLat();
         String urlLongi = StationsController.getLongi();
@@ -46,20 +48,31 @@ public class Weather {
         JSONObject coord = (JSONObject) apiReturn.get("coord");
         JSONObject main = (JSONObject) apiReturn.get("main");
         JSONObject wind = (JSONObject) apiReturn.get("wind");
-        
+
         JSONArray weather = (JSONArray) apiReturn.get("weather");
         for (Object o : weather) {
             JSONObject obj = (JSONObject) o;
             String description = (String) obj.get("description");
-            System.out.println(apiReturn.get("name") + " " + sys.get("country") + " = "
-                    + "lat: " + coord.get("lat") + ", " + "lon: " + coord.get("lon") + "\n"
-            + description + "\n"
-            + "Pressure = " + main.get("pressure") + "\n"
-            + "Temperature = " + main.get("temp") + "\n"
-            + "Wind = Speed: " + wind.get("speed") + ", Direction: " + wind.get("deg") + ", Gusts: " + wind.get("gust") + "\n"
-            + "Humidity = " + main.get("humidity") + "%"
-            );
+
+
+          conditions = apiReturn.get("name") + ", " + sys.get("country") + " = "
+                    + "lat: " + coord.get("lat") + ", " + "lon: " + coord.get("lon") + "\n" + "\n" + "\n"
+                    + description + "\n" + "\n" + "\n"
+                    + "Pressure = " + main.get("pressure") + "\n" + "\n" + "\n"
+                    + "Temperature = " + main.get("temp") + "\n" + "\n" + "\n"
+                    + "Wind = Speed: " + wind.get("speed") + ", Direction: " + wind.get("deg") + ", Gusts: " + wind.get("gust") + "\n" + "\n" + "\n"
+                    + "Humidity = " + main.get("humidity") + "%";
         }
+        return conditions;
+    }
+
+    public static String getOutput() throws IOException {
+        return Weather.getConditions();
     }
 }
+
+
+
+
+
 

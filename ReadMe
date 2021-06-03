@@ -5,16 +5,28 @@ This application is built as a demonstration of ability in Java for consideratio
 This application is built as a demonstration of ability in Java and problem solving for consideration by employers. It is my first solo application. :)
 
 
-Its goal is to serve as a means to help a small team manage tasks on a small scale farm or small hobby farm.
+The applications goal is to serve as a means to help a small team manage tasks on a small scale farm or small hobby farm.
 
-Functionality is built in for weather observation, planning tasks in accordance, monitoring progress and completion of tasks. As well, there is functionality for basic messaging between team members.
+Functionality to include but not limited to; weather observation, planning tasks in accordance with weather conditions, monitoring progress and completion of tasks. As well, there will functionality for basic messaging between team members.
 
 The following are production notes and updates. Thank you for reading this and for checking out the project. Cheers!
 _________________________________________________________
 
-- 31 May 2021 --
+- 3 June 2021 - 
 
-Was not receiving desired results and so began re-evaluting means to parse data from JSON response. New discoveries ARE returning desired results and so formatting and of desired data has begun. Hooray!
+Api is now called, parsed, formatted and displayed on stations sub window. Whew! Functionality for just adding new coordinates and getting a read out on the fly.
+
+Next steps will be logging conditions to a database and make chore reccomendations based on recorded weather trends.
+
+! Future improvements may include calling a more robust weather api. Perhaps NOAA. Might also include calling coordinates by current ip address to create a sort of auto feature instead of manually entering coordinates.
+
+Respository updated.  
+
+--------------------------------------------------
+
+- 31 May 2021 -
+
+Was not receiving desired results and so began re-evaluting means to parse data from JSON response. New discoveries ARE returning desired results and so formatting of desired data has begun. Hooray!
 Next steps will include continued formatting followed by setting the data to a label to be displayed on  "Stations" sub window.
 
 "Never forget those who gave their all in order for us to enjoy what we have today."
@@ -82,7 +94,7 @@ Began creating user interface for Weather sub window.
  
 - 3 May 2021 -
 
-Base template of GUI completed and uploaded to Git.
+Base template of GUI completed and uploaded to Repositroy.
 
 // A Main Window for launching 3 sub-windows for Weather, Chores and Inventory with buttons for selecting sub window and minimize and close. 
 
