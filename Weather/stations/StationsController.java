@@ -42,7 +42,6 @@ public class StationsController {
 
     public void readOutButtonReleased(MouseEvent mouseEvent) throws IOException {
         getReadOut.setEffect(new Glow(.0));
-        System.out.println("sup?");
         setLat(null);
         setLongi(null);
     }

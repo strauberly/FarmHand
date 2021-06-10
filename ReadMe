@@ -1,9 +1,6 @@
 FarmHandReadMe - 
 
-This application is built as a demonstration of ability in Java for consideration by employers. It is my first solo application. :)
-
-This application is built as a demonstration of ability in Java and problem solving for consideration by employers. It is my first solo application. :)
-
+This application is built as a demonstration of ability in Java for consideration by employers. It is my first solo application built from scratch. :) It is designed at this time as a standalone desktop app to be accessed in person from a central terminal.
 
 The applications goal is to serve as a means to help a small team manage tasks on a small scale farm or small hobby farm.
 
@@ -12,9 +9,21 @@ Functionality to include but not limited to; weather observation, planning tasks
 The following are production notes and updates. Thank you for reading this and for checking out the project. Cheers!
 _________________________________________________________
 
+- 10 June 2021 - 
+
+Development has slowed due to life events ie full-time job, family, etc.
+
+However, have begun fleshing out weather database structure and proposed functionality. Looking forward to increased development once life stabilizes a bit.
+
+Also optimized font size for station readout and altered getConditions method for better implementation.
+
+changes pushed to version branch and merged into main 
+
+-----------------------------------------------------------
+
 - 3 June 2021 - 
 
-Api is now called, parsed, formatted and displayed on stations sub window. Whew! Functionality for just adding new coordinates and getting a read out on the fly.
+Api is now called, parsed, formatted and displayed on stations sub window. Whew! Functionality for adding new coordinates and getting a read out from nearest station.
 
 Next steps will be logging conditions to a database and make chore reccomendations based on recorded weather trends.
 
@@ -27,6 +36,7 @@ Respository updated.
 - 31 May 2021 -
 
 Was not receiving desired results and so began re-evaluting means to parse data from JSON response. New discoveries ARE returning desired results and so formatting of desired data has begun. Hooray!
+
 Next steps will include continued formatting followed by setting the data to a label to be displayed on  "Stations" sub window.
 
 "Never forget those who gave their all in order for us to enjoy what we have today."
@@ -47,16 +57,15 @@ Following will be parsing the returned JSON keys and applying them to a java map
 
 Have decided to hold off on transferring to GIT hub for source control when I have already started with BitBucket.
 
-Have not seen a great difference in functionality and really appreciate that BitBucket isn't trying to log my every sign in or machine. Call it what you want but Microsoft freaks me out.
+Have not seen a great difference in functionality and really appreciate that BitBucket isn't trying to log my every sign in or machine. 
 
 Will begin next day of development work with pushing current build into repository.
 
 -------------------------------------------------------------------------------  
 
-
 - 18 May 2021 -
 
-Relocation mostly complete. Began adding UI for Stations function and fleshed out more of the functionality.
+Relocation mostly complete. Began adding UI for Stations section and fleshed out more of the functionality.
 Will be migrating the project to GitHub from BitBucket in near future as per current industry standard. Would love to see that change.
 
 

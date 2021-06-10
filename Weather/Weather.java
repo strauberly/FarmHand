@@ -13,7 +13,7 @@ public class Weather {
 
     private static String conditions;
 
-    public static String getConditions() throws IOException {
+    protected static String getConditions() throws IOException {
         // takes the information entered as lat. and long. and applies values to api url
         String urlLat = StationsController.getLat();
         String urlLongi = StationsController.getLongi();
@@ -60,7 +60,7 @@ public class Weather {
                     + description + "\n" + "\n" + "\n"
                     + "Pressure = " + main.get("pressure") + "\n" + "\n" + "\n"
                     + "Temperature = " + main.get("temp") + "\n" + "\n" + "\n"
-                    + "Wind = Speed: " + wind.get("speed") + ", Direction: " + wind.get("deg") + ", Gusts: " + wind.get("gust") + "\n" + "\n" + "\n"
+                    + "Wind = Speed: " + wind.get("speed") + ", Direction: " + wind.get("deg") + " degrees, Gusts: " + wind.get("gust") + "\n" + "\n" + "\n"
                     + "Humidity = " + main.get("humidity") + "%";
         }
         return conditions;
