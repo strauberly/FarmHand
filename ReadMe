@@ -1,29 +1,69 @@
-FarmHandReadMe - 
+FarmHandReadMe -
 
-This application is built as a demonstration of ability in Java for consideration by employers. It is my first solo application built from scratch. :) It is designed at this time as a standalone desktop app to be accessed in person from a central terminal.
 
-The applications goal is to serve as a means to help a small team manage tasks on a small scale farm or small hobby farm.
+This application is built as a demonstration of ability in Java for consideration by future employers. It is my first solo application built from scratch, and is built while juggling a life filled with full time employment, family, and continued education in order to make a career change. 
 
-Functionality to include but not limited to; weather observation, planning tasks in accordance with weather conditions, monitoring progress and completion of tasks. As well, there will functionality for basic messaging between team members.
+It is designed at this time as a standalone desktop app to be accessed in person from a central terminal in a common area.
+
+The application's goal is to serve as a means to help a small team manage tasks on a small scale farm or hobby farm.
+
+Functionality to include but not limited to; weather observation, planning tasks in accordance with weather conditions, monitoring progress and completion of tasks. As well, there will be functionality for basic messaging between team members.
 
 The following are production notes and updates. Thank you for reading this and for checking out the project. Cheers!
 _________________________________________________________
 
+- 15 June 2021 -
+
+Created weather.db in Weather package with corresponding tables (hourly, daily, weekly) in Java. Application will ship with database ready to be written to.
+
+rough sketch of instrument data to database as follows:
+
+enter data into fields >> click log >>
+all table entries to a map or array list
+assign field data to variables
+create variable last date and last time 
+weather addtodatabase method ()
+(if)
+ time > last time and date == last date >> 
+ add current values as hourly entry
+(if not)
+all hourly values on a seperate thread calculated and stored to daily variables && all current values stored as hourly entry
+(if) 
+amount of days stored == 7
+values of everyday calculated through weekly methods and store as a weekly entry && daily values stored as new daily entry
+(if)
+days stored  < 7
+add daily entry  
+
+repository updated
+
+--------------------------------------------------------
+
+- 14 June 2021 -
+
+At this time have settled on a SQLite database as a means to gather weather data in a central file. This data will be used to offer suggestions in planning out the days chores and compare past conditions. Should be a relatively simple and lightweight solution since program access is isolated.
+
+Have also begun making notes on how database should be initiated and methods that will call data and populate
+fields. 
+
+WeatherDB class has been added to Weather package.
+
+"While the unknown often creates the wall of dread that keeps us from moving forward, it should also be the dangling lure that calls us into the depths."
+--------------------------------------------------------
+
 - 10 June 2021 - 
 
-Development has slowed due to life events ie full-time job, family, etc.
-
-However, have begun fleshing out weather database structure and proposed functionality. Looking forward to increased development once life stabilizes a bit.
+Have begun fleshing out weather database structure and proposed functionality. Looking forward to increased development once life stabilizes a bit.
 
 Also optimized font size for station readout and altered getConditions method for better implementation.
 
-changes pushed to version branch and merged into main 
+Changes pushed to version branch and merged into Master. 
 
 -----------------------------------------------------------
 
 - 3 June 2021 - 
 
-Api is now called, parsed, formatted and displayed on stations sub window. Whew! Functionality for adding new coordinates and getting a read out from nearest station.
+Api is now called, parsed, formatted and displayed on stations sub window. Whew! Functionality for adding new coordinates and getting a read out from nearest station. Most precise coordinates provides most precise results.
 
 Next steps will be logging conditions to a database and make chore reccomendations based on recorded weather trends.
 
@@ -69,7 +109,7 @@ Relocation mostly complete. Began adding UI for Stations section and fleshed out
 Will be migrating the project to GitHub from BitBucket in near future as per current industry standard. Would love to see that change.
 
 
- --------------------------------------------------------
+-------------------------------------------------------------
 
  - 5 May 2021 -
 
@@ -103,7 +143,7 @@ Began creating user interface for Weather sub window.
  
 - 3 May 2021 -
 
-Base template of GUI completed and uploaded to Repositroy.
+Base template of GUI completed and uploaded to Repository.
 
 // A Main Window for launching 3 sub-windows for Weather, Chores and Inventory with buttons for selecting sub window and minimize and close. 
 

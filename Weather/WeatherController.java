@@ -124,7 +124,7 @@ public class WeatherController {
         webButton.setEffect(new Glow(.80));
     }
     public void webReleased(MouseEvent mouseEvent) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Weather/webService/WebServices.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Weather/webServices/WebServices.fxml")));
         Stage stage = (Stage) ((Node)mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);

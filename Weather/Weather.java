@@ -1,3 +1,4 @@
+// holds methods utilized by subsections (ie. get conditions from a station, compare data from databases)
 package main.Weather;
 import main.Weather.stations.StationsController;
 import org.json.simple.JSONArray;
@@ -35,7 +36,7 @@ public class Weather {
         }
         scanner.close();
 
-        // parses the values of created string to build JSON Object and allows to be reparsed for values.
+        // parses the values of created string to build JSON Object and allows to be reparsed for values to be displayed
         // would like to develop for scanner to return response directly as JSON object and eliminate a step
         JSONParser parser = new JSONParser();
         JSONObject apiReturn = new JSONObject();
@@ -65,7 +66,6 @@ public class Weather {
         }
         return conditions;
     }
-
     public static String getOutput() throws IOException {
         return Weather.getConditions();
     }

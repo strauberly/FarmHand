@@ -1,4 +1,4 @@
-package main.Weather.webService;
+package main.Weather.webServices;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

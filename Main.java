@@ -7,19 +7,20 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import main.Weather.Weather;
+
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Objects;
 
 
-public class Main extends Application{
+public class Main extends Application {
 
     public void start(Stage primaryStage) throws Exception {
 
-
-
-        FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Main.fxml")));
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
@@ -31,9 +32,7 @@ public class Main extends Application{
     }
 
     public static void main(String[] args) throws IOException {
+
         launch(args);
-
-
     }
-
 }
