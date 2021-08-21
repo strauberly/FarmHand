@@ -7,6 +7,7 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1039.0" stylesheets="@../WeatherCSS.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Weather.stations.StationsController">
     <fx:include source="../Weather.fxml" />
+
    <TextField fx:id="latitudeField" alignment="CENTER" layoutX="62.0" layoutY="215.0" prefHeight="50.0" prefWidth="190.0" promptText="Enter Latitude">
       <font>
          <Font size="18.0" />

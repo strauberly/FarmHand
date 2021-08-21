@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
-import main.Weather.Weather;
+
 import java.io.IOException;
 
 
@@ -37,7 +37,7 @@ public class StationsController {
         getReadOut.setEffect(new Glow(.80));
         setLat(latitudeField.getText());
         setLongi(longitudeField.getText());
-        stationOutput.setText(Weather.getOutput());
+        stationOutput.setText(WeatherAPICall.getOutput());
     }
 
     public void readOutButtonReleased(MouseEvent mouseEvent) throws IOException {

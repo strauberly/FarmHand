@@ -5,12 +5,103 @@ This application is built as a demonstration of ability in Java for consideratio
 
 It is designed at this time as a standalone desktop app to be accessed in person from a central terminal in a common area.
 
-The application's goal is to serve as a means to help a small team manage tasks on a small scale farm or hobby farm.
+The application's goal is to serve as a means to help a small team manage tasks on a small scale or hobby farm.
 
 Functionality to include but not limited to; weather observation, planning tasks in accordance with weather conditions, monitoring progress and completion of tasks. As well, there will be functionality for basic messaging between team members.
 
 The following are production notes and updates. Thank you for reading this and for checking out the project. Cheers!
 _________________________________________________________
+- 17 Aug 2021 -
+
+Date conversion struggle bus was attributed to breaking time (rolling system clock backwards) as well as sequence of calling methods. 
+
+possible fix might be
+* compare if logged date is greater than current date,
+if so write contents of db up until conflict to new db >>
+write conflict properly to new db >> clear old db >> write new db to old db >> clear new db.
+
+Cleaned code and sequence and now to next stage.
+
+------------------------------------------------------------
+- 17 Aug 2021 -
+
+Functioning Database! Does what it is supposed to!
+
+Created weekly class and worked out logic for when to write to each table.
+
+Next is a version upload, followed by displaying results in in the gui followed by observations predictions and that will conclude the Weather section of this application for the time being.
+
+But first a celebratory beer!
+
+------------------------------------------------------------- 
+
+
+- 16 Aug 2021 -
+
+Seperated out methods and variables between Weather Database
+Hourly and Daily classes. 
+
+Created methods for getting highs, lows and avg of any column in any table in the database.
+
+Created Conditionl statements for writing to hourly or daily table.
+
+Program is still struggling with its ability to convert stored longs (timestamps) back into dates accurately for comparison making comparisons as currently implemented unreliable.
+
+Will be subject of accute focus moving forward.
+
+------------------------------------------------------------- 
+
+- 15 Aug 2021 -
+
+Cleaned up code and completed means for comparing current and logged time as dates.
+
+Next is conditional statement and methods for averaging hourly  and writing as daily values to daily table.
+
+Program does not apprecitate system being set in reverse and hangs writing the same entries over and over. >_< 
+
+Do not mess with the flow of time! 
+------------------------------------------------------------
+
+- 14 Aug 2021 -
+
+Progress on SQL Database. Variables and methods in place to log to the hourly table and get required information to order to self increment id values and compare time and dates. 
+
+Next will be comparing stored vs current time to determine if it is a new day and if so gather hourly entries and write to daily values for a daily entry before recording more hourly entries.
+------------------------------------------------------------
+
+- 12 Aug 2021 -
+
+Development has been greatly hindered due to job hours growing to 13-14 hour days and 6 day weeks. Feels like forever!
+
+Weather DB will be created by application at first start up.
+
+Have found means for getting current time and converting it to easily read format and storing into DB.
+
+Possibilty to streamline database by consolidating date and time columns into single column labeled "timestamp" and then letting application convert into understandable formats for creating following methods for comparison of timestamps.
+
+Next phase to include fleshing out methods for writing to and reading from DB for data manipultaion to finally begin.
+
+Possibilty to streamline past described process by omitting step of writing database to map before comparing data.
+
+Proper SQL queries and storage of variables should eliminate extra step.  
+
+------------------------------------------------------------
+
+
+
+- 16 June 2021 -
+
+Created getters and setters in WeatherDB. Gave Parameters to Instruments controller on logButtonReleased and now intruments fields data is captured as variables.
+
+Next will be casting fields as numerlogical data types for comparison (doubles).
+
+Then assigning into a map or array list, followed by calculations and storing to the database.
+
+Also will need to look into validation process. Possibly regular expressions?
+
+Will push changes at next stage.
+
+--------------------------------------------------------
 
 - 15 June 2021 -
 
@@ -19,6 +110,7 @@ Created weather.db in Weather package with corresponding tables (hourly, daily, 
 rough sketch of instrument data to database as follows:
 
 enter data into fields >> click log >>
+assign field data to variables
 all table entries to a map or array list
 assign field data to variables
 create variable last date and last time 
