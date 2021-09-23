@@ -1,6 +1,5 @@
 // holds methods utilized by subsections (ie. get conditions from a station, compare data from databases)
-package main.Weather;
-import main.Weather.stations.StationsController;
+package main.Weather.stations;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -10,7 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
-public class Weather {
+public class WeatherAPICall {
 
     private static String conditions;
 
@@ -66,8 +65,9 @@ public class Weather {
         }
         return conditions;
     }
+
     public static String getOutput() throws IOException {
-        return Weather.getConditions();
+        return WeatherAPICall.getConditions();
     }
 }
 
