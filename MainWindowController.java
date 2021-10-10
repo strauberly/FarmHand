@@ -17,7 +17,8 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class MainWindowController extends Main {
-
+// create change scene method here
+    // implement windows being draggable 
 
     @FXML
     private Button weatherButton;
@@ -62,8 +63,6 @@ public class MainWindowController extends Main {
         }
 
 
-
-
     @FXML
     private Button choresButton;
     @FXML
@@ -103,8 +102,6 @@ public class MainWindowController extends Main {
         weatherButton.setOnAction(event -> choresStage.close());
         inventoryButton.setOnAction(event -> choresStage.close());
     }
-
-
 
 
     @FXML

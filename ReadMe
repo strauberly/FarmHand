@@ -9,8 +9,53 @@ The application's goal is to serve as a means to help a small team manage tasks 
 
 Functionality to include but not limited to; weather observation, planning tasks in accordance with weather conditions, monitoring progress and completion of tasks. As well, there will be functionality for basic messaging between team members.
 
-The following are production notes and updates. Thank you for reading this and for checking out the project. Cheers!
-_________________________________________________________
+The following is journal of how this came to be. Thank you for reading this and for checking out the project. Cheers!
+===========================================================
+- 10 Oct 2021 - 
+
+All tables have observable columns and writing to database methods cleared of anomalies.
+
+Next steps to include building out classes properly and attempting to display once more.
+
+
+- 30 Sept 2021 -
+
+Much research into displaying data some work put into restructuring methods into more suitable classes. Efforts are to streamline before displaying.
+
+Dayjob finally starting to slow for the year and so hoping for more available time to renew efforts in development.
+------------------------------------------------------------
+- 22 Aug 2021 -
+
+Created method that selects all timestamps from hourly table and converts them into an observable array list of human readable times. Goal is to then bind list to the appropriate column.
+
+Wish me luck.
+------------------------------------------------------------
+
+- 21 Aug 2021 -
+
+Repository updated, pushed to version, merged to master.
+
+Began creating fxml file to display database after logging an entry.
+
+Sorted through one more possible means to save useable formatted date. Results unsatifactory.
+
+Next step will include calling time from tables and converting each entry to user readable, storing in a list and then
+populating appropriate column with results stored in list. Hoping to populate remaining columns with a table view or
+or queries. Possibly a multi threaded process in order to aide in spead and efficiency. 
+------------------------------------------------------------
+- 19 Aug 2021 -
+
+Functioning Database! Does what it is supposed to!
+
+Created weekly class and worked out logic for when to write to each table.
+
+Next is a version upload, followed by displaying results in in the gui followed by observations predictions and that will conclude the Weather section of this application for the time being!
+
+But first a celebratory beer!
+
+------------------------------------------------------------
+
+
 - 17 Aug 2021 -
 
 Date conversion struggle bus was attributed to breaking time (rolling system clock backwards) as well as sequence of calling methods. 
@@ -21,17 +66,6 @@ if so write contents of db up until conflict to new db >>
 write conflict properly to new db >> clear old db >> write new db to old db >> clear new db.
 
 Cleaned code and sequence and now to next stage.
-
-------------------------------------------------------------
-- 17 Aug 2021 -
-
-Functioning Database! Does what it is supposed to!
-
-Created weekly class and worked out logic for when to write to each table.
-
-Next is a version upload, followed by displaying results in in the gui followed by observations predictions and that will conclude the Weather section of this application for the time being.
-
-But first a celebratory beer!
 
 ------------------------------------------------------------- 
 

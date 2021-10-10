@@ -13,8 +13,9 @@ import main.Weather.weatherdb.WeatherDB;
 import java.io.IOException;
 import java.util.Objects;
 
-
+// create method for change table for FXML files
 public class Main extends Application {
+
     public void start(Stage primaryStage) throws Exception {
         WeatherDB.createWeatherDB();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Main.fxml")));
@@ -28,7 +29,6 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) throws IOException {
-
         launch(args);
     }
 }
