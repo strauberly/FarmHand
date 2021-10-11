@@ -29,6 +29,7 @@ public class InstrumentsController implements Initializable {
     private TableView<String> hourlyTable = new TableView<>();
     @FXML
    private final TableColumn<WDBHourly, String> time = new TableColumn<WDBHourly, String>("time");
+<<<<<<< HEAD
     @FXML
     public TableColumn pressure;
     @FXML
@@ -37,6 +38,16 @@ public class InstrumentsController implements Initializable {
     public TableColumn wind;
     @FXML
     public TableColumn humidity;
+=======
+//    @FXML
+//    public TableColumn pressure;
+//    @FXML
+//    public TableColumn temperature;
+//    @FXML
+//    public TableColumn wind;
+//    @FXML
+//    public TableColumn humidity;
+>>>>>>> 87042fa5e32693dbb090c23f1edea9585cd236bb
 
     @FXML
     private TextField pressureField;
@@ -72,8 +83,11 @@ public class InstrumentsController implements Initializable {
         WDBHourly.setWind(windField.getText());
         WDBHourly.setHumidity(humidityField.getText());
         WeatherDB.log();
+<<<<<<< HEAD
         System.out.println(WeatherDB.getLow("pressure", "hourly"));
         System.out.println(WDBHourly.compareDates());
+=======
+>>>>>>> 87042fa5e32693dbb090c23f1edea9585cd236bb
 //        setHourlyTable();
 //        ObservableList<String> loggedTimes = FXCollections.observableArrayList(WDBHourly.propagateTimes());
 //        hourlyTable.setItems(loggedTimes);
@@ -116,8 +130,13 @@ public class InstrumentsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         time.setCellValueFactory(new PropertyValueFactory<>("time"));
     }
+<<<<<<< HEAD
 
 
+=======
+
+
+>>>>>>> 87042fa5e32693dbb090c23f1edea9585cd236bb
 //    public void setHourlyTable(){
 //        hourlyTable.setItems(data);
 //        time.setCellValueFactory(new PropertyValueFactory<>("time"));

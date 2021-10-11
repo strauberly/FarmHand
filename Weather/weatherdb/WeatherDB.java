@@ -1,7 +1,6 @@
 package main.Weather.weatherdb;
 
 import java.sql.*;
-
 public class WeatherDB {
 
     public static Double high;
@@ -12,7 +11,7 @@ public class WeatherDB {
     public static final String DB_NAME = "weather.db";
     public static final String CONNECTION_STRING = "jdbc:sqlite:/media/josie/Backup 2/Documents/Tablet Backup/Documents/Courses/Java/personal projects/Farmhand6/src/main/Weather/weatherdb/" + DB_NAME;
 
-    // create db (implemented @ initial run time, streamline where connected)
+    // create db (implemented @ initial run time, streamline where DB created)
 
     public static void createWeatherDB() {
         try {
@@ -20,13 +19,22 @@ public class WeatherDB {
             Statement statement = conn.createStatement();
 
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS hourly " +
+<<<<<<< HEAD
                     " (hourly_id_ INTEGER PRIMARY KEY AUTOINCREMENT, time TIME, pressure DOUBLE, temperature DOUBLE, wind DOUBLE, humidity DOUBLE, observable_time STRING)");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS daily " +
                     " (daily_id_ INTEGER PRIMARY KEY AUTOINCREMENT, date LONG, high_temp DOUBLE, low_temp DOUBLE, avg_temp DOUBLE," +
                     "high_wind DOUBLE, avg_wind DOUBLE, avg_humid DOUBLE, high_pressure DOUBLE, low_pressure DOUBLE, avg_pressure DOUBLE)");
+=======
+                    " (hourly_id_ INTEGER PRIMARY KEY AUTOINCREMENT, timestamp TIME, pressure DOUBLE, temperature DOUBLE, wind DOUBLE," +
+                    " humidity DOUBLE, observable_time STRING)");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS daily " +
+                    " (daily_id_ INTEGER PRIMARY KEY AUTOINCREMENT, date LONG, high_temp DOUBLE, low_temp DOUBLE, avg_temp DOUBLE," +
+                    "high_wind DOUBLE, avg_wind DOUBLE, avg_humid DOUBLE, high_pressure DOUBLE, low_pressure DOUBLE, avg_pressure DOUBLE," +
+                    "observable_date STRING)");
+>>>>>>> 87042fa5e32693dbb090c23f1edea9585cd236bb
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS weekly " +
                     " (weekly_id_ INTEGER PRIMARY KEY AUTOINCREMENT, week_ending LONG, high_temp DOUBLE, low_temp DOUBLE, avg_temp DOUBLE," +
-                    "high_wind DOUBLE, avg_wind DOUBLE, avg_humid DOUBLE, high_pressure DOUBLE, low_pressure DOUBLE, avg_pressure DOUBLE)");
+                    "high_wind DOUBLE, avg_wind DOUBLE, avg_humid DOUBLE, high_pressure DOUBLE, low_pressure DOUBLE, avg_pressure DOUBLE, observable_week_ending STRING)");
 
             statement.close();
             conn.close();
@@ -37,17 +45,17 @@ public class WeatherDB {
     }
 
     public static void log() {
-        if ( WeatherDB.getID("daily_id_","daily", WDBDaily.getDailyEntries) == 7){
+        if (WDBDaily.compareDates() && WeatherDB.getID("daily_id_","daily", WDBDaily.getDailyEntries) == 7){
             WDBWeekly.writeToWeekly();
             WeatherDB.resetTable("daily");
             WDBDaily.writeToDaily();
             WeatherDB.resetTable("hourly");
-        }else if (!WDBHourly.compareDates() && WeatherDB.getID("hourly_id_", "hourly", WDBHourly.getHourlyEntries) > 0){
+        }else if (WDBDaily.compareDates() && WeatherDB.getID("hourly_id_", "hourly", WDBHourly.getHourlyEntries) > 0){
             WDBDaily.writeToDaily();
             WeatherDB.resetTable("hourly");
         }
         WDBHourly.writeToHourly();
-    }
+        }
 
     public static void resetTable(String table) {
         try {
@@ -134,8 +142,8 @@ public class WeatherDB {
         }
         return variable;
     }
-
 }
+<<<<<<< HEAD
 
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -294,3 +302,5 @@ public class WeatherDB {
 //
 //}
 //
+=======
+>>>>>>> 87042fa5e32693dbb090c23f1edea9585cd236bb
