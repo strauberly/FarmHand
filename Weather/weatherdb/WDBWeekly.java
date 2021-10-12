@@ -5,10 +5,6 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 
 public class WDBWeekly {
-<<<<<<< HEAD
-
-=======
->>>>>>> 87042fa5e32693dbb090c23f1edea9585cd236bb
 
     private static Long endingDate = getEndingDate();
     private static String convertedEndingDate;
@@ -76,9 +72,6 @@ public class WDBWeekly {
         Format format = new SimpleDateFormat("yyyy-MM-dd");
         return format.format(currentDate);
     }
-
-<<<<<<< HEAD
-}
 
 //---------------------------------------------------------------------------------------------------------------------
 // package main.Weather.weatherdb;
@@ -190,7 +183,6 @@ public class WDBWeekly {
 //
 //
 //
-=======
     public static void observableWeekEndingDateConversion() throws SQLException {
         try {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
@@ -229,4 +221,3 @@ public class WDBWeekly {
         return endingDate;
     }
 }
->>>>>>> 87042fa5e32693dbb090c23f1edea9585cd236bb
