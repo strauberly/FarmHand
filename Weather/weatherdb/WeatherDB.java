@@ -6,10 +6,10 @@ public class WeatherDB {
     public static Double high;
     public static Double low;
     public static Double avg;
-
+//create methods getting variables, eliminate calling variable directly
 //reset connection string to something more generic or run a method to check system and then pick based on system
     public static final String DB_NAME = "weather.db";
-    public static final String CONNECTION_STRING = "jdbc:sqlite:/media/josie/Backup 2/Documents/Tablet Backup/Documents/Courses/Java/personal projects/Farmhand6/src/main/Weather/weatherdb/" + DB_NAME;
+    public static final String CONNECTION_STRING = "jdbc:sqlite:/media/brian/Backup 2/Documents/Tablet Backup/Documents/Courses/Java/personal projects/Farmhand6/src/main/Weather/weatherdb/" + DB_NAME;
 
     // create db (implemented @ initial run time, streamline where DB created)
 
@@ -19,10 +19,8 @@ public class WeatherDB {
             Statement statement = conn.createStatement();
 
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS hourly " +
-                    " (hourly_id_ INTEGER PRIMARY KEY AUTOINCREMENT, time TIME, pressure DOUBLE, temperature DOUBLE, wind DOUBLE, humidity DOUBLE, observable_time STRING)");
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS daily " +
-                    " (daily_id_ INTEGER PRIMARY KEY AUTOINCREMENT, date LONG, high_temp DOUBLE, low_temp DOUBLE, avg_temp DOUBLE," +
-                    "high_wind DOUBLE, avg_wind DOUBLE, avg_humid DOUBLE, high_pressure DOUBLE, low_pressure DOUBLE, avg_pressure DOUBLE)");
+                    " (hourly_id_ INTEGER PRIMARY KEY AUTOINCREMENT, timestamp TIME, pressure STRING, temperature STRING, wind STRING," +
+                    " humidity STRING, time STRING)");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS daily " +
                     " (daily_id_ INTEGER PRIMARY KEY AUTOINCREMENT, date LONG, high_temp DOUBLE, low_temp DOUBLE, avg_temp DOUBLE," +
                     "high_wind DOUBLE, avg_wind DOUBLE, avg_humid DOUBLE, high_pressure DOUBLE, low_pressure DOUBLE, avg_pressure DOUBLE," +

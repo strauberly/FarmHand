@@ -99,6 +99,7 @@ public class WDBDaily {
             ResultSet resultSet = stmt.executeQuery(sql);
             while (resultSet.next())
                 loggedDate = resultSet.getLong("timestamp");
+
             resultSet.close();
             stmt.close();
             conn.close();

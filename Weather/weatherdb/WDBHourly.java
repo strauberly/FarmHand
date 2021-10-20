@@ -1,31 +1,54 @@
 package main.Weather.weatherdb;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 
 public class WDBHourly {
+//    private static final WDBHourly instance = new WDBHourly();
+//    public static WDBHourly getInstance() {
+//        return instance;
+//    }
 
-    private static String observableTime;
-    private static String pressure;
-    public static String temp;
-    private static String wind;
-    private static String humidity;
+    private final String time;
+    private  String pressure;
+    public  String temperature;
+    private  String wind;
+    private  String humidity;
+
+
+    private static  String timeFieldValue;
+    private static String pressureFieldValue;
+    public static String temperatureFieldValue;
+    private static String windFieldValue;
+    private static String humidityFieldValue;
     private static long timeStamp;
-    private static long loggedDate;
     protected static int getHourlyEntries;
 
     // create actual class!!! simple versions observable lists etc.
-
-
     // write to hourly table
+    // try three things >> 1 create new dm class, bind data as observable lists and populate each column with the list
+    // ie WDBHourly(oblist<string> time) and setters grab from database
+    // >> 2 create the constructor with new variables distinguishing from the variables used to haul data from user fields
+    // >> implement refresh and get columns methods
 
-        public static void writeToHourly() {
+    public WDBHourly(String pressure, String temperature, String wind, String humidity, String time) {
+        this.pressure = pressure;
+        this.temperature = temperature;
+        this.wind = wind;
+        this.humidity = humidity;
+        this.time = time;
+    }
+
+
+    public static void writeToHourly() {
         try {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement statement = conn.createStatement();
             statement.executeUpdate("INSERT INTO hourly (timestamp, pressure, temperature, wind, humidity)" +
-                    "VALUES ( " + timeStamp + ", " + pressure + ", "
-                    + temp + ", " + wind + ", " + humidity + ")");
+                    "VALUES ( " + timeStamp + ", " + pressureFieldValue + ", "
+                    + temperatureFieldValue + ", " + windFieldValue + ", " + humidityFieldValue + ")");
             observableTimeConversion();
-            statement.executeUpdate("UPDATE hourly SET observable_time = ('" + observableTime + "')" + "WHERE hourly_id_ = (SELECT max(hourly_id_) FROM hourly)");
+            statement.executeUpdate("UPDATE hourly SET time = ('" + timeFieldValue + "')" + "WHERE hourly_id_ = (SELECT max (hourly_id_) FROM hourly)");
             statement.close();
             conn.close();
             WDBHourly.printHourlyLog();
@@ -39,10 +62,10 @@ public class WDBHourly {
         System.out.println(
                 "Wrote to hourly: " +
                         "\n" + WDBHourly.convertedCurrentTime() +
-                        "\n" + "Pressure = " + pressure +
-                        "\n" + "Temp = " + temp +
-                        "\n" + "Wind = " + wind +
-                        "\n" + "Humidity = " + humidity +
+                        "\n" + "Pressure = " + pressureFieldValue +
+                        "\n" + "temperature = " + temperatureFieldValue +
+                        "\n" + "Wind = " + windFieldValue +
+                        "\n" + "Humidity = " + humidityFieldValue +
                         "\n" + "Hourly entries = "
                         + WeatherDB.getID("hourly_id_","hourly", getHourlyEntries) + "\n"
         );
@@ -58,7 +81,7 @@ public class WDBHourly {
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
                 long loggedTime = rs.getLong("timestamp");
-                observableTime = convertedLoggedTime(loggedTime);
+                timeFieldValue = convertedLoggedTime(loggedTime);
             }
             rs.close();
             statement.close();
@@ -67,26 +90,6 @@ public class WDBHourly {
             System.out.println("Error: " + e.getMessage());
             e.printStackTrace();
         }
-    }
-
-    public static long getLoggedDate() {
-        try {
-            Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
-            Statement stmt = conn.createStatement();
-
-            String sql = "SELECT * FROM hourly ORDER by time DESC LIMIT 1";
-            ResultSet resultSet = stmt.executeQuery(sql);
-            while (resultSet.next())
-            loggedDate = resultSet.getLong("time");
-
-            resultSet.close();
-            stmt.close();
-            conn.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return loggedDate;
     }
 
     public static String convertedLoggedTime(Long time) {
@@ -105,22 +108,56 @@ public class WDBHourly {
         return timeStamp;
     }
 
-    public static void setPressure(String pressure) {
-        WDBHourly.pressure = pressure;
+    public static void setPressureFieldValue(String pressureFieldValue) {
+        WDBHourly.pressureFieldValue = pressureFieldValue;
     }
 
-    public static void setTemp(String temp) {
-        WDBHourly.temp = temp;
+    public static void setTemperatureFieldValue(String temperatureFieldValue) {
+        WDBHourly.temperatureFieldValue = temperatureFieldValue;
     }
 
-    public static void setWind(String wind) {
-        WDBHourly.wind = wind;
+    public static void setWindFieldValue(String windFieldValue) {
+        WDBHourly.windFieldValue = windFieldValue;
     }
 
-    public static void setHumidity(String humidity) {
-        WDBHourly.humidity = humidity;
+    public static void setHumidityFieldValue(String humidityFieldValue) {
+        WDBHourly.humidityFieldValue = humidityFieldValue;
+    }
+
+
+    public void setPressure(String pressure) {
+        this.pressure = pressure;
+    }
+
+    public  void setTemperature(String temperature) {
+        this.temperature = temperature;
+    }
+
+    public  void setWind(String wind) {
+        this.wind = wind;
+    }
+
+    public  void setHumidity(String humidity) {
+        this.humidity = humidity;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public  String getPressure() {
+        return pressure;
+    }
+
+    public  String getTemperature() {
+        return temperature;
+    }
+
+    public  String getWind() {
+        return wind;
+    }
+
+    public  String getHumidity() {
+        return humidity;
     }
 }
-
-
-

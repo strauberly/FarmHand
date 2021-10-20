@@ -11,7 +11,6 @@ Functionality to include but not limited to; weather observation, planning tasks
 
 The following is journal of how this came to be. Thank you for reading this and for checking out the project. Cheers!
 ===========================================================
-=======
 - 10 Oct 2021 - 
 
 All tables have observable columns and writing to database methods cleared of anomalies.
@@ -44,7 +43,6 @@ Next step will include calling time from tables and converting each entry to use
 populating appropriate column with results stored in list. Hoping to populate remaining columns with a table view or
 or queries. Possibly a multi threaded process in order to aide in spead and efficiency. 
 ------------------------------------------------------------
->>>>>>> 87042fa5e32693dbb090c23f1edea9585cd236bb
 - 19 Aug 2021 -
 
 Functioning Database! Does what it is supposed to!
