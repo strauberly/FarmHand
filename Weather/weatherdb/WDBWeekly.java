@@ -33,7 +33,7 @@ public class WDBWeekly {
         try {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement statement = conn.createStatement();
-            statement.executeUpdate("INSERT INTO weekly(week_ending, high_temp, low_temp, avg_temp," +
+            statement.executeUpdate("INSERT INTO weekly(timestamp, high_temp, low_temp, avg_temp," +
                     "high_wind, avg_wind, avg_humid, high_pressure, low_pressure, avg_pressure)" +
                     "VALUES ( " + endingDate + "," + weeklyHighTemp + "," + weeklyLowTemp + "," + weeklyAvgTemp +
                     "," + weeklyHighWind + "," + weeklyAvgWind + "," + weeklyAvgHumidity + "," + weeklyHighPressure +

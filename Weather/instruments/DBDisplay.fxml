@@ -104,20 +104,62 @@
         </columnResizePolicy>
         <FXCollections fx:factory="observableArrayList" />
     </TableView>
-   <TableView layoutX="306.0" layoutY="326.0" prefHeight="145.0" prefWidth="815.0">
+
+   <TableView fx:id="daily" layoutX="306.0" layoutY="326.0" prefHeight="145.0" prefWidth="815.0">
      <columns>
-       <TableColumn prefWidth="75.0" text="Date" />
-       <TableColumn prefWidth="75.0" text="High Press." />
-         <TableColumn prefWidth="75.0" text="Low Press." />
-         <TableColumn prefWidth="75.0" text="Avg Press." />
-         <TableColumn prefWidth="75.0" text="High Temp." />
-         <TableColumn prefWidth="75.0" text="Low Temp." />
-         <TableColumn prefWidth="75.0" text="Avg. Temp." />
-         <TableColumn prefWidth="75.0" text="High Wind" />
-         <TableColumn prefWidth="75.0" text="Avg. Wind" />
-         <TableColumn prefWidth="75.0" text="Avg. Wind" />
-         <TableColumn prefWidth="75.0" text="Avg. Hum." />
+       <TableColumn fx:id="col_date" prefWidth="75.0" text="Date" >
+           <cellValueFactory>
+               <PropertyValueFactory property="observable_date"/>
+           </cellValueFactory>
+       </TableColumn>
+         <TableColumn fx:id="col_high_pressure" prefWidth="75.0" text="High Pressure" >
+             <cellValueFactory>
+                 <PropertyValueFactory property="highPressureValue"/>
+             </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="col_low_pressure" prefWidth="75.0" text="Low Pressure" >
+             <cellValueFactory>
+                 <PropertyValueFactory property="lowPressureValue"/>
+             </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="col_avg_pressure" prefWidth="75.0" text="Average Pressure" >
+             <cellValueFactory>
+                 <PropertyValueFactory property="avgPressureValue"/>
+             </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="col_high_temperature" prefWidth="75.0" text="High Temperature" >
+             <cellValueFactory>
+                 <PropertyValueFactory property="highTemperatureValue"/>
+             </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="col_low_temperature" prefWidth="75.0" text="Low Temperature" >
+             <cellValueFactory>
+                 <PropertyValueFactory property="lowTemperatureValue"/>
+             </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="col_avg_temperature" prefWidth="75.0" text="Average Temperature" >
+             <cellValueFactory>
+                 <PropertyValueFactory property="avgTemperatureValue"/>
+             </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="col_high_wind" prefWidth="75.0" text="High Wind" >
+             <cellValueFactory>
+                 <PropertyValueFactory property="highWindValue"/>
+             </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="col_avg_wind" prefWidth="75.0" text="Average Wind" >
+             <cellValueFactory>
+                 <PropertyValueFactory property="avgWindValue"/>
+             </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="col_avg_humidity" prefWidth="75.0" text="Average Humidity" >
+             <cellValueFactory>
+                 <PropertyValueFactory property="avgHumidityValue"/>
+             </cellValueFactory>
+         </TableColumn>
      </columns>
+
+
    </TableView>
    <TableView layoutX="306.0" layoutY="511.0" prefHeight="145.0" prefWidth="815.0">
       <columns>

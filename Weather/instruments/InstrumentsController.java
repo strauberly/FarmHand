@@ -17,6 +17,7 @@ import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import main.Weather.weatherdb.WDBDaily;
 import main.Weather.weatherdb.WDBHourly;
 import main.Weather.weatherdb.WeatherDB;
 import java.io.IOException;
@@ -26,8 +27,8 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class InstrumentsController implements Initializable {
-    // watch videos and figure out data binding and or creating a list for the
 
+    //hourly tableview
     @FXML
     private TableView<WDBHourly> hourly = new TableView<>();
     @FXML
@@ -41,24 +42,48 @@ public class InstrumentsController implements Initializable {
     @FXML
     public TableColumn<WDBHourly, String> col_humidity = new TableColumn<>();
 
+    //daily tableview
+    @FXML
+    private TableView<WDBDaily> daily = new TableView<>();
+    @FXML
+    private final TableColumn<WDBHourly, String> col_date = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBHourly, Double> col_high_pressure = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBHourly, Double> col_low_pressure = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBHourly, Double> col_avg_pressure = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBHourly, Double> col_high_temperature = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBHourly, Double> col_low_temperature = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBHourly, Double> col_avg_temperature = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBHourly, Double> col_high_wind = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBHourly, Double> col_avg_wind = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBHourly, Double> col_avg_humidity = new TableColumn<>();
 
-//    private final List<String> observableTimes = new ArrayList<>();
-   private final ObservableList<WDBHourly> oblist = FXCollections.observableArrayList();
-//    ObservableList<String> stringlist = FXCollections.observableArrayList();
 
 
-//    private ObservableList<ObservableList> data;
+
 
     @Override
     public void initialize(URL Location, ResourceBundle resources) {
 
+        ObservableList<WDBHourly> hourlyList = FXCollections.observableArrayList();
+        ObservableList<WDBDaily> dailyList = FXCollections.observableArrayList();
+
         try {
+            // connection method
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement statement = conn.createStatement();
             String sql = "SELECT * FROM hourly";
             ResultSet rs = statement.executeQuery(sql);
-            while (rs.next()) { // rename DB so table matches in sqlite and java fx including case
-                oblist.add(new WDBHourly(rs.getString("pressure"), rs.getString("temperature"),
+            while (rs.next()) {
+                hourlyList.add(new WDBHourly(rs.getString("pressure"), rs.getString("temperature"),
                         rs.getString("wind"), rs.getString("humidity"), rs.getString("time")));
             }
             rs.close();
@@ -72,19 +97,41 @@ public class InstrumentsController implements Initializable {
         col_wind.setCellValueFactory(new PropertyValueFactory<>("Wind"));
         col_humidity.setCellValueFactory(new PropertyValueFactory<>("Humidity"));
         col_time.setCellValueFactory(new PropertyValueFactory<>("Time"));
-        hourly.setItems(oblist);
+        hourly.setItems(hourlyList);
+    try {
+        // connection method
+        Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
+        Statement statement = conn.createStatement();
+        String sql = "SELECT * FROM daily";
+        ResultSet rs = statement.executeQuery(sql);
+        while (rs.next()) {
+            dailyList.add(new WDBDaily(rs.getString("observable_date")));
+
+
+//            dailyList.add(new WDBDaily(rs.getDouble("high_temp"), rs.getDouble("low_temp"), rs.getDouble("avg_temp"), rs.getDouble("high_wind"),
+//                    rs.getDouble("avg_wind"), rs.getDouble("avg_humid"), rs.getDouble("high_pressure"), rs.getDouble("low_pressure"),
+//                    rs.getDouble("avg_pressure"), rs.getString("observable_date")));
+        }
+        rs.close();
+        statement.close();
+        conn.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+        col_high_pressure.setCellValueFactory(new PropertyValueFactory<>("High Pressure"));
+        col_low_pressure.setCellValueFactory(new PropertyValueFactory<>("Low Pressure"));
+        col_avg_pressure.setCellValueFactory(new PropertyValueFactory<>("Average Pressure"));
+        col_high_temperature.setCellValueFactory(new PropertyValueFactory<>("High Temperature"));
+        col_low_temperature.setCellValueFactory(new PropertyValueFactory<>("Low Temperature"));
+        col_avg_temperature.setCellValueFactory(new PropertyValueFactory<>("Average Temperature"));
+        col_high_wind.setCellValueFactory(new PropertyValueFactory<>("High Wind"));
+        col_avg_wind.setCellValueFactory(new PropertyValueFactory<>("Average Wind"));
+        col_avg_humidity.setCellValueFactory(new PropertyValueFactory<>("Average Humidity"));
+        col_date.setCellValueFactory(new PropertyValueFactory<>("Date"));
+        daily.setItems(dailyList);
+}
 
-
-    //    @FXML
-//    public TableColumn pressure;
-//    @FXML
-//    public TableColumn temperature;
-//    @FXML
-//    public TableColumn wind;
-//    @FXML
-//    public TableColumn humidity;
-
+    //buttons and fields
     @FXML
     private TextField pressureField;
     @FXML
@@ -108,31 +155,20 @@ public class InstrumentsController implements Initializable {
 
     public void logButtonPressed(MouseEvent mouseEvent) {
         logButton.setEffect(new Glow(.80));
+        // clean this up so just calling the method
         WDBHourly.setTimeStamp(System.currentTimeMillis());
     }
-
     public void logButtonReleased(MouseEvent mouseEvent) throws IOException {
         logButton.setEffect(new Glow(.0));
-        // rewrite all into
-        // set fields
-        // log
-        // set tables
-        // change stage
         WDBHourly.setPressureFieldValue(pressureField.getText());
         WDBHourly.setTemperatureFieldValue(tempField.getText());
         WDBHourly.setWindFieldValue(windField.getText());
         WDBHourly.setHumidityFieldValue(humidityField.getText());
         WeatherDB.log();
+        WDBDaily.writeToDaily();
 
-        col_pressure.setCellValueFactory(new PropertyValueFactory<>("Pressure"));
-        col_temperature.setCellValueFactory(new PropertyValueFactory<>("Temperature"));
-        col_wind.setCellValueFactory(new PropertyValueFactory<>("Wind"));
-        col_humidity.setCellValueFactory(new PropertyValueFactory<>("Humidity"));
-        col_time.setCellValueFactory(new PropertyValueFactory<>("Time"));
-        hourly.setItems(getHourlyTable());
-
-
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Weather/instruments/InstrumentsDisplay.fxml")));
+        // scene change method
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Weather/instruments/DBDisplay.fxml")));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
@@ -140,7 +176,6 @@ public class InstrumentsController implements Initializable {
         stage.show();
 
     }
-
 
     public void observationsButtonEnter(MouseEvent mouseEvent) {
         observationsButton.setEffect(new Glow(.25));
@@ -156,6 +191,7 @@ public class InstrumentsController implements Initializable {
 
     public void observationsButtonReleased(MouseEvent mouseEvent) throws IOException {
         observationsButton.setEffect(new Glow(0.0));
+        // scene change method
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Weather/instruments/Observations.fxml")));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -163,51 +199,6 @@ public class InstrumentsController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
-
-    //// for each in loggedTimes paint a cell in time object
-    //observable list is currently calling only current observable time instead of all times
-    // column is created but not painting column with observable list
-    // finish watching video
-
-
-    public static ObservableList <WDBHourly> getHourlyTable () {
-        ObservableList<WDBHourly> list = FXCollections.observableArrayList();
-        try {
-            Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
-            Statement statement = conn.createStatement();
-            String sql = "SELECT * FROM hourly";
-            ResultSet rs = statement.executeQuery(sql);
-            while (rs.next()) {
-                list.add(new WDBHourly(rs.getString("pressure"),rs.getString("temperature"),
-                        rs.getString("wind"),rs.getString("humidity"),rs.getString("time")));
-            }
-            rs.close();
-            statement.close();
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
-
-
-
-//    @Override
-//    public void initialize(URL url, ResourceBundle resourceBundle) {
-//        time.setCellValueFactory(new PropertyValueFactory<>("time"));
-//    }
-
-
-//    public void setHourlyTable(){
-//        hourlyTable.setItems(data);
-//        time.setCellValueFactory(new PropertyValueFactory<>("time"));
-//        hourlyTable.getColumns().addAll(time);
-//    }
-//    public void setHourlyTable(){
-//    time.setCellValueFactory(new PropertyValueFactory<>("time"));
-//    hourlyTable.setItems(WDBHourly.propagateTimes());
-//    }
 }
 
 

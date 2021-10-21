@@ -10,25 +10,72 @@ public class WDBDaily {
     public static int getDailyEntries;
     private static String observableDate;
 
+    //
+//    private double highPressureValueValue;
+//    private double lowPressureValueValue;
+//    private double avgPressureValueValue;
+//
+//    private double highTempValue;
+//    private double lowTempValue;
+//    private double avgTempValue;
+//
+//    private double highWindValue;
+//    private double avgWindValue;
+//
+//    private double avgHumidityValue;
+//
+//    private String observableDateValue;
 
+
+//rewrite same format as hourly try one column at a time first
     //pressure
-    private static final Double dailyHighPressure = WeatherDB.getHigh("pressure", "hourly");
-    private static final Double dailyLowPressure = WeatherDB.getLow("pressure", "hourly");
-    private static final Double dailyAvgPressure = WeatherDB.getAvg("pressure", "hourly");
+    private static  double highPressureValue = WeatherDB.getHigh("pressure", "hourly");
+    private  static double lowPressureValue = WeatherDB.getLow("pressure", "hourly");
+    private static double avgPressureValue = WeatherDB.getAvg("pressure", "hourly");
 
 
     //temp
-    private static final Double dailyHighTemp = WeatherDB.getHigh("temperature", "hourly");
-    private static final Double dailyLowTemp = WeatherDB.getLow("temperature", "hourly");
-    private static final Double dailyAvgTemp = WeatherDB.getAvg("temperature", "hourly");
+    private static double highTempValue = WeatherDB.getHigh("temperature", "hourly");
+    private static double  lowTempValue = WeatherDB.getLow("temperature", "hourly");
+    private static double  avgTempValue = WeatherDB.getAvg("temperature", "hourly");
 
     //wind
-    private static final Double dailyHighWind = WeatherDB.getHigh("wind", "hourly");
-    private static final Double dailyAvgWind = WeatherDB.getAvg("wind", "hourly");
+    private static double highWindValue  = WeatherDB.getHigh("wind", "hourly");
+    private static double  avgWindValue = WeatherDB.getAvg("wind", "hourly");
 
     //humidity
-    private static final Double dailyAvgHumidity = WeatherDB.getAvg("humidity", "hourly");
+    private static double avgHumidityValue = WeatherDB.getAvg("humidity", "hourly");
 
+    private String observable_date;
+
+    public WDBDaily(String observable_date) {
+        //        this.highPressureValueValue = WeatherDB.getHigh("pressure", "hourly");
+//        this.lowPressureValueValue = lowPressureValueValue;
+//        this.avgPressureValueValue = avgPressureValueValue;
+//        this.highTempValue = highTempValue;
+//        this.lowTempValue = lowTempValue;
+//        this.avgTempValue = avgtempValue;
+//        this.highWindValue = highWindValue;
+//        this.avgWindValue = avgWindValue;
+//        this.avgHumidityValue = avgHumidityValue;
+    }
+
+
+
+    //    public WDBDaily(double highPressureValueValue, double lowPressureValueValue, double avgPressureValueValue, double highTempValue,
+//                    double lowTempValue, double avgtempValue, double highWindValue, double avgWindValue,
+//                    double avgHumidityValue, String observableDateValue) {
+//        this.highPressureValueValue = WeatherDB.getHigh("pressure", "hourly");
+//        this.lowPressureValueValue = lowPressureValueValue;
+//        this.avgPressureValueValue = avgPressureValueValue;
+//        this.highTempValue = highTempValue;
+//        this.lowTempValue = lowTempValue;
+//        this.avgTempValue = avgtempValue;
+//        this.highWindValue = highWindValue;
+//        this.avgWindValue = avgWindValue;
+//        this.avgHumidityValue = avgHumidityValue;
+//        this.observableDateValue = observableDateValue;
+//    }
 
     public static void writeToDaily(){
         try {
@@ -36,9 +83,9 @@ public class WDBDaily {
             Statement statement = conn.createStatement();
             statement.execute("INSERT INTO daily(date, high_temp, low_temp, avg_temp," +
                     "high_wind, avg_wind, avg_humid, high_pressure, low_pressure, avg_pressure)" +
-                    "VALUES ( "+ date + "," + dailyHighTemp + "," + dailyLowTemp + "," + dailyAvgTemp +
-                    "," + dailyHighWind + "," + dailyAvgWind + "," + dailyAvgHumidity + "," + dailyHighPressure +
-                    "," + dailyLowPressure + "," + dailyAvgPressure + ")");
+                    "VALUES ( "+ date + "," + highTempValue + "," + lowTempValue + "," + avgTempValue +
+                    "," + highWindValue + "," + avgWindValue + "," + avgHumidityValue + "," + highPressureValue +
+                    "," + lowPressureValue + "," + avgPressureValue + ")");
             observableDateConversion();
             statement.executeUpdate("UPDATE daily SET observable_date = ('" + observableDate + "')" + "WHERE daily_id_ = (SELECT max(daily_id_) FROM daily)");
 
@@ -56,15 +103,15 @@ public class WDBDaily {
         System.out.println(
                 "Wrote to daily: " +
                         "\n" +  observableDate +
-                        "\n" +"Daily high pressure = " + dailyHighPressure +
-                        "\n" + "Daily low pressure = " + dailyLowPressure +
-                        "\n" + "Daily avg pressure = " + dailyAvgPressure +
-                        "\n" + "Daily high temp = " + dailyHighTemp +
-                        "\n" + "Daily low temp = " + dailyLowTemp +
-                        "\n" + "Daily avg temp = " + dailyAvgTemp +
-                        "\n" + "Daily high wind = " + dailyHighWind +
-                        "\n" + "Daily avg wind = " + dailyAvgWind +
-                        "\n" + "Daily avg humidity = " + dailyAvgHumidity +
+                        "\n" +"Daily high pressure = " + highPressureValue +
+                        "\n" + "Daily low pressure = " + lowPressureValue +
+                        "\n" + "Daily avg pressure = " + avgPressureValue +
+                        "\n" + "Daily high temp = " + highTempValue +
+                        "\n" + "Daily low temp = " + lowTempValue +
+                        "\n" + "Daily avg temp = " + avgTempValue +
+                        "\n" + "Daily high wind = " + highWindValue +
+                        "\n" + "Daily avg wind = " + avgWindValue +
+                        "\n" + "Daily avg humidity = " + avgHumidityValue +
                         "\n" + "Daily entries = "
                         + WeatherDB.getID("daily_id_","daily", getDailyEntries) + "\n");
     }
@@ -125,5 +172,47 @@ public class WDBDaily {
 
     public static boolean compareDates() {
         return !convertedCurrentDateString().equals(convertedLoggedDateString(getLoggedDate()));
+    }
+
+    public void setHighPressureValue() {
+        highPressureValue = WeatherDB.getHigh("pressure", "hourly");
+    }
+
+    public void setLowPressureValue() {
+        lowPressureValue = WeatherDB.getLow("pressure", "hourly");
+    }
+
+    public void setAvgPressureValueValue() {
+        avgPressureValue = WeatherDB.getAvg("pressure", "hourly");
+    }
+
+    public void setHighTempValue() {
+        highTempValue = WeatherDB.getHigh("temperature", "hourly");
+    }
+
+    public void setLowTempValue() {
+        lowTempValue = WeatherDB.getLow("temperature", "hourly");
+
+    }
+
+    public void setAvgTempValue() {
+        avgTempValue = WeatherDB.getAvg("temperature", "hourly");
+
+    }
+
+    public void setHighWindValue() {
+        highWindValue = WeatherDB.getHigh("wind", "hourly");
+    }
+
+    public void setAvgWindValue() {
+        avgWindValue = WeatherDB.getAvg("wind", "hourly");
+    }
+
+    public void setAvgHumidityValue() {
+        avgHumidityValue = WeatherDB.getAvg("humidity", "hourly");
+    }
+
+    public void setObservableDate(String observable_date) {
+        this.observable_date = observable_date;
     }
 }
