@@ -6,12 +6,11 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-
-
 <?import javafx.scene.control.TextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.control.Button?>
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" stylesheets="@../WeatherCSS.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Weather.instruments.InstrumentsController">
     <fx:include source="Instruments.fxml" />
    <VBox layoutX="6.0" layoutY="84.0" prefHeight="625.0" prefWidth="300.0">
@@ -69,8 +68,8 @@
             <Insets left="62.0" top="20.0" />
          </VBox.margin>
       </Button>
-
    </VBox>
+
     <TableView fx:id="hourly" layoutX="306.0" layoutY="141.0" prefHeight="145.0" prefWidth="815.0">
         <columns>
             <TableColumn fx:id="col_time" prefWidth="163.0" text="Time">
@@ -104,34 +103,114 @@
         </columnResizePolicy>
         <FXCollections fx:factory="observableArrayList" />
     </TableView>
-   <TableView layoutX="306.0" layoutY="326.0" prefHeight="145.0" prefWidth="815.0">
+
+   <TableView fx:id="daily" layoutX="306.0" layoutY="326.0" prefHeight="145.0" prefWidth="815.0">
      <columns>
-       <TableColumn prefWidth="75.0" text="Date" />
-       <TableColumn prefWidth="75.0" text="High Press." />
-         <TableColumn prefWidth="75.0" text="Low Press." />
-         <TableColumn prefWidth="75.0" text="Avg Press." />
-         <TableColumn prefWidth="75.0" text="High Temp." />
-         <TableColumn prefWidth="75.0" text="Low Temp." />
-         <TableColumn prefWidth="75.0" text="Avg. Temp." />
-         <TableColumn prefWidth="75.0" text="High Wind" />
-         <TableColumn prefWidth="75.0" text="Avg. Wind" />
-         <TableColumn prefWidth="75.0" text="Avg. Wind" />
-         <TableColumn prefWidth="75.0" text="Avg. Hum." />
+       <TableColumn fx:id="col_date" prefWidth="75.0" text="Date" >
+           <cellValueFactory>
+               <PropertyValueFactory property="date"/>
+           </cellValueFactory>
+       </TableColumn>
+         <TableColumn fx:id="col_high_pressure" prefWidth="75.0" text="High Pressure">
+             <cellValueFactory>
+                 <PropertyValueFactory property="highpressure"/>
+             </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="col_low_pressure" prefWidth="75.0" text="Low Pressure" >
+             <cellValueFactory>
+                 <PropertyValueFactory property="lowpressure"/>
+             </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="col_avg_pressure" prefWidth="75.0" text="Average Pressure" >
+             <cellValueFactory>
+                 <PropertyValueFactory property="avgpressure"/>
+             </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="col_high_temperature" prefWidth="75.0" text="High Temperature" >
+             <cellValueFactory>
+                 <PropertyValueFactory property="hightemp"/>
+             </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="col_low_temperature" prefWidth="75.0" text="Low Temperature" >
+             <cellValueFactory>
+                 <PropertyValueFactory property="lowtemp"/>
+             </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="col_avg_temperature" prefWidth="75.0" text="Average Temperature" >
+             <cellValueFactory>
+                 <PropertyValueFactory property="avgtemp"/>
+             </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="col_high_wind" prefWidth="75.0" text="High Wind" >
+             <cellValueFactory>
+                 <PropertyValueFactory property="highwind"/>
+             </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="col_avg_wind" prefWidth="75.0" text="Average Wind" >
+             <cellValueFactory>
+                 <PropertyValueFactory property="avgwind"/>
+             </cellValueFactory>
+         </TableColumn>
+         <TableColumn fx:id="col_avg_humidity" prefWidth="75.0" text="Average Humidity" >
+             <cellValueFactory>
+                 <PropertyValueFactory property="avghumid"/>
+             </cellValueFactory>
+         </TableColumn>
      </columns>
    </TableView>
-   <TableView layoutX="306.0" layoutY="511.0" prefHeight="145.0" prefWidth="815.0">
-      <columns>
-         <TableColumn prefWidth="75.0" text="Week End" />
-         <TableColumn prefWidth="75.0" text="High Press." />
-         <TableColumn prefWidth="75.0" text="Low Press." />
-         <TableColumn prefWidth="75.0" text="Avg Press." />
-         <TableColumn prefWidth="75.0" text="High Temp." />
-         <TableColumn prefWidth="75.0" text="Low Temp." />
-         <TableColumn prefWidth="75.0" text="Avg. Temp." />
-         <TableColumn prefWidth="75.0" text="High Wind" />
-         <TableColumn prefWidth="75.0" text="Avg. Wind" />
-         <TableColumn prefWidth="75.0" text="Avg. Wind" />
-         <TableColumn prefWidth="75.0" text="Avg. Hum." />
-      </columns>
-   </TableView>
+
+    <TableView fx:id="weekly" layoutX="306.0" layoutY="511.0" prefHeight="145.0" prefWidth="815.0">
+    <columns>
+        <TableColumn fx:id="col_weekending" prefWidth="75.0" text="Week Ending">
+            <cellValueFactory>
+                <PropertyValueFactory property="weekending"/>
+            </cellValueFactory>
+        </TableColumn>
+    <TableColumn fx:id="col_weeklyhighpressure" prefWidth="75.0" text="Weekly High Pressure">
+           <cellValueFactory>
+               <PropertyValueFactory property="weeklyhighpressure"/>
+           </cellValueFactory>
+       </TableColumn>
+       <TableColumn fx:id="col_weeklylowpressure" prefWidth="75.0" text="Weekly Low Pressure" >
+           <cellValueFactory>
+               <PropertyValueFactory property="weeklylowpressure"/>
+           </cellValueFactory>
+       </TableColumn>
+       <TableColumn fx:id="col_weeklyavgpressure" prefWidth="75.0" text="Weekly Average Pressure" >
+           <cellValueFactory>
+               <PropertyValueFactory property="weeklyavgpressure"/>
+           </cellValueFactory>
+       </TableColumn>
+       <TableColumn fx:id="col_weeklyhightemperature" prefWidth="75.0" text="Weekly High Temperature" >
+           <cellValueFactory>
+               <PropertyValueFactory property="weeklyhightemp"/>
+           </cellValueFactory>
+       </TableColumn>
+       <TableColumn fx:id="col_weeklylowtemperature" prefWidth="75.0" text="Weekly Low Temperature" >
+           <cellValueFactory>
+               <PropertyValueFactory property="weeklylowtemp"/>
+           </cellValueFactory>
+       </TableColumn>
+       <TableColumn fx:id="col_weeklyavgtemperature" prefWidth="75.0" text="Weekly Average Temperature" >
+           <cellValueFactory>
+               <PropertyValueFactory property="weeklyavgtemp"/>
+           </cellValueFactory>
+       </TableColumn>
+       <TableColumn fx:id="col_weeklyhighwind" prefWidth="75.0" text="Weekly High Wind" >
+           <cellValueFactory>
+               <PropertyValueFactory property="weeklyhighwind"/>
+           </cellValueFactory>
+       </TableColumn>
+       <TableColumn fx:id="col_weeklyavgwind" prefWidth="75.0" text="Weekly Average Wind" >
+           <cellValueFactory>
+               <PropertyValueFactory property="weeklyavgwind"/>
+           </cellValueFactory>
+       </TableColumn>
+       <TableColumn fx:id="col_weeklyavghumidity" prefWidth="75.0" text="Weekly Average Humidity" >
+           <cellValueFactory>
+               <PropertyValueFactory property="weeklyavghumid"/>
+           </cellValueFactory>
+       </TableColumn>
+   </columns>
+</TableView>
 </AnchorPane>

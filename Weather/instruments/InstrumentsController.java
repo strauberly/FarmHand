@@ -17,7 +17,9 @@ import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import main.Weather.weatherdb.WDBDaily;
 import main.Weather.weatherdb.WDBHourly;
+import main.Weather.weatherdb.WDBWeekly;
 import main.Weather.weatherdb.WeatherDB;
 import java.io.IOException;
 import java.net.URL;
@@ -26,8 +28,8 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class InstrumentsController implements Initializable {
-    // watch videos and figure out data binding and or creating a list for the
 
+    //hourly tableview
     @FXML
     private TableView<WDBHourly> hourly = new TableView<>();
     @FXML
@@ -41,24 +43,70 @@ public class InstrumentsController implements Initializable {
     @FXML
     public TableColumn<WDBHourly, String> col_humidity = new TableColumn<>();
 
+    //daily tableview
+    @FXML
+    private TableView<WDBDaily> daily = new TableView<>();
+    @FXML
+    private final TableColumn<WDBDaily, String> col_date = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBDaily, String> col_high_pressure = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBDaily, String> col_low_pressure = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBDaily, String> col_avg_pressure = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBDaily, String> col_high_temperature = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBDaily, String> col_low_temperature = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBDaily, String> col_avg_temperature = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBDaily, String> col_high_wind = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBDaily, String> col_avg_wind = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBDaily, String> col_avg_humidity = new TableColumn<>();
 
-//    private final List<String> observableTimes = new ArrayList<>();
-   private final ObservableList<WDBHourly> oblist = FXCollections.observableArrayList();
-//    ObservableList<String> stringlist = FXCollections.observableArrayList();
+    //weekly tableview
+    @FXML
+    private TableView<WDBWeekly> weekly = new TableView<>();
+    @FXML
+    private final TableColumn<WDBWeekly, String> col_weekending = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBWeekly, String> col_weeklyhighpressure = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBWeekly, String> col_weeklylowpressure = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBWeekly, String> col_weeklyavgpressure = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBWeekly, String> col_weeklyhightemperature = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBWeekly, String> col_weeklylowtemperature = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBWeekly, String> col_weeklyavgtemperature = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBWeekly, String> col_weeklyhighwind = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBWeekly, String> col_weeklyavgwind = new TableColumn<>();
+    @FXML
+    public TableColumn<WDBWeekly, String> col_weeklyavghumidity = new TableColumn<>();
 
-
-//    private ObservableList<ObservableList> data;
 
     @Override
     public void initialize(URL Location, ResourceBundle resources) {
 
+        ObservableList<WDBHourly> hourlyList = FXCollections.observableArrayList();
+        ObservableList<WDBDaily> dailyList = FXCollections.observableArrayList();
+        ObservableList<WDBWeekly> weeklyList = FXCollections.observableArrayList();
+
         try {
+            // connection method
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement statement = conn.createStatement();
             String sql = "SELECT * FROM hourly";
             ResultSet rs = statement.executeQuery(sql);
-            while (rs.next()) { // rename DB so table matches in sqlite and java fx including case
-                oblist.add(new WDBHourly(rs.getString("pressure"), rs.getString("temperature"),
+            while (rs.next()) {
+                hourlyList.add(new WDBHourly(rs.getString("pressure"), rs.getString("temperature"),
                         rs.getString("wind"), rs.getString("humidity"), rs.getString("time")));
             }
             rs.close();
@@ -72,19 +120,66 @@ public class InstrumentsController implements Initializable {
         col_wind.setCellValueFactory(new PropertyValueFactory<>("Wind"));
         col_humidity.setCellValueFactory(new PropertyValueFactory<>("Humidity"));
         col_time.setCellValueFactory(new PropertyValueFactory<>("Time"));
-        hourly.setItems(oblist);
+        hourly.setItems(hourlyList);
+    try {
+        // connection method
+        Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
+        Statement statement = conn.createStatement();
+        String sql = "SELECT * FROM daily";
+        ResultSet rs = statement.executeQuery(sql);
+        while (rs.next()) {
+            dailyList.add(new WDBDaily(rs.getString("date"), rs.getString("highpressure"), rs.getString("lowpressure"), rs.getString("avgpressure"), rs.getString("hightemp"),
+                    rs.getString("lowtemp"), rs.getString("avgtemp"), rs.getString("highwind"), rs.getString("avgwind"),
+                    rs.getString("avghumid")));
+        }
+        rs.close();
+        statement.close();
+        conn.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+        col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        col_high_pressure.setCellValueFactory(new PropertyValueFactory<>("highpressure"));
+        col_low_pressure.setCellValueFactory(new PropertyValueFactory<>("lowpressure"));
+        col_avg_pressure.setCellValueFactory(new PropertyValueFactory<>("avgpressure"));
+        col_high_temperature.setCellValueFactory(new PropertyValueFactory<>("hightemp"));
+        col_low_temperature.setCellValueFactory(new PropertyValueFactory<>("lowtemp"));
+        col_avg_temperature.setCellValueFactory(new PropertyValueFactory<>("avgtemp"));
+        col_high_wind.setCellValueFactory(new PropertyValueFactory<>("highwind"));
+        col_avg_wind.setCellValueFactory(new PropertyValueFactory<>("avgwind"));
+        col_avg_humidity.setCellValueFactory(new PropertyValueFactory<>("avghumid"));
+        daily.setItems(dailyList);
+ try {
+        // connection method
+        Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
+        Statement statement = conn.createStatement();
+        String sql = "SELECT * FROM weekly";
+        ResultSet rs = statement.executeQuery(sql);
+        while (rs.next()) {
+            weeklyList.add(new WDBWeekly(rs.getString("weekending"), rs.getString("weeklyhighpressure"), rs.getString("weeklylowpressure"), rs.getString("weeklyavgpressure"),
+                    rs.getString("weeklyhightemp"), rs.getString("weeklylowtemp"), rs.getString("weeklyavgtemp"), rs.getString("weeklyhighwind"),
+                    rs.getString("weeklyavgwind"), rs.getString("weeklyavghumid")));
+        }
+        rs.close();
+        statement.close();
+        conn.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+        col_weekending.setCellValueFactory(new PropertyValueFactory<>("weekending"));
+        col_weeklyhighpressure.setCellValueFactory(new PropertyValueFactory<>("weeklyhighpressure"));
+        col_weeklylowpressure.setCellValueFactory(new PropertyValueFactory<>("weeklylowpressure"));
+        col_weeklyavgpressure.setCellValueFactory(new PropertyValueFactory<>("weeklyavgpressure"));
+        col_weeklyhightemperature.setCellValueFactory(new PropertyValueFactory<>("weeklyhightemp"));
+        col_weeklylowtemperature.setCellValueFactory(new PropertyValueFactory<>("weeklylowtemp"));
+        col_weeklyavgtemperature.setCellValueFactory(new PropertyValueFactory<>("weeklyavgtemp"));
+        col_weeklyhighwind.setCellValueFactory(new PropertyValueFactory<>("weeklyhighwind"));
+        col_weeklyavgwind.setCellValueFactory(new PropertyValueFactory<>("weeklyavgwind"));
+        col_weeklyavghumidity.setCellValueFactory(new PropertyValueFactory<>("weeklyavghumid"));
+        weekly.setItems(weeklyList);
+}
 
-
-    //    @FXML
-//    public TableColumn pressure;
-//    @FXML
-//    public TableColumn temperature;
-//    @FXML
-//    public TableColumn wind;
-//    @FXML
-//    public TableColumn humidity;
-
+    //buttons and fields
     @FXML
     private TextField pressureField;
     @FXML
@@ -108,31 +203,19 @@ public class InstrumentsController implements Initializable {
 
     public void logButtonPressed(MouseEvent mouseEvent) {
         logButton.setEffect(new Glow(.80));
+        // clean this up so just calling the method
         WDBHourly.setTimeStamp(System.currentTimeMillis());
     }
-
     public void logButtonReleased(MouseEvent mouseEvent) throws IOException {
         logButton.setEffect(new Glow(.0));
-        // rewrite all into
-        // set fields
-        // log
-        // set tables
-        // change stage
         WDBHourly.setPressureFieldValue(pressureField.getText());
         WDBHourly.setTemperatureFieldValue(tempField.getText());
         WDBHourly.setWindFieldValue(windField.getText());
         WDBHourly.setHumidityFieldValue(humidityField.getText());
         WeatherDB.log();
 
-        col_pressure.setCellValueFactory(new PropertyValueFactory<>("Pressure"));
-        col_temperature.setCellValueFactory(new PropertyValueFactory<>("Temperature"));
-        col_wind.setCellValueFactory(new PropertyValueFactory<>("Wind"));
-        col_humidity.setCellValueFactory(new PropertyValueFactory<>("Humidity"));
-        col_time.setCellValueFactory(new PropertyValueFactory<>("Time"));
-        hourly.setItems(getHourlyTable());
-
-
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Weather/instruments/InstrumentsDisplay.fxml")));
+        // scene change method
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Weather/instruments/DBDisplay.fxml")));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
@@ -140,7 +223,6 @@ public class InstrumentsController implements Initializable {
         stage.show();
 
     }
-
 
     public void observationsButtonEnter(MouseEvent mouseEvent) {
         observationsButton.setEffect(new Glow(.25));
@@ -156,6 +238,7 @@ public class InstrumentsController implements Initializable {
 
     public void observationsButtonReleased(MouseEvent mouseEvent) throws IOException {
         observationsButton.setEffect(new Glow(0.0));
+        // scene change method
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Weather/instruments/Observations.fxml")));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -163,51 +246,6 @@ public class InstrumentsController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
-
-    //// for each in loggedTimes paint a cell in time object
-    //observable list is currently calling only current observable time instead of all times
-    // column is created but not painting column with observable list
-    // finish watching video
-
-
-    public static ObservableList <WDBHourly> getHourlyTable () {
-        ObservableList<WDBHourly> list = FXCollections.observableArrayList();
-        try {
-            Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
-            Statement statement = conn.createStatement();
-            String sql = "SELECT * FROM hourly";
-            ResultSet rs = statement.executeQuery(sql);
-            while (rs.next()) {
-                list.add(new WDBHourly(rs.getString("pressure"),rs.getString("temperature"),
-                        rs.getString("wind"),rs.getString("humidity"),rs.getString("time")));
-            }
-            rs.close();
-            statement.close();
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
-
-
-
-//    @Override
-//    public void initialize(URL url, ResourceBundle resourceBundle) {
-//        time.setCellValueFactory(new PropertyValueFactory<>("time"));
-//    }
-
-
-//    public void setHourlyTable(){
-//        hourlyTable.setItems(data);
-//        time.setCellValueFactory(new PropertyValueFactory<>("time"));
-//        hourlyTable.getColumns().addAll(time);
-//    }
-//    public void setHourlyTable(){
-//    time.setCellValueFactory(new PropertyValueFactory<>("time"));
-//    hourlyTable.setItems(WDBHourly.propagateTimes());
-//    }
 }
 
 

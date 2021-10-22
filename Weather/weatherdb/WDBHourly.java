@@ -1,21 +1,16 @@
 package main.Weather.weatherdb;
-import javafx.collections.ObservableList;
-
 import java.sql.*;
 
 public class WDBHourly {
-//    private static final WDBHourly instance = new WDBHourly();
-//    public static WDBHourly getInstance() {
-//        return instance;
-//    }
 
+    // init variables
     private final String time;
     private  String pressure;
     public  String temperature;
     private  String wind;
     private  String humidity;
 
-
+    // calculation variables
     private static  String timeFieldValue;
     private static String pressureFieldValue;
     public static String temperatureFieldValue;
@@ -24,13 +19,7 @@ public class WDBHourly {
     private static long timeStamp;
     protected static int getHourlyEntries;
 
-    // create actual class!!! simple versions observable lists etc.
-    // write to hourly table
-    // try three things >> 1 create new dm class, bind data as observable lists and populate each column with the list
-    // ie WDBHourly(oblist<string> time) and setters grab from database
-    // >> 2 create the constructor with new variables distinguishing from the variables used to haul data from user fields
-    // >> implement refresh and get columns methods
-
+    //constructor
     public WDBHourly(String pressure, String temperature, String wind, String humidity, String time) {
         this.pressure = pressure;
         this.temperature = temperature;
@@ -39,7 +28,7 @@ public class WDBHourly {
         this.time = time;
     }
 
-
+    // DB Methods
     public static void writeToHourly() {
         try {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
@@ -61,7 +50,7 @@ public class WDBHourly {
     public static void printHourlyLog() {
         System.out.println(
                 "Wrote to hourly: " +
-                        "\n" + WDBHourly.convertedCurrentTime() +
+                        "\n" + WDBHourly.getCurrentTime() +
                         "\n" + "Pressure = " + pressureFieldValue +
                         "\n" + "temperature = " + temperatureFieldValue +
                         "\n" + "Wind = " + windFieldValue +
@@ -72,7 +61,6 @@ public class WDBHourly {
     }
 
     // time methods
-
         public static void observableTimeConversion() throws SQLException {
         try {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
@@ -96,7 +84,8 @@ public class WDBHourly {
         return String.valueOf(new Time(time));
     }
 
-    private static Time convertedCurrentTime() {
+    // getters and setters
+    private static Time getCurrentTime() {
         return new Time(timeStamp);
     }
 
@@ -123,7 +112,6 @@ public class WDBHourly {
     public static void setHumidityFieldValue(String humidityFieldValue) {
         WDBHourly.humidityFieldValue = humidityFieldValue;
     }
-
 
     public void setPressure(String pressure) {
         this.pressure = pressure;
