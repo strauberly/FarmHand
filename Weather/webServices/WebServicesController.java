@@ -1,4 +1,4 @@
-package main.Weather.webService;
+package main.Weather.webServices;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -29,11 +29,11 @@ public class WebServicesController {
 
     public void windyPressed(MouseEvent mouseEvent) {
         windyButton.setEffect(new Glow(.80)); }
-@FXML
+    @FXML
     public void windyReleased(MouseEvent mouseEvent) {
         windyButton.setEffect(new Glow(.0));
-       WebEngine engine = webViewer.getEngine();
-       engine.load("https://www.windy.com");
+        WebEngine engine = webViewer.getEngine();
+        engine.load("https://www.windy.com");
     }
 
 
@@ -46,7 +46,7 @@ public class WebServicesController {
 
     public void noaaPressed(MouseEvent mouseEvent) {
         noaaButton.setEffect(new Glow(.80)); }
-@FXML
+    @FXML
     public void noaaReleased(MouseEvent mouseEvent) {
         noaaButton.setEffect(new Glow(.25));
         WebEngine engine = webViewer.getEngine();
@@ -104,8 +104,4 @@ public class WebServicesController {
         WebEngine engine = webViewer.getEngine();
         engine.load("https://www.accuweather.com/");
     }
-
-
-
-
 }

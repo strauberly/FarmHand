@@ -3,9 +3,9 @@ package main.Weather.weatherdb;
 import java.sql.*;
 public class WeatherDB {
 
-    public static Double high;
-    public static Double low;
-    public static Double avg;
+    public static String high;
+    public static String low;
+    public static String avg;
 //create methods getting variables, eliminate calling variable directly
 //reset connection string to something more generic or run a method to check system and then pick based on system
     public static final String DB_NAME = "weather.db";
@@ -22,12 +22,13 @@ public class WeatherDB {
                     " (hourly_id_ INTEGER PRIMARY KEY AUTOINCREMENT, timestamp TIME, pressure STRING, temperature STRING, wind STRING," +
                     " humidity STRING, time STRING)");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS daily " +
-                    " (daily_id_ INTEGER PRIMARY KEY AUTOINCREMENT, date LONG, high_temp DOUBLE, low_temp DOUBLE, avg_temp DOUBLE," +
-                    "high_wind DOUBLE, avg_wind DOUBLE, avg_humid DOUBLE, high_pressure DOUBLE, low_pressure DOUBLE, avg_pressure DOUBLE," +
-                    "observable_date STRING)");
+                    " (daily_id_ INTEGER PRIMARY KEY AUTOINCREMENT, timestamp LONG, highpressure STRING, lowpressure STRING, avgpressure STRING," +
+                   "hightemp STRING, lowtemp STRING, avgtemp STRING, highwind STRING, avgwind STRING, avghumid STRING, date STRING)");
+
+
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS weekly " +
-                    " (weekly_id_ INTEGER PRIMARY KEY AUTOINCREMENT, week_ending LONG, high_temp DOUBLE, low_temp DOUBLE, avg_temp DOUBLE," +
-                    "high_wind DOUBLE, avg_wind DOUBLE, avg_humid DOUBLE, high_pressure DOUBLE, low_pressure DOUBLE, avg_pressure DOUBLE, observable_week_ending STRING)");
+                    " (weekly_id_ INTEGER PRIMARY KEY AUTOINCREMENT, weeklytimestamp LONG, weeklyhighpressure STRING, weeklylowpressure STRING, weeklyavgpressure STRING," +
+                    "weeklyhightemp STRING, weeklylowtemp STRING, weeklyavgtemp STRING, weeklyhighwind STRING, weeklyavgwind STRING, weeklyavghumid STRING, weekending STRING)");
 
             statement.close();
             conn.close();
@@ -66,13 +67,13 @@ public class WeatherDB {
     }
 
     // Getters
-    public static Double getHigh (String column, String table){
+    public static String getHigh (String column, String table){
         try {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement statement = conn.createStatement();
-            String sql2 = "SELECT MAX" + "(" +column+ ")" + " as maxtemp FROM '" + table + "' ";
+            String sql2 = "SELECT MAX" + "(" +column+ ")" + " as max FROM '" + table + "' ";
             ResultSet rs2 = statement.executeQuery(sql2);
-            high = rs2.getDouble("maxtemp");
+            high = rs2.getString("max");
             rs2.close();
             statement.close();
             conn.close();
@@ -83,13 +84,13 @@ public class WeatherDB {
         return high;
     }
 
-    public static Double getLow (String column, String table){
+    public static String getLow (String column, String table){
         try {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement statement = conn.createStatement();
-            String sql3 = "SELECT MIN" +  "(" +column+ ")" + " as mintemp FROM '" + table + "' ";
+            String sql3 = "SELECT MIN" +  "(" +column+ ")" + " as min FROM '" + table + "' ";
             ResultSet rs3 = statement.executeQuery(sql3);
-            low = rs3.getDouble("mintemp");
+            low = rs3.getString("min");
             rs3.close();
             statement.close();
             conn.close();
@@ -100,13 +101,13 @@ public class WeatherDB {
         return low;
     }
 
-    public static Double getAvg (String column, String table){
+    public static String getAvg (String column, String table){
         try {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement statement = conn.createStatement();
-            String sql4 = "SELECT AVG" + "(" + column + ")" + "as avgtemp FROM '" + table + "' ";
+            String sql4 = "SELECT AVG" + "(" + column + ")" + "as avg FROM '" + table + "' ";
             ResultSet rs4 = statement.executeQuery(sql4);
-            avg = rs4.getDouble("avgtemp");
+            avg = rs4.getString("avg");
             rs4.close();
             statement.close();
             conn.close();
