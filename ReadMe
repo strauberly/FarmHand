@@ -11,11 +11,16 @@ Functionality to include but not limited to; weather observation, planning tasks
 
 The following is journal of how this came to be. Thank you for reading this and for checking out the project. Cheers!
 ===========================================================
+- 22 Oct 2021 -
+
+All tables now display as they should, next clean, style and observations logic. Feels pretty good. Cheers!  
+------------------------------------------------------------
+
 - 20 Oct 2021 -
 
 HourlyDB is displaying now in tableview as it should. Next Rinse and repeat for other 2 tables, clean up, and begin observations logic.  
 
-
+-----------------------------------------------------------
 
 - 10 Oct 2021 - 
 
