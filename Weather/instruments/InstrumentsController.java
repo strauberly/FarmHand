@@ -8,10 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
@@ -28,6 +25,8 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class InstrumentsController implements Initializable {
+    @FXML
+    public Label observationsText = new Label();
 
     //hourly tableview
     @FXML
@@ -91,10 +90,17 @@ public class InstrumentsController implements Initializable {
     @FXML
     public TableColumn<WDBWeekly, String> col_weeklyavghumidity = new TableColumn<>();
 
+//    {
+//        observationsText = new Label();
+//    }
 
     @Override
     public void initialize(URL Location, ResourceBundle resources) {
-
+        int hourlyEntries = 0;
+        if (!(WeatherDB.getID("hourly_id_", "hourly", hourlyEntries )>2)){
+            observationsText.setText("mAH d00d needs at least 3 hourly entries for observations. ");
+        }else
+        observationsText.setText(Observations.getWeatherReport());
         ObservableList<WDBHourly> hourlyList = FXCollections.observableArrayList();
         ObservableList<WDBDaily> dailyList = FXCollections.observableArrayList();
         ObservableList<WDBWeekly> weeklyList = FXCollections.observableArrayList();
@@ -177,6 +183,7 @@ public class InstrumentsController implements Initializable {
         col_weeklyavgwind.setCellValueFactory(new PropertyValueFactory<>("weeklyavgwind"));
         col_weeklyavghumidity.setCellValueFactory(new PropertyValueFactory<>("weeklyavghumid"));
         weekly.setItems(weeklyList);
+
 }
 
     //buttons and fields
@@ -208,6 +215,7 @@ public class InstrumentsController implements Initializable {
     }
     public void logButtonReleased(MouseEvent mouseEvent) throws IOException {
         logButton.setEffect(new Glow(.0));
+        // possibly rewrite this as local single method
         WDBHourly.setPressureFieldValue(pressureField.getText());
         WDBHourly.setTemperatureFieldValue(tempField.getText());
         WDBHourly.setWindFieldValue(windField.getText());
@@ -238,6 +246,7 @@ public class InstrumentsController implements Initializable {
 
     public void observationsButtonReleased(MouseEvent mouseEvent) throws IOException {
         observationsButton.setEffect(new Glow(0.0));
+
         // scene change method
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Weather/instruments/Observations.fxml")));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();

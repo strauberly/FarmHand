@@ -1,5 +1,6 @@
 package main;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -8,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -17,15 +19,31 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class MainWindowController extends Main {
-// create change scene method here
-    // implement windows being draggable 
+//    public HBox dragBar;
+    private double xOffset = 0;
+    private double yOffset = 0;
+//// create change scene method here
+//    // implement windows being draggable
+//    >> bp == border pane so create fx id for stack pane and then alter following methods
+//    bp.setOnMousePressed(new EventHandler<MouseEvent>() {
+//        @Override
+//        public void handle(MouseEvent event) {
+//            xOffset = primaryStage.getX() - event.getScreenX();
+//            yOffset = primaryStage.getY() - event.getScreenY();
+//        }
+//    });
+//    and your setOnMouseDragged to this:
+//
+//            bp.setOnMouseDragged(new EventHandler<MouseEvent>() {
+//        @Override
+//        public void handle(MouseEvent event) {
+//            primaryStage.setX(event.getScreenX() + xOffset);
+//            primaryStage.setY(event.getScreenY() + yOffset);
+//        }
+//    });
 
     @FXML
     private Button weatherButton;
-
-    public MainWindowController() throws IOException {
-    }
-
     @FXML
     private void onWeatherEntered(MouseEvent enter) {
         weatherButton.setEffect(new Glow(.25));
@@ -37,7 +55,6 @@ public class MainWindowController extends Main {
     @FXML
     private void onWeatherPressed(MouseEvent pressed) throws IOException {
         weatherButton.setEffect(new Glow(.80));
-
     }
     @FXML
     private void onWeatherReleased(MouseEvent released) throws IOException {
@@ -48,7 +65,7 @@ public class MainWindowController extends Main {
             Stage weatherStage = new Stage();
             weatherStage.initStyle(StageStyle.TRANSPARENT);
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Weather/Weather.fxml")));
-            FXMLLoader fxmlLoader = new FXMLLoader();
+//            FXMLLoader fxmlLoader = new FXMLLoader();
             Scene scene = new Scene(root);
             scene.setFill(Color.TRANSPARENT);
             weatherStage.setScene(scene);
@@ -60,6 +77,23 @@ public class MainWindowController extends Main {
             }
             choresButton.setOnAction(event -> weatherStage.close());
             inventoryButton.setOnAction(event -> weatherStage.close());
+
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                weatherStage.setX(event.getScreenX() - xOffset);
+                weatherStage.setY(event.getScreenY() - yOffset);
+
+            }
+        });
         }
 
 
@@ -86,7 +120,7 @@ public class MainWindowController extends Main {
         Stage choresStage = new Stage();
         choresStage.initStyle(StageStyle.TRANSPARENT);
 
-        FXMLLoader fxmlLoader = new FXMLLoader();
+//        FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Chores/Chores.fxml")));
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
@@ -127,9 +161,8 @@ public class MainWindowController extends Main {
     private void onInventoryClicked(MouseEvent mouseEvent) throws IOException {
         Stage inventoryStage = new Stage();
         inventoryStage.initStyle(StageStyle.TRANSPARENT);
-
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Inventory/Inventory.fxml")));
-        FXMLLoader fxmlLoader = new FXMLLoader();
+//        FXMLLoader fxmlLoader = new FXMLLoader();
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         inventoryStage.setScene(scene);
@@ -139,7 +172,6 @@ public class MainWindowController extends Main {
         if (inventoryStage.isShowing()) {
             inventoryButton.setOnAction(event -> inventoryStage.close());
         }
-
         choresButton.setOnAction(event -> inventoryStage.close());
         weatherButton.setOnAction(event -> inventoryStage.close());
     }
@@ -195,6 +227,36 @@ public class MainWindowController extends Main {
     }
 
 
+//    public void titleBarDrag(MouseEvent mouseEvent) {
+//    Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+//    stage.setX(mouseEvent.getScreenX() - x);
+//        stage.setX(mouseEvent.getScreenY() - y);
+//    }
+//
+//    public void titleBarPress(MouseEvent mouseEvent) {
+//        x = mouseEvent.getSceneX();
+//        y = mouseEvent.getSceneY();
+//    }
+
+    //// create change scene method here
+//    // implement windows being draggable
+//    >> bp == border pane so create fx id for stack pane and then alter following methods
+//    bp.setOnMousePressed(new EventHandler<MouseEvent>() {
+//        @Override
+//        public void handle(MouseEvent event) {
+//            xOffset = primaryStage.getX() - event.getScreenX();
+//            yOffset = primaryStage.getY() - event.getScreenY();
+//        }
+//    });
+//    and your setOnMouseDragged to this:
+//
+//            bp.setOnMouseDragged(new EventHandler<MouseEvent>() {
+//        @Override
+//        public void handle(MouseEvent event) {
+//            primaryStage.setX(event.getScreenX() + xOffset);
+//            primaryStage.setY(event.getScreenY() + yOffset);
+//        }
+//    });
 }
 
 

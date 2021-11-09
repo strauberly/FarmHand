@@ -209,13 +209,13 @@ public class WDBDaily {
 
     public static String convertedCurrentDateString(){
         Date currentDate = new Date(WDBHourly.getTimeStamp());
-        Format format = new SimpleDateFormat("yyyy-MM-dd");
+        Format format = new SimpleDateFormat("MM-dd-yyyy");
         return format.format(currentDate);
     }
 
     public static String convertedLoggedDateString(long loggedDate){
         Date currentDate = new Date(getLoggedDate());
-        Format format = new SimpleDateFormat("yyyy-MM-dd");
+        Format format = new SimpleDateFormat("MM-dd-yyyy");
         return format.format(currentDate);
     }
 

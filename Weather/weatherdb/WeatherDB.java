@@ -71,7 +71,7 @@ public class WeatherDB {
         try {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement statement = conn.createStatement();
-            String sql2 = "SELECT MAX" + "(" +column+ ")" + " as max FROM '" + table + "' ";
+            String sql2 = "SELECT MAX" + "(" +column+ ")" + " as max FROM '" + table + "'";
             ResultSet rs2 = statement.executeQuery(sql2);
             high = rs2.getString("max");
             rs2.close();

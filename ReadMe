@@ -11,6 +11,43 @@ Functionality to include but not limited to; weather observation, planning tasks
 
 The following is journal of how this came to be. Thank you for reading this and for checking out the project. Cheers!
 ===========================================================
+- 8 Nov 2021 -
+
+- primary stage is now dragable around screen not sure if this is the implementation I want yet or not
+-----------------------------------------------------------
+- 2 Nov 2021 -
+
+ Just need some initialization work to get observations to display as intended.
+
+Updated criteria for stormy, hot and dry, improving, detiorating.
+
+Formatted text
+
+included error messages for bad input, insufficient number of entries in instruments.
+
+include errors for leaving fields blank or  garbage
+>> try writing as regular expressions
+
+Next to include attempts to test, optimize, display on different screen sizes, write db to a location neutral to type of system,  clean code and check for best practices
+
+Current state of code to be pushed to GIT 
+  
+------------------------------------------------------------
+- 1 Nov 2021 -
+
+Adjusted hotAndDryDefinitiion() and humidityDefinition()
+in Observations.
+
+Adjusted improvingDefinition() and detioratingDefinition()
+in Observations.
+  
+------------------------------------------------------------
+
+- 27 Oct 2021 -
+
+Definitions for observations logic(ie. rising, falling, hot, cold, windy etc.)
+  
+------------------------------------------------------------
 - 22 Oct 2021 -
 
 All tables now display as they should, next clean, style and observations logic. Feels pretty good. Cheers!  
