@@ -85,7 +85,7 @@ public class WDBHourly {
     }
 
     // getters and setters
-    private static Time getCurrentTime() {
+    public static Time getCurrentTime() {
         return new Time(timeStamp);
     }
 
