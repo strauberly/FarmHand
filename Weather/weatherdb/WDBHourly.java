@@ -2,14 +2,14 @@ package main.Weather.weatherdb;
 import java.sql.*;
 
 public class WDBHourly {
-
+// all variables private but get public getters where needed
     // init variables
     private final String time;
     private  String pressure;
     public  String temperature;
     private  String wind;
     private  String humidity;
-
+// see if we can use the above without a need to seperate
     // calculation variables
     private static  String timeFieldValue;
     private static String pressureFieldValue;
@@ -17,7 +17,7 @@ public class WDBHourly {
     private static String windFieldValue;
     private static String humidityFieldValue;
     private static long timeStamp;
-    protected static int getHourlyEntries;
+    public static int getHourlyEntries;
 
     //constructor
     public WDBHourly(String pressure, String temperature, String wind, String humidity, String time) {
@@ -111,6 +111,9 @@ public class WDBHourly {
 
     public static void setHumidityFieldValue(String humidityFieldValue) {
         WDBHourly.humidityFieldValue = humidityFieldValue;
+    }
+    public static String getTimeFieldValue() {
+        return timeFieldValue;
     }
 
     public void setPressure(String pressure) {

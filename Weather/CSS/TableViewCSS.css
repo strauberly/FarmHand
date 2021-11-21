@@ -34,26 +34,35 @@
      -fx-alignment: CENTER;
 }
 
-.scroll-bar:vertical .thumb{
+.table-view .scroll-bar:vertical, horizontal,
+ table-view .scroll-bar .corner .filler{
+ -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical, horizontal,
+.scroll-bar .thumb{
 -fx-background-color: rgb(42, 225, 246);
 }
 
-.table-view .scroll-bar:vertical,
-.table-view  .scroll-bar:vertical .track,
-.table-view  .scroll-bar:vertical .track-background{
+.table-view  .scroll-bar:vertical, horizontal,
+.table-view  .scroll-bar .track,
+.table-view  .scroll-bar .track-background{
 -fx-background-color: rgb(38, 152, 186);
 }
 
 
-.table-view .scroll-bar:vertical,
-.table-view  .scroll-bar:vertical .track,
-.table-view  .scroll-bar:vertical .decrement-button,
-.table-view  .scroll-bar:horizontal,
-.table-view  .scroll-bar:horizontal .track,
+.table-view  .scroll-bar: vertical, horizontal,
 .table-view  .scroll-bar .decrement-button,
 .table-view  .scroll-bar .decrement-arrow,
-.table-view  .scroll-bar .increment-arrow,
-.table-view  .scroll-bar:horizontal .track-background {
-    -fx-background-color: transparent;
-    -fx-padding: 0
-}
+.table-view  .scroll-bar .increment-arrow{
+ -fx-background-color: transparent;
+-fx-padding: 0
+ }
+
+.table-view .scroll-bar .corner{
+ fx-background-color: transparent;
+ }
+
+
+
+
