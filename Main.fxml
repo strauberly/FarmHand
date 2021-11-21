@@ -143,8 +143,8 @@
             <Insets bottom="123.0" left="42.25" />
         </StackPane.margin>
     </Rectangle>
-    <HBox fx:id="dragBar" prefHeight="56.0" prefWidth="305.0">
-        <Line endX="422.5826416015625" endY="46.13850402832031" fill="#8aee39" layoutX="60.0" layoutY="60.0" startX="678.5826416015625" startY="46.13850402832031" stroke="#ebf01d"
+    <HBox prefHeight="56.0" prefWidth="305.0">
+        <Line endX="422.5826416015625" endY="46.13850402832031" fill="#8aee39" layoutX="60.0" layoutY="60.0" startX="678.5826416015625" startY="46.13850402832031" stroke="#98dd78"
               strokeLineCap="ROUND" strokeMiterLimit="0.0" strokeWidth="3.0">
            <HBox.margin>
                <Insets left="22.0" top="65.0" />

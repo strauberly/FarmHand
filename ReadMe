@@ -11,6 +11,111 @@ Functionality to include but not limited to; weather observation, planning tasks
 
 The following is journal of how this came to be. Thank you for reading this and for checking out the project. Cheers!
 ===========================================================
+
+- 20 Nov 2021 -
+New notation scheme 
+** == done  
+>> == to do
+
+Uploading version to git 
+-------------------------------------------------------------------------------------
+** DB is now written directly into project instead of on an absolute path limiting what system program operates from without changing values.
+
+** If written for specific client and none other it would be written to a specific file path and makes program unusable to others? 
+-----------------------------------------------------------------------------------------
+
+>> create new scenes for instructions
+
+>> look into rewriting controllers for more efficient use insteaad of being replicated
+
+>> FXML to be arranged so user interaction is seperate and thereby allows inclusion in all additional scenes
+including instructions
+
+>> error pages and quantifiers
+
+>> handle exceptions
+
+>> package program
+
+>> Desired FXML for stations non functional can not load new stage, either a 400 error as api does not have a location to call  >> work out other functionality in scene change leave stations as you had it just include new stations page without label 
+
+>> adjust gui to be the same across any platform regardless of size
+------------------------------------------------------------
+
+
+- 15 Nov 2021 -
+
+>> DB columns now appear By order of last entered perhaps, still sortable ?
+
+>> FXML to be arranged so user interaction is seperate and thereby allows inclusion in all additional scenes
+including instructions
+
+>> error pages and quantifiers
+
+>> handle exceptions
+
+>> identify system and write db in safe area
+
+>> package program
+
+>> Desired FXML for stations non functional can not load new stage, either a 400 error as api does not have a location to call  >> work out other functionality in scene change leave stations as you had it just include new stations page without label 
+-----------------------------------------------------------
+- 14 Nov 2021 -
+
+!!Stations failure >> no longer populating label as desired back to drawing board
+
+>> Stations functioning as intended and now logs displayed conditions, displays logs and gets observations.
+
+>>tweaked observations a bit more time for real world trial
+
+>> next might be making sure latest reading is always at top
+
+>> followed by clean up
+
+>> followed by possible validation for bad data entered
+
+>> work backed up among drives git upload to follow shortly
+
+“Say now... You better straighten up and fly right!”
+-- Leonard Lee Dill
+-----------------------------------------------------------
+
+- 13 Nov 2021 -
+
+Updated a bit of Stations FXML and current condiotions from stations class now log to the database as well
+
+>> future implementations will included viewing the logs 
+and getting observations
+
+>> observations class also needs a little bit of work determining rising falling and unsettled
+-----------------------------------------------------------
+
+- 11 Nov 2021 -
+
+>> implementation of new fxml method
+>> adjusment of fxml items
+-----------------------------------------------------------
+
+- 10 Nov 2021 -
+
+>>Created weather class to house scene change method and any other repetitive methods that need to be called into a controller
+>>reformatted scene change method to accept string and mouse event
+>> reformatted scene change method to house local variables in the method for position x and y
+>> operating as desired so far
+-----------------------------------------------------------
+
+- 9 Nov 2021 -
+
+-created method for setting stage
+>> need to gather all fxml into singular package for a non muddled integration
+>> be prepared that you are most likely about to break a fair bit of your code, but this should eliminate 21 lines of code where used
+>> unable to acheive desired results as method containing scene change must have a file name put in and still be able to be called a mouse event, where as method that opens and closes stage hard codes the fxml. Will take a bit more work.
+>> main stage is no longer moveable but weather stage and all scenes contained are. Intention is for more of an experience of main stage being anchored while extra stage can be moved out of the way to view windows in background.
+>> Would like to possibly play with the whole window being resizeable.
+>> Will play around with visual formatting of gui and then see about logging data provided from the called weather api. Feels like its starting to get ready to present. 
+-----------------------------------------------------------
+
+
 - 8 Nov 2021 -
 
 - primary stage is now dragable around screen not sure if this is the implementation I want yet or not

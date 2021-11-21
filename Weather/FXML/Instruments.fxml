@@ -7,13 +7,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" stylesheets="@../WeatherCSS.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Weather.instruments.InstrumentsController">
-   <fx:include source="../Weather.fxml" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" stylesheets="@../CSS/WeatherCSS.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Weather.instruments.InstrumentsController">
+   <fx:include source="Weather.fxml" />
    <VBox layoutX="6.0" layoutY="84.0" prefHeight="625.0" prefWidth="300.0">
 
       <TextField fx:id="pressureField" alignment="CENTER" cacheShape="false" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="190.0" promptText="Enter Pressure" scaleShape="false">
          <VBox.margin>
-            <Insets left="55.0" top="60.0" />
+            <Insets left="55.0" top="30.0" />
          </VBox.margin>
          <font>
             <Font size="18.0" />
@@ -52,7 +52,7 @@
             <Font size="24.0" />
          </font>
          <VBox.margin>
-            <Insets left="110.0" top="30.0" />
+            <Insets left="110.0" top="45.0" />
          </VBox.margin>
       </Button>
 

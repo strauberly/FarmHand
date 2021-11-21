@@ -1,78 +1,43 @@
 package main.Weather;
-import main.Weather.stations.StationsController;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Scanner;
+import java.util.Objects;
 
 public class Weather {
+    public static void setWeatherScene(String fileName, MouseEvent mouseEvent) throws IOException {
+        final double[] xOffset = {0};
+        final double[] yOffset = {0};
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Weather.class.getResource("/main/Weather/FXML/" + fileName + ".fxml")));
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.show();
 
-    private static String conditions;
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset[0] = event.getSceneX();
+                 yOffset[0] = event.getSceneY();
+            }
+        });
 
-    protected static String getConditions() throws IOException {
-        // takes the information entered as lat. and long. and applies values to api url
-        String urlLat = StationsController.getLat();
-        String urlLongi = StationsController.getLongi();
-        String apiUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + urlLat + "&lon=" + urlLongi + "&units=imperial&appid=ba12fc74c50358f79d2f837033e212d7";
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                stage.setX(event.getScreenX() - xOffset[0]);
+                stage.setY(event.getScreenY() - yOffset[0]);
 
-        // /creates variable "apiString" then opens connection to api url and makes get request
-        // scanner then receives response and appends the string and closes scanner
-        StringBuilder apiString = new StringBuilder();
-
-        URL url = new URL(apiUrl);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
-        conn.connect();
-
-        Scanner scanner = new Scanner(url.openStream());
-        while (scanner.hasNext()) {
-
-            apiString.append(scanner.nextLine());
-        }
-        scanner.close();
-
-        // parses the values of created string to build JSON Object and allows to be reparsed for values.
-        // would like to develop for scanner to return response directly as JSON object and eliminate a step
-        JSONParser parser = new JSONParser();
-        JSONObject apiReturn = new JSONObject();
-        try {
-            apiReturn = (JSONObject) parser.parse(String.valueOf(apiString));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        JSONObject sys = (JSONObject) apiReturn.get("sys");
-        JSONObject coord = (JSONObject) apiReturn.get("coord");
-        JSONObject main = (JSONObject) apiReturn.get("main");
-        JSONObject wind = (JSONObject) apiReturn.get("wind");
-
-        JSONArray weather = (JSONArray) apiReturn.get("weather");
-        for (Object o : weather) {
-            JSONObject obj = (JSONObject) o;
-            String description = (String) obj.get("description");
-
-
-          conditions = apiReturn.get("name") + ", " + sys.get("country") + " = "
-                    + "lat: " + coord.get("lat") + ", " + "lon: " + coord.get("lon") + "\n" + "\n" + "\n"
-                    + description + "\n" + "\n" + "\n"
-                    + "Pressure = " + main.get("pressure") + "\n" + "\n" + "\n"
-                    + "Temperature = " + main.get("temp") + "\n" + "\n" + "\n"
-                    + "Wind = Speed: " + wind.get("speed") + ", Direction: " + wind.get("deg") + " degrees, Gusts: " + wind.get("gust") + "\n" + "\n" + "\n"
-                    + "Humidity = " + main.get("humidity") + "%";
-        }
-        return conditions;
-    }
-
-    public static String getOutput() throws IOException {
-        return Weather.getConditions();
+            }
+        });
     }
 }
-
-
-
-
-
-

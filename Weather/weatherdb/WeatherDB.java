@@ -7,12 +7,8 @@ public class WeatherDB {
     public static String low;
     public static String avg;
 //create methods getting variables, eliminate calling variable directly
-//reset connection string to something more generic or run a method to check system and then pick based on system
     public static final String DB_NAME = "weather.db";
-    public static final String CONNECTION_STRING = "jdbc:sqlite:/media/brian/Backup 2/Documents/Tablet Backup/Documents/Courses/Java/personal projects/from brian/src/main/Weather/weatherdb/" + DB_NAME;
-
-    // create db (implemented @ initial run time, streamline where DB created)
-    // rewrite so there are no dashes!
+    public static final String CONNECTION_STRING = "jdbc:sqlite:src/main/Weather/weatherdb/" + DB_NAME;
     public static void createWeatherDB() {
         try {
             Connection conn = DriverManager.getConnection(CONNECTION_STRING);

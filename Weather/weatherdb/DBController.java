@@ -1,33 +1,18 @@
-package main.Weather.instruments;
+package main.Weather.weatherdb;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.effect.Glow;
-import javafx.scene.input.MouseEvent;
-import main.Weather.Weather;
-import main.Weather.WeatherController;
-import main.Weather.observations.Observations;
-import main.Weather.weatherdb.WDBDaily;
-import main.Weather.weatherdb.WDBHourly;
-import main.Weather.weatherdb.WDBWeekly;
-import main.Weather.weatherdb.WeatherDB;
-import java.io.IOException;
+
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
-public class InstrumentsController implements Initializable {
-//    private double xOffset = 0;
-//    private double yOffset = 0;
-
-    @FXML
-    public Label observationsText = new Label();
-
-    //hourly tableview
+public class DBController implements Initializable {
     @FXML
     private TableView<WDBHourly> hourly = new TableView<>();
     @FXML
@@ -96,11 +81,6 @@ public class InstrumentsController implements Initializable {
 
     @Override
     public void initialize(URL Location, ResourceBundle resources) {
-        int hourlyEntries = 0;
-        if (!(WeatherDB.getID("hourly_id_", "hourly", hourlyEntries) > 2)) {
-            observationsText.setText("mAH d00d needs at least 3 hourly entries for observations. ");
-        } else
-            observationsText.setText(Observations.getWeatherReport());
         ObservableList<WDBHourly> hourlyList = FXCollections.observableArrayList();
         ObservableList<WDBDaily> dailyList = FXCollections.observableArrayList();
         ObservableList<WDBWeekly> weeklyList = FXCollections.observableArrayList();
@@ -109,7 +89,7 @@ public class InstrumentsController implements Initializable {
             // connection method
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement statement = conn.createStatement();
-            String sql = "SELECT * FROM hourly ORDER BY hourly_id_  DESC";
+            String sql = "SELECT * FROM hourly ORDER BY hourly_id_ DESC";
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
                 hourlyList.add(new WDBHourly(rs.getString("pressure"), rs.getString("temperature"),
@@ -185,112 +165,4 @@ public class InstrumentsController implements Initializable {
         weekly.setItems(weeklyList);
 
     }
-
-    //buttons and fields
-    @FXML
-    private TextField pressureField;
-    @FXML
-    private TextField tempField;
-    @FXML
-    private TextField windField;
-    @FXML
-    private TextField humidityField;
-    @FXML
-    private Button logButton;
-    @FXML
-    private Button observationsButton;
-
-    public void logButtonEnter(MouseEvent mouseEvent) {
-        logButton.setEffect(new Glow(.25));
-    }
-
-    public void logButtonExited(MouseEvent mouseEvent) {
-        logButton.setEffect(new Glow(.0));
-    }
-
-    public void logButtonPressed(MouseEvent mouseEvent) {
-        logButton.setEffect(new Glow(.80));
-        // clean this up so just calling the method
-        WDBHourly.setTimeStamp(System.currentTimeMillis());
-    }
-
-    public void logButtonReleased(MouseEvent mouseEvent) throws IOException {
-        logButton.setEffect(new Glow(.0));
-        // possibly rewrite this as local single method
-        WDBHourly.setPressureFieldValue(pressureField.getText());
-        WDBHourly.setTemperatureFieldValue(tempField.getText());
-        WDBHourly.setWindFieldValue(windField.getText());
-        WDBHourly.setHumidityFieldValue(humidityField.getText());
-        WeatherDB.log();
-        WeatherController.setWeatherScene("Instruments", mouseEvent);
-//        // scene change method
-//        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Weather/FXML/StationsDBDisplay.fxml")));
-//        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-//        Scene scene = new Scene(root);
-//        scene.setFill(Color.TRANSPARENT);
-//        stage.setScene(scene);
-//        stage.show();
-//        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                xOffset = event.getSceneX();
-//                yOffset = event.getSceneY();
-//            }
-//        });
-//
-//        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                stage.setX(event.getScreenX() - xOffset);
-//                stage.setY(event.getScreenY() - yOffset);
-//
-//            }
-//        });
-
-    }
-
-    public void observationsButtonEnter(MouseEvent mouseEvent) {
-        observationsButton.setEffect(new Glow(.25));
-    }
-
-    public void observationsButtonExit(MouseEvent mouseEvent) {
-        observationsButton.setEffect(new Glow(.0));
-    }
-
-    public void observationsButtonPressed(MouseEvent mouseEvent) {
-        observationsButton.setEffect(new Glow(.80));
-    }
-
-    public void observationsButtonReleased(MouseEvent mouseEvent) throws IOException {
-        observationsButton.setEffect(new Glow(0.0));
-        Weather.setWeatherScene("ObservationsInstruments", mouseEvent);
-//        // scene change method
-//        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Weather/FXML/ObservationsInstruments.fxml")));
-//        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-//        Scene scene = new Scene(root);
-//        scene.setFill(Color.TRANSPARENT);
-//        stage.setScene(scene);
-//        stage.show();
-//        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                xOffset = event.getSceneX();
-//                yOffset = event.getSceneY();
-//            }
-//        });
-//
-//        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                stage.setX(event.getScreenX() - xOffset);
-//                stage.setY(event.getScreenY() - yOffset);
-//
-//            }
-//        });
-//
-//    }
-    }
 }
-
-
-
