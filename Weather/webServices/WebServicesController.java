@@ -8,29 +8,36 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 
-
-public class WebServicesController {
+// Changes web-viewer displays through press of buttons to display various weather services found online.
+// Useful for comparing with observations
+    public class WebServicesController {
     @FXML
-    public WebView webViewer;
-    public Button windyButton;
-    public Button noaaButton;
-    public Button farmersButton;
-    public Button wunderButton;
-    public Button accuButton;
+    private WebView webViewer;
+    @FXML
+    private Button windyButton;
+    @FXML
+    private Button noaaButton;
+    @FXML
+    private Button farmersButton;
+    @FXML
+    private Button wunderButton;
+    @FXML
+    private Button accuButton;
 
 
-
-
-    public void windyEnter(MouseEvent mouseEvent) {
+    @FXML
+    private void windyEnter(MouseEvent mouseEvent) {
         windyButton.setEffect(new Glow(.25)); }
 
-    public void windyExit(MouseEvent mouseEvent) {
+    @FXML
+    private void windyExit(MouseEvent mouseEvent) {
         windyButton.setEffect(new Glow(.0)); }
 
-    public void windyPressed(MouseEvent mouseEvent) {
+    @FXML
+    private void windyPressed(MouseEvent mouseEvent) {
         windyButton.setEffect(new Glow(.80)); }
     @FXML
-    public void windyReleased(MouseEvent mouseEvent) {
+    private void windyReleased(MouseEvent mouseEvent) {
         windyButton.setEffect(new Glow(.0));
         WebEngine engine = webViewer.getEngine();
         engine.load("https://www.windy.com");
@@ -38,16 +45,19 @@ public class WebServicesController {
 
 
 
-    public void noaaEnter(MouseEvent mouseEvent) {
+    @FXML
+    private void noaaEnter(MouseEvent mouseEvent) {
         noaaButton.setEffect(new Glow(.25)); }
 
-    public void noaaExit(MouseEvent mouseEvent) {
+    @FXML
+    private void noaaExit(MouseEvent mouseEvent) {
         noaaButton.setEffect(new Glow(.0)); }
 
-    public void noaaPressed(MouseEvent mouseEvent) {
+    @FXML
+    private void noaaPressed(MouseEvent mouseEvent) {
         noaaButton.setEffect(new Glow(.80)); }
     @FXML
-    public void noaaReleased(MouseEvent mouseEvent) {
+    private void noaaReleased(MouseEvent mouseEvent) {
         noaaButton.setEffect(new Glow(.25));
         WebEngine engine = webViewer.getEngine();
         engine.load("https://www.weather.gov/");
@@ -55,16 +65,20 @@ public class WebServicesController {
 
 
 
-    public void farmersEnter(MouseEvent mouseEvent) {
+    @FXML
+    private void farmersEnter(MouseEvent mouseEvent) {
         farmersButton.setEffect(new Glow(.25)); }
 
-    public void farmersExit(MouseEvent mouseEvent) {
+    @FXML
+    private void farmersExit(MouseEvent mouseEvent) {
         farmersButton.setEffect(new Glow(.0)); }
 
-    public void farmersPressed(MouseEvent mouseEvent) {
+    @FXML
+    private void farmersPressed(MouseEvent mouseEvent) {
         farmersButton.setEffect(new Glow(.80)); }
 
-    public void farmersReleased(MouseEvent mouseEvent) {
+    @FXML
+    private void farmersReleased(MouseEvent mouseEvent) {
         farmersButton.setEffect(new Glow(.0));
         WebEngine engine = webViewer.getEngine();
         engine.load("https://www.farmersalmanac.com/");
@@ -72,17 +86,20 @@ public class WebServicesController {
 
 
 
-    public void wunderButtonEnter(MouseEvent mouseEvent) {
+    @FXML
+    private void wunderButtonEnter(MouseEvent mouseEvent) {
         wunderButton.setEffect(new Glow(.25)); }
 
-    public void wunderButtonExit(MouseEvent mouseEvent) {
+    @FXML
+    private void wunderButtonExit(MouseEvent mouseEvent) {
         wunderButton.setEffect(new Glow(.0)); }
 
-    public void wunderButtonPressed(MouseEvent mouseEvent) {
+    @FXML
+    private void wunderButtonPressed(MouseEvent mouseEvent) {
         wunderButton.setEffect(new Glow(.80)); }
 
     @FXML
-    public void wunderButtonReleased(MouseEvent mouseEvent) {
+    private void wunderButtonReleased(MouseEvent mouseEvent) {
         wunderButton.setEffect(new Glow(.0));
         WebEngine engine = webViewer.getEngine();
         engine.load("https://www.wunderground.com/");
@@ -90,16 +107,19 @@ public class WebServicesController {
 
 
     @FXML
-    public void accuButtonEnter(MouseEvent mouseEvent) {
+    private void accuButtonEnter(MouseEvent mouseEvent) {
         accuButton.setEffect(new Glow(.0)); }
 
-    public void accuButtonExit(MouseEvent mouseEvent) {
+    @FXML
+    private void accuButtonExit(MouseEvent mouseEvent) {
         accuButton.setEffect(new Glow(.25)); }
 
-    public void accuButtonPressed(MouseEvent mouseEvent) {
+    @FXML
+    private void accuButtonPressed(MouseEvent mouseEvent) {
         accuButton.setEffect(new Glow(.80)); }
 
-    public void accuButtonReleased(MouseEvent mouseEvent) {
+    @FXML
+    private void accuButtonReleased(MouseEvent mouseEvent) {
         accuButton.setEffect(new Glow(.0));
         WebEngine engine = webViewer.getEngine();
         engine.load("https://www.accuweather.com/");

@@ -9,11 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import main.Main;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -155,7 +153,7 @@ public class MainWindowController extends Main {
     private void onInventoryClicked(MouseEvent mouseEvent) throws IOException {
         Stage inventoryStage = new Stage();
         inventoryStage.initStyle(StageStyle.TRANSPARENT);
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Inventory/Inventory.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Messaging/Messaging.fxml")));
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         inventoryStage.setScene(scene);

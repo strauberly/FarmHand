@@ -15,7 +15,7 @@ import main.Weather.weatherdb.WeatherDB;
 import java.io.IOException;
 import java.util.Objects;
 
-// create method for change table for FXML files
+
 public class Main extends Application {
 
     public void start(Stage primaryStage) throws Exception {

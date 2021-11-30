@@ -22,132 +22,141 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-
+//Besides managing main weather button actions, also contains method for quickly setting scenes.
 public class WeatherController {
-    public Label WeatherHeader;
-    @FXML
-    public Label instructions;
-
-// scenes by calling from weather class and eliminate local development
-// play with running set scene from here or elmininating additional class leaning towards eliminating additional class
-
 
     @FXML
-    public Button weatherMinButton;
-
+    private Button weatherMinButton;
     @FXML
-    public void weatherMinEnter(MouseEvent mouseEvent) {
-        weatherMinButton.setEffect(new Glow(.25));
-    }
-
+    private Button weatherCloseButton;
     @FXML
-    public void weatherMinExited(MouseEvent mouseEvent) {
-        weatherMinButton.setEffect(new Glow(.0));
-    }
-
+    private Button stationsButton;
     @FXML
-    public void weatherMinPressed(MouseEvent mouseEvent) {
-        weatherMinButton.setEffect(new Glow(.80));
-
-    }
-
-    public void weatherMinReleased(MouseEvent mouseEvent) {
-        weatherMinButton.setEffect(new Glow(.0));
-        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-        stage.setIconified(true);
-    }
-
-
-    public Button weatherCloseButton;
-
-    public void weatherCloseEnter(MouseEvent mouseEvent) {
-        weatherCloseButton.setEffect(new Glow(.25));
-    }
-
-    public void weatherCloseExit(MouseEvent mouseEvent) {
-        weatherCloseButton.setEffect(new Glow(.0));
-    }
-
-    public void weatherClosePressed(MouseEvent mouseEvent) {
-        weatherCloseButton.setEffect(new Glow(.80));
-    }
-
-    public void weatherCloseReleased(MouseEvent mouseEvent) {
-        weatherCloseButton.setEffect(new Glow(.0));
-        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-        stage.close();
-    }
-
-
-    public Button stationsButton;
-
-    public void stationsEntered(MouseEvent mouseEvent) {
-        stationsButton.setEffect(new Glow(.25));
-    }
-
-    public void stationsExited(MouseEvent mouseEvent) {
-        stationsButton.setEffect(new Glow(.0));
-    }
-
-    public void stationsPressed(MouseEvent mouseEvent) {
-        stationsButton.setEffect(new Glow(.80));
-    }
-
-    public void stationsReleased(MouseEvent mouseEvent) throws IOException {
-        stationsButton.setEffect(new Glow(.0));
-        setWeatherScene("Stations", mouseEvent);
-    }
-
-
+    private Button instrumentsButton;
     @FXML
-    public Button instrumentsButton;
-
-    @FXML
-    public void instrumentsEnter(MouseEvent mouseEvent) {
-        instrumentsButton.setEffect(new Glow(.25));
-    }
-
-    @FXML
-    public void instrumentsExited(MouseEvent mouseEvent) {
-        instrumentsButton.setEffect(new Glow(.0));
-    }
-
-    @FXML
-    public void instrumentsPressed(MouseEvent mouseEvent) {
-        instrumentsButton.setEffect(new Glow(0.80));
-    }
-
-    @FXML
-    public void instrumentsReleased(MouseEvent mouseEvent) throws IOException {
-        instrumentsButton.setEffect(new Glow(0.0));
-        setWeatherScene("DBDisplayInstruments", mouseEvent);
-    }
+    private Button webButton;
 
 
-    public Button webButton;
+        @FXML
+        private void weatherMinEnter(MouseEvent mouseEvent) {
+            weatherMinButton.setEffect(new Glow(.25));
+        }
 
-    public void webEnter(MouseEvent mouseEvent) {
-        webButton.setEffect(new Glow(.25));
-    }
+        @FXML
+        private void weatherMinExited(MouseEvent mouseEvent) {
+            weatherMinButton.setEffect(new Glow(.0));
+        }
 
-    public void webExited(MouseEvent mouseEvent) {
-        webButton.setEffect(new Glow(.0));
-    }
+        @FXML
+        private void weatherMinPressed(MouseEvent mouseEvent) {
+            weatherMinButton.setEffect(new Glow(.80));
 
-    public void webPressed(MouseEvent mouseEvent) {
-        webButton.setEffect(new Glow(.80));
-    }
+        }
 
-    public void webReleased(MouseEvent mouseEvent) throws IOException {
-        webButton.setEffect(new Glow(0.0));
-        setWeatherScene("WebServices", mouseEvent);
-    }
+        @FXML
+        private void weatherMinReleased(MouseEvent mouseEvent) {
+            weatherMinButton.setEffect(new Glow(.0));
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+            stage.setIconified(true);
+        }
+
+
+
+        @FXML
+        private void weatherCloseEnter(MouseEvent mouseEvent) {
+            weatherCloseButton.setEffect(new Glow(.25));
+        }
+
+        @FXML
+        private void weatherCloseExit(MouseEvent mouseEvent) {
+            weatherCloseButton.setEffect(new Glow(.0));
+        }
+
+        @FXML
+        private void weatherClosePressed(MouseEvent mouseEvent) {
+            weatherCloseButton.setEffect(new Glow(.80));
+        }
+
+        @FXML
+        private void weatherCloseReleased(MouseEvent mouseEvent) {
+            weatherCloseButton.setEffect(new Glow(.0));
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+            stage.close();
+        }
+
+
+        @FXML
+        private void stationsEntered(MouseEvent mouseEvent) {
+            stationsButton.setEffect(new Glow(.25));
+        }
+
+        @FXML
+        private void stationsExited(MouseEvent mouseEvent) {
+            stationsButton.setEffect(new Glow(.0));
+        }
+
+        @FXML
+        private void stationsPressed(MouseEvent mouseEvent) {
+            stationsButton.setEffect(new Glow(.80));
+        }
+
+        @FXML
+        private void stationsReleased(MouseEvent mouseEvent) throws IOException {
+            stationsButton.setEffect(new Glow(.0));
+            setWeatherScene("Stations", mouseEvent);
+        }
+
+
+
+        @FXML
+        private void instrumentsEnter(MouseEvent mouseEvent) {
+            instrumentsButton.setEffect(new Glow(.25));
+        }
+
+        @FXML
+        private void instrumentsExited(MouseEvent mouseEvent) {
+            instrumentsButton.setEffect(new Glow(.0));
+        }
+
+        @FXML
+        private void instrumentsPressed(MouseEvent mouseEvent) {
+            instrumentsButton.setEffect(new Glow(0.80));
+        }
+
+        @FXML
+        private void instrumentsReleased(MouseEvent mouseEvent) throws IOException {
+            instrumentsButton.setEffect(new Glow(0.0));
+            setWeatherScene("InstrumentsDBDisplay", mouseEvent);
+        }
+
+
+
+        @FXML
+        private void webEnter(MouseEvent mouseEvent) {
+            webButton.setEffect(new Glow(.25));
+        }
+
+        @FXML
+        private void webExited(MouseEvent mouseEvent) {
+            webButton.setEffect(new Glow(.0));
+        }
+
+        @FXML
+        private void webPressed(MouseEvent mouseEvent) {
+            webButton.setEffect(new Glow(.80));
+        }
+
+        @FXML
+        private void webReleased(MouseEvent mouseEvent) throws IOException {
+            webButton.setEffect(new Glow(0.0));
+            setWeatherScene("WebServices", mouseEvent);
+        }
 
 
         public static void setWeatherScene (String fileName, MouseEvent mouseEvent) throws IOException {
             final double[] xOffset = {0};
             final double[] yOffset = {0};
-            Parent root = FXMLLoader.load(Objects.requireNonNull(Weather.class.getResource("/main/Weather/FXML/" + fileName + ".fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(WeatherController.class.getResource("/main/Weather/FXML/" + fileName + ".fxml")));
             Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             scene.setFill(Color.TRANSPARENT);
@@ -172,5 +181,21 @@ public class WeatherController {
             });
         }
 
+        public static boolean instrumentsValidInput(String s) {
+        for (int i = 0; i < s.length(); i++)
+            if (!Character.isDigit(s.charAt(i)))
+                return false;
+        return true;
     }
+
+    public static boolean stationsValidInput(String s) {
+        try {
+            Double.parseDouble(s);
+            return true;
+        } catch (Exception e){
+            return false;
+        }
+    }
+
+}
 

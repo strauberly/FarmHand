@@ -42,18 +42,18 @@
 -fx-background-color: transparent;
 }
 
-#stationOutputTest{
+#webViewer{
+-fx-background-color: transparent;
+}
+
+#observationsText{
 -fx-text-background-color:  rgba(255, 255, 255, 1);
 -fx-font-family: Serif Bold;
 -fx-font-size: 14pt;
 -fx-background-color: transparent;
 }
 
-#webViewer{
--fx-background-color: transparent;
-}
-
-#observationsText{
+#errorText{
 -fx-text-background-color:  rgba(255, 255, 255, 1);
 -fx-font-family: Serif Bold;
 -fx-font-size: 14pt;
