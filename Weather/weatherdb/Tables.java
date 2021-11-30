@@ -4,89 +4,95 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import main.Weather.observations.Observations;
 
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
-public class DBController implements Initializable {
+    //creates tableview of DB for display
+public class Tables implements Initializable {
     @FXML
-    private TableView<WDBHourly> hourly = new TableView<>();
+    public Label observationsText = new Label();
+
+    //hourly tableview
+    @FXML
+    private javafx.scene.control.TableView<WDBHourly> hourly = new javafx.scene.control.TableView<>();
     @FXML
     private final TableColumn<WDBHourly, String> col_time = new TableColumn<>();
     @FXML
-    public TableColumn<WDBHourly, String> col_pressure = new TableColumn<>();
+    private TableColumn<WDBHourly, String> col_pressure = new TableColumn<>();
     @FXML
-    public TableColumn<WDBHourly, String> col_temperature = new TableColumn<>();
+    private TableColumn<WDBHourly, String> col_temperature = new TableColumn<>();
     @FXML
-    public TableColumn<WDBHourly, String> col_wind = new TableColumn<>();
+    private TableColumn<WDBHourly, String> col_wind = new TableColumn<>();
     @FXML
-    public TableColumn<WDBHourly, String> col_humidity = new TableColumn<>();
+    private TableColumn<WDBHourly, String> col_humidity = new TableColumn<>();
 
     //daily tableview
     @FXML
-    private TableView<WDBDaily> daily = new TableView<>();
+    private javafx.scene.control.TableView<WDBDaily> daily = new javafx.scene.control.TableView<>();
     @FXML
     private final TableColumn<WDBDaily, String> col_date = new TableColumn<>();
     @FXML
-    public TableColumn<WDBDaily, String> col_high_pressure = new TableColumn<>();
+    private TableColumn<WDBDaily, String> col_high_pressure = new TableColumn<>();
     @FXML
-    public TableColumn<WDBDaily, String> col_low_pressure = new TableColumn<>();
+    private TableColumn<WDBDaily, String> col_low_pressure = new TableColumn<>();
     @FXML
-    public TableColumn<WDBDaily, String> col_avg_pressure = new TableColumn<>();
+    private TableColumn<WDBDaily, String> col_avg_pressure = new TableColumn<>();
     @FXML
-    public TableColumn<WDBDaily, String> col_high_temperature = new TableColumn<>();
+    private TableColumn<WDBDaily, String> col_high_temperature = new TableColumn<>();
     @FXML
-    public TableColumn<WDBDaily, String> col_low_temperature = new TableColumn<>();
+    private TableColumn<WDBDaily, String> col_low_temperature = new TableColumn<>();
     @FXML
-    public TableColumn<WDBDaily, String> col_avg_temperature = new TableColumn<>();
+    private TableColumn<WDBDaily, String> col_avg_temperature = new TableColumn<>();
     @FXML
-    public TableColumn<WDBDaily, String> col_high_wind = new TableColumn<>();
+    private TableColumn<WDBDaily, String> col_high_wind = new TableColumn<>();
     @FXML
-    public TableColumn<WDBDaily, String> col_avg_wind = new TableColumn<>();
+    private TableColumn<WDBDaily, String> col_avg_wind = new TableColumn<>();
     @FXML
-    public TableColumn<WDBDaily, String> col_avg_humidity = new TableColumn<>();
+    private TableColumn<WDBDaily, String> col_avg_humidity = new TableColumn<>();
 
     //weekly tableview
-    // check your naming convention
     @FXML
-    private TableView<WDBWeekly> weekly = new TableView<>();
+    private javafx.scene.control.TableView<WDBWeekly> weekly = new javafx.scene.control.TableView<>();
     @FXML
-    private final TableColumn<WDBWeekly, String> col_weekending = new TableColumn<>();
+    private TableColumn<WDBWeekly, String> col_weekending = new TableColumn<>();
     @FXML
-    public TableColumn<WDBWeekly, String> col_weeklyhighpressure = new TableColumn<>();
+    private TableColumn<WDBWeekly, String> col_weeklyhighpressure = new TableColumn<>();
     @FXML
-    public TableColumn<WDBWeekly, String> col_weeklylowpressure = new TableColumn<>();
+    private TableColumn<WDBWeekly, String> col_weeklylowpressure = new TableColumn<>();
     @FXML
-    public TableColumn<WDBWeekly, String> col_weeklyavgpressure = new TableColumn<>();
+    private TableColumn<WDBWeekly, String> col_weeklyavgpressure = new TableColumn<>();
     @FXML
-    public TableColumn<WDBWeekly, String> col_weeklyhightemperature = new TableColumn<>();
+    private TableColumn<WDBWeekly, String> col_weeklyhightemperature = new TableColumn<>();
     @FXML
-    public TableColumn<WDBWeekly, String> col_weeklylowtemperature = new TableColumn<>();
+    private TableColumn<WDBWeekly, String> col_weeklylowtemperature = new TableColumn<>();
     @FXML
-    public TableColumn<WDBWeekly, String> col_weeklyavgtemperature = new TableColumn<>();
+    private TableColumn<WDBWeekly, String> col_weeklyavgtemperature = new TableColumn<>();
     @FXML
-    public TableColumn<WDBWeekly, String> col_weeklyhighwind = new TableColumn<>();
+    private TableColumn<WDBWeekly, String> col_weeklyhighwind = new TableColumn<>();
     @FXML
-    public TableColumn<WDBWeekly, String> col_weeklyavgwind = new TableColumn<>();
+    private TableColumn<WDBWeekly, String> col_weeklyavgwind = new TableColumn<>();
     @FXML
-    public TableColumn<WDBWeekly, String> col_weeklyavghumidity = new TableColumn<>();
+    private TableColumn<WDBWeekly, String> col_weeklyavghumidity = new TableColumn<>();
 
-//    {
-//        observationsText = new Label();
-//    }
 
     @Override
     public void initialize(URL Location, ResourceBundle resources) {
+        int hourlyEntries = 0;
+        if (!(WeatherDB.getID("hourly_id_", "hourly", hourlyEntries) > 2)) {
+            observationsText.setText("mAH d00d needs at least 3 hourly entries for observations. ");
+        } else
+            observationsText.setText(Observations.weatherReport());
         ObservableList<WDBHourly> hourlyList = FXCollections.observableArrayList();
         ObservableList<WDBDaily> dailyList = FXCollections.observableArrayList();
         ObservableList<WDBWeekly> weeklyList = FXCollections.observableArrayList();
 
         try {
-            // connection method
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement statement = conn.createStatement();
             String sql = "SELECT * FROM hourly ORDER BY hourly_id_ DESC";
@@ -136,7 +142,6 @@ public class DBController implements Initializable {
         col_avg_humidity.setCellValueFactory(new PropertyValueFactory<>("avghumid"));
         daily.setItems(dailyList);
         try {
-            // connection method
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement statement = conn.createStatement();
             String sql = "SELECT * FROM weekly ORDER BY weekly_id_ DESC";

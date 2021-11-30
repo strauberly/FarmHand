@@ -1,9 +1,8 @@
 package main.Weather.weatherdb;
 
 import java.sql.*;
-import java.text.Format;
-import java.text.SimpleDateFormat;
 
+//evaluate if variables can become more concise after you have weekly data
 public class WDBWeekly {
 
     private String weekending;
@@ -22,7 +21,7 @@ public class WDBWeekly {
     private String weeklyavghumid;
 
     private static String endingDate = getEndingDate();
-    public static int getWeeklyEntries;
+    private static int getWeeklyEntries;
     private static long weeklyTimestamp = getWeeklyTimestamp();
 
     //pressure
@@ -58,9 +57,9 @@ public class WDBWeekly {
         this.weeklyavgwind = weeklyavgwind;
         this.weeklyavghumid = weeklyavghumid;
     }
+// write to weekly table in weather database
+    public static void writeToWeekly() throws SQLException {
 
-    public static void writeToWeekly() {
-        try {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement statement = conn.createStatement();
             statement.executeUpdate("INSERT INTO weekly(weeklytimestamp, weeklyhightemp, weeklylowtemp, weeklyavgtemp," +
@@ -71,31 +70,28 @@ public class WDBWeekly {
             statement.executeUpdate("UPDATE weekly SET weekending = ('" + endingDate + "')" + "WHERE weekly_id_ = (SELECT max(weekly_id_) FROM weekly)");
             statement.close();
             conn.close();
-        } catch (SQLException e) {
-            System.out.println("Error: " + e.getMessage());
-            e.printStackTrace();
-        }
-        WDBWeekly.printWeeklyLog();
     }
+// ** feedback method
+//    private static void printWeeklyLog(){
+//        System.out.println(
+//                "Wrote to Weekly totals for week ending: " +
+//                        "\n" +  endingDate +
+//                        "\n" +"weekly high pressure = " + weeklyHighPressure +
+//                        "\n" + "weekly low pressure = " + weeklyLowPressure +
+//                        "\n" + "weekly avg pressure = " + weeklyAvgPressure +
+//                        "\n" + "weekly high temp = " + weeklyHighTemp +
+//                        "\n" + "weekly low temp = " + weeklyLowTemp +
+//                        "\n" + "weekly avg temp = " + weeklyAvgTemp +
+//                        "\n" + "weekly high wind = " + weeklyHighWind +
+//                        "\n" + "weekly avg wind = " + weeklyAvgWind +
+//                        "\n" + "weekly avg humidity = " + weeklyAvgHumidity +
+//                        "\n" + "weekly entries = "
+//                        + WeatherDB.getID("weekly_id_", "weekly", getWeeklyEntries) + "\n");
+//    }
+//    *******************************
 
-    public static void printWeeklyLog(){
-        System.out.println(
-                "Wrote to Weekly totals for week ending: " +
-                        "\n" +  endingDate +
-                        "\n" +"weekly high pressure = " + weeklyHighPressure +
-                        "\n" + "weekly low pressure = " + weeklyLowPressure +
-                        "\n" + "weekly avg pressure = " + weeklyAvgPressure +
-                        "\n" + "weekly high temp = " + weeklyHighTemp +
-                        "\n" + "weekly low temp = " + weeklyLowTemp +
-                        "\n" + "weekly avg temp = " + weeklyAvgTemp +
-                        "\n" + "weekly high wind = " + weeklyHighWind +
-                        "\n" + "weekly avg wind = " + weeklyAvgWind +
-                        "\n" + "weekly avg humidity = " + weeklyAvgHumidity +
-                        "\n" + "weekly entries = "
-                        + WeatherDB.getID("weekly_id_", "weekly", getWeeklyEntries) + "\n");
-    }
-
-    public static long getWeeklyTimestamp() {
+// queries from weekly table
+    private static long getWeeklyTimestamp() {
 
         try {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
@@ -115,7 +111,7 @@ public class WDBWeekly {
         return weeklyTimestamp;
     }
 
-    public static String getEndingDate() {
+    private static String getEndingDate() {
         try {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement stmt = conn.createStatement();
@@ -134,83 +130,83 @@ public class WDBWeekly {
         return endingDate;
     }
 
-    public String getWeekending() {
+    private String getWeekending() {
         return weekending;
     }
 
-    public void setWeekending(String weekending) {
+    private void setWeekending(String weekending) {
         this.weekending = weekending;
     }
 
-    public String getWeeklyhighpressure() {
+    private String getWeeklyhighpressure() {
         return weeklyhighpressure;
     }
 
-    public void setWeeklyhighpressure(String weeklyhighpressure) {
+    private void setWeeklyhighpressure(String weeklyhighpressure) {
         this.weeklyhighpressure = weeklyhighpressure;
     }
 
-    public String getWeeklylowpressure() {
+    private String getWeeklylowpressure() {
         return weeklylowpressure;
     }
 
-    public void setWeeklylowpressure(String weeklylowpressure) {
+    private void setWeeklylowpressure(String weeklylowpressure) {
         this.weeklylowpressure = weeklylowpressure;
     }
 
-    public String getWeeklyavgpressure() {
+    private String getWeeklyavgpressure() {
         return weeklyavgpressure;
     }
 
-    public void setWeeklyavgpressure(String weeklyavgpressure) {
+    private void setWeeklyavgpressure(String weeklyavgpressure) {
         this.weeklyavgpressure = weeklyavgpressure;
     }
 
-    public String getWeeklyhightemp() {
+    private String getWeeklyhightemp() {
         return weeklyhightemp;
     }
 
-    public void setWeeklyhightemp(String weeklyhightemp) {
+    private void setWeeklyhightemp(String weeklyhightemp) {
         this.weeklyhightemp = weeklyhightemp;
     }
 
-    public String getWeeklylowtemp() {
+    private String getWeeklylowtemp() {
         return weeklylowtemp;
     }
 
-    public void setWeeklylowtemp(String weeklylowtemp) {
+    private void setWeeklylowtemp(String weeklylowtemp) {
         this.weeklylowtemp = weeklylowtemp;
     }
 
-    public String getWeeklyavgtemp() {
+    private String getWeeklyavgtemp() {
         return weeklyavgtemp;
     }
 
-    public void setWeeklyavgtemp(String weeklyavgtemp) {
+    private void setWeeklyavgtemp(String weeklyavgtemp) {
         this.weeklyavgtemp = weeklyavgtemp;
     }
 
-    public String getWeeklyhighwind() {
+    private String getWeeklyhighwind() {
         return weeklyhighwind;
     }
 
-    public void setWeeklyhighwind(String weeklyhighwind) {
+    private void setWeeklyhighwind(String weeklyhighwind) {
         this.weeklyhighwind = weeklyhighwind;
     }
 
-    public String getWeeklyavgwind() {
+    private String getWeeklyavgwind() {
         return weeklyavgwind;
     }
 
-    public void setWeeklyavgwind(String weeklyavgwind) {
+    private void setWeeklyavgwind(String weeklyavgwind) {
         this.weeklyavgwind = weeklyavgwind;
     }
 
-    public String getWeeklyavghumid() {
+    private String getWeeklyavghumid() {
         return weeklyavghumid;
     }
 
-    public void setWeeklyavghumid(String weeklyavghumid) {
+    private void setWeeklyavghumid(String weeklyavghumid) {
         this.weeklyavghumid = weeklyavghumid;
     }
 }

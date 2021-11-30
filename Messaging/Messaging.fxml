@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" stylesheets="@InventoryCSS.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Inventory.InventoryController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" stylesheets="@MessagingCSS.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Messaging.MessagingController">
    <top>
       <StackPane prefHeight="10.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
          <Rectangle height="80.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1200.0">
@@ -47,17 +47,17 @@
                <Insets left="300.0" />
             </StackPane.margin>
          </Line>
-         <Label fx:id="InventoryHeader" stylesheets="@InventoryCSS.css" text="Inventory" StackPane.alignment="CENTER_LEFT">
+         <Label fx:id="InventoryHeader" stylesheets="@MessagingCSS.css" text="Inventory" StackPane.alignment="CENTER_LEFT">
             <StackPane.margin>
                <Insets left="85.0" />
             </StackPane.margin>
          </Label>
-         <Button fx:id="inventoryMinButton" centerShape="false" mnemonicParsing="false" onMouseEntered="#inventoryMinEnter" onMouseExited="#inventoryMinExit" onMousePressed="#inventoryMinPressed" onMouseReleased="#inventoryMinReleased" scaleShape="false" stylesheets="@InventoryCSS.css" text="__" StackPane.alignment="TOP_RIGHT">
+         <Button fx:id="inventoryMinButton" centerShape="false" mnemonicParsing="false" onMouseEntered="#inventoryMinEnter" onMouseExited="#inventoryMinExit" onMousePressed="#inventoryMinPressed" onMouseReleased="#inventoryMinReleased" scaleShape="false" stylesheets="@MessagingCSS.css" text="__" StackPane.alignment="TOP_RIGHT">
             <StackPane.margin>
                <Insets right="55.0" top="8.0" />
             </StackPane.margin>
          </Button>
-         <Button fx:id="inventoryCloseButton" alignment="CENTER" centerShape="false" mnemonicParsing="false" onMouseEntered="#inventoryCloseEnter" onMouseExited="#inventoryCloseExit" onMousePressed="#inventoryClosePressed" onMouseReleased="#inventoryCloseReleased" scaleShape="false" stylesheets="@InventoryCSS.css" text="X" StackPane.alignment="TOP_RIGHT">
+         <Button fx:id="inventoryCloseButton" alignment="CENTER" centerShape="false" mnemonicParsing="false" onMouseEntered="#inventoryCloseEnter" onMouseExited="#inventoryCloseExit" onMousePressed="#inventoryClosePressed" onMouseReleased="#inventoryCloseReleased" scaleShape="false" stylesheets="@MessagingCSS.css" text="X" StackPane.alignment="TOP_RIGHT">
             <StackPane.margin>
                <Insets right="15.0" top="10.0" />
             </StackPane.margin>

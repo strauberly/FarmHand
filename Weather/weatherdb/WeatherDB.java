@@ -1,14 +1,18 @@
 package main.Weather.weatherdb;
-
 import java.sql.*;
+import java.util.ArrayList;
+
+
 public class WeatherDB {
 
-    public static String high;
-    public static String low;
-    public static String avg;
-//create methods getting variables, eliminate calling variable directly
-    public static final String DB_NAME = "weather.db";
+    private static String high;
+    private static String low;
+    private static String avg;
+    private static final String DB_NAME = "weather.db";
     public static final String CONNECTION_STRING = "jdbc:sqlite:src/main/Weather/weatherdb/" + DB_NAME;
+
+
+    //creation of weather database
     public static void createWeatherDB() {
         try {
             Connection conn = DriverManager.getConnection(CONNECTION_STRING);
@@ -20,7 +24,6 @@ public class WeatherDB {
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS daily " +
                     " (daily_id_ INTEGER PRIMARY KEY AUTOINCREMENT, timestamp LONG, highpressure STRING, lowpressure STRING, avgpressure STRING," +
                    "hightemp STRING, lowtemp STRING, avgtemp STRING, highwind STRING, avgwind STRING, avghumid STRING, date STRING)");
-
 
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS weekly " +
                     " (weekly_id_ INTEGER PRIMARY KEY AUTOINCREMENT, weeklytimestamp LONG, weeklyhighpressure STRING, weeklylowpressure STRING, weeklyavgpressure STRING," +
@@ -34,20 +37,21 @@ public class WeatherDB {
         }
     }
 
-    public static void log() {
-        if (WDBDaily.compareDates() && WeatherDB.getID("daily_id_","daily", WDBDaily.getDailyEntries) == 7){
+    //methods for when to log data to which table and in what order
+    public static void log() throws SQLException {
+        if (WDBDaily.notSameDates() && WeatherDB.getID("daily_id_","daily", WDBDaily.getDailyEntries) == 7){
             WDBWeekly.writeToWeekly();
             WeatherDB.resetTable("daily");
             WDBDaily.writeToDaily();
             WeatherDB.resetTable("hourly");
-        }else if (WDBDaily.compareDates() && WeatherDB.getID("hourly_id_", "hourly", WDBHourly.getHourlyEntries) > 0){
+        }else if (WDBDaily.notSameDates() && WeatherDB.getID("hourly_id_", "hourly", WDBHourly.getHourlyEntries) > 0){
             WDBDaily.writeToDaily();
             WeatherDB.resetTable("hourly");
         }
         WDBHourly.writeToHourly();
         }
 
-    public static void resetTable(String table) {
+   public static void resetTable(String table) {
         try {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement statement = conn.createStatement();
@@ -62,7 +66,7 @@ public class WeatherDB {
         }
     }
 
-    // Getters
+    // few queries implemented in other classes
     public static String getHigh (String column, String table){
         try {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
@@ -97,7 +101,7 @@ public class WeatherDB {
         return low;
     }
 
-    public static String getAvg (String column, String table){
+   public static String getAvg (String column, String table){
         try {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement statement = conn.createStatement();
@@ -114,8 +118,7 @@ public class WeatherDB {
         return avg;
     }
 
-    public static Integer getID(String column, String table, int variable) {
-
+  public static Integer getID(String column, String table, int variable) {
         try {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement statement = conn.createStatement();
@@ -131,5 +134,46 @@ public class WeatherDB {
             e.printStackTrace();
         }
         return variable;
+    }
+
+    public static double last3ReadingsAvg(String column, String table) {
+        double average = 0;
+        try {
+            Connection conn = DriverManager.getConnection(CONNECTION_STRING);
+            Statement statement = conn.createStatement();
+            String sql2 = "SELECT AVG" + "(" + column + ")" + "as avg FROM" +
+                    "(SELECT" + "(" + column + ")" + "FROM" + "(" + table + ")" + "ORDER BY hourly_id_ DESC limit 3)";
+            ResultSet rs2 = statement.executeQuery(sql2);
+            average = rs2.getDouble("avg");
+            rs2.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return average;
+    }
+
+    public static double last3ReadingsDiff(String column, String table) {
+        double threeHourDiff;
+        ArrayList<Double> readings = new ArrayList<>();
+        try {
+            Connection conn = DriverManager.getConnection(CONNECTION_STRING);
+            Statement statement = conn.createStatement();
+            String sql = "SELECT" + "(" + column + ")" + "as readings FROM" + "(" + table + ")" + "ORDER BY hourly_id_ DESC limit 3";
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                readings.add(rs.getDouble("readings"));
+            }
+            rs.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+        threeHourDiff = Math.abs(readings.get(0) - readings.get(2));
+        return threeHourDiff;
     }
 }

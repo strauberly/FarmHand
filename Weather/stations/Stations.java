@@ -10,16 +10,18 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-// holds methods utilized by subsections (ie. get conditions from a station, compare data from databases)
+// api call to get conditions from a weather station
+//format api results for easy reading
+// logs api results to Weather database
+// possibly automate by allowing user to set coordinates and while app is running api is called and logged once an hour
 public class Stations {
-
-    // add work for observations and viewing logs
 
     private static String conditions;
     private static String pressure;
@@ -27,22 +29,20 @@ public class Stations {
     private static String windSpeed;
     private static String humidity;
 
-
-
-    protected static String getConditions() throws IOException {
+    public static String getConditions() throws IOException {
         // takes the information entered as lat. and long. by user and applies values to api url
         String urlLat = StationsController.getLat();
         String urlLongi = StationsController.getLongi();
-        String apiUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + urlLat + "&lon=" + urlLongi + "&units=imperial&appid=ba12fc74c50358f79d2f837033e212d7";
+        String apiUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + urlLat.trim() + "&lon=" + urlLongi.trim() + "&units=imperial&appid=ba12fc74c50358f79d2f837033e212d7";
 
         // /creates variable "apiString" then opens connection to api url and makes get request
         // scanner then receives response and appends the string and closes scanner
         StringBuilder apiString = new StringBuilder();
-
-        URL url = new URL(apiUrl);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
-        conn.connect();
+        try {
+            URL url = new URL(apiUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
 
         Scanner scanner = new Scanner(url.openStream());
         while (scanner.hasNext()) {
@@ -50,9 +50,11 @@ public class Stations {
             apiString.append(scanner.nextLine());
         }
         scanner.close();
+    }catch (UnknownHostException e){
+        System.out.println("no internet mah dood");
+    }
 
         // parses the values of created string to build JSON Object and allows to be reparsed for values to be displayed
-        // would like to develop for scanner to return response directly as JSON object and eliminate a step
         JSONParser parser = new JSONParser();
         JSONObject apiReturn = new JSONObject();
         try {
@@ -85,11 +87,7 @@ public class Stations {
         return conditions;
     }
 
-    public static String getOutput() throws IOException {
-        return conditions;
-    }
-
-    public static void apiWriteToHourly() {
+    private static void apiWriteToHourly() {
         try {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement statement = conn.createStatement();
@@ -106,33 +104,17 @@ public class Stations {
         }
     }
 
-    public static void apiLog() {
-        if (WDBDaily.compareDates() && WeatherDB.getID("daily_id_","daily", WDBDaily.getDailyEntries) == 7){
+    public static void apiLog() throws SQLException {
+        if (WDBDaily.notSameDates() && WeatherDB.getID("daily_id_","daily", WDBDaily.getDailyEntries) == 7){
             WDBWeekly.writeToWeekly();
             WeatherDB.resetTable("daily");
             WDBDaily.writeToDaily();
             WeatherDB.resetTable("hourly");
-        }else if (WDBDaily.compareDates() && WeatherDB.getID("hourly_id_", "hourly", WDBHourly.getHourlyEntries) > 0){
+        }else if (WDBDaily.notSameDates() && WeatherDB.getID("hourly_id_", "hourly", WDBHourly.getHourlyEntries) > 0){
             WDBDaily.writeToDaily();
             WeatherDB.resetTable("hourly");
         }
         apiWriteToHourly();
-    }
-
-    public static String getPressure() {
-        return pressure;
-    }
-
-    public static String getTemp() {
-        return temp;
-    }
-
-    public static String getWindSpeed() {
-        return windSpeed;
-    }
-
-    public static String getHumidity() {
-        return humidity;
     }
 }
 

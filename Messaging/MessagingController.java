@@ -1,4 +1,4 @@
-package main.Inventory;
+package main.Messaging;
 
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -6,7 +6,7 @@ import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class InventoryController {
+public class MessagingController {
     
     
     public Button inventoryMinButton;

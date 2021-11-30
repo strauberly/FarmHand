@@ -1,19 +1,19 @@
 package main.Weather.weatherdb;
 import java.sql.*;
 
+//contains constructor for writing to viewable table
 public class WDBHourly {
-// all variables private but get public getters where needed
     // init variables
     private final String time;
-    private  String pressure;
-    public  String temperature;
-    private  String wind;
-    private  String humidity;
-// see if we can use the above without a need to seperate
+    private   String pressure;
+    private    String temperature;
+    private   String wind;
+    private   String humidity;
+
     // calculation variables
     private static  String timeFieldValue;
     private static String pressureFieldValue;
-    public static String temperatureFieldValue;
+    private static String temperatureFieldValue;
     private static String windFieldValue;
     private static String humidityFieldValue;
     private static long timeStamp;
@@ -28,9 +28,8 @@ public class WDBHourly {
         this.time = time;
     }
 
-    // DB Methods
-    public static void writeToHourly() {
-        try {
+    // write to hourly table in weather database
+    public static void writeToHourly() throws SQLException {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement statement = conn.createStatement();
             statement.executeUpdate("INSERT INTO hourly (timestamp, pressure, temperature, wind, humidity)" +
@@ -40,28 +39,24 @@ public class WDBHourly {
             statement.executeUpdate("UPDATE hourly SET time = ('" + timeFieldValue + "')" + "WHERE hourly_id_ = (SELECT max (hourly_id_) FROM hourly)");
             statement.close();
             conn.close();
-            WDBHourly.printHourlyLog();
-        } catch (SQLException e) {
-            System.out.println("Error: " + e.getMessage());
-            e.printStackTrace();
-        }
     }
+// ** feed back method
+//     protected static void printHourlyLog() {
+//        System.out.println(
+//                "Wrote to hourly: " +
+//                        "\n" + WDBHourly.getCurrentTime() +
+//                        "\n" + "Pressure = " + pressureFieldValue +
+//                        "\n" + "Temperature = " + temperatureFieldValue +
+//                        "\n" + "Wind = " + windFieldValue +
+//                        "\n" + "Humidity = " + humidityFieldValue +
+//                        "\n" + "Hourly entries = "
+//                        + WeatherDB.getID("hourly_id_","hourly", getHourlyEntries) + "\n"
+//        );
+//    }
+//    *****************************************************
 
-    public static void printHourlyLog() {
-        System.out.println(
-                "Wrote to hourly: " +
-                        "\n" + WDBHourly.getCurrentTime() +
-                        "\n" + "Pressure = " + pressureFieldValue +
-                        "\n" + "temperature = " + temperatureFieldValue +
-                        "\n" + "Wind = " + windFieldValue +
-                        "\n" + "Humidity = " + humidityFieldValue +
-                        "\n" + "Hourly entries = "
-                        + WeatherDB.getID("hourly_id_","hourly", getHourlyEntries) + "\n"
-        );
-    }
-
-    // time methods
-        public static void observableTimeConversion() throws SQLException {
+//methods convert time returned in milliseconds into a human-readable format then written to hourly table
+    public static void observableTimeConversion() throws SQLException {
         try {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement statement = conn.createStatement();
@@ -80,14 +75,11 @@ public class WDBHourly {
         }
     }
 
-    public static String convertedLoggedTime(Long time) {
+    private static String convertedLoggedTime(Long time) {
         return String.valueOf(new Time(time));
     }
 
     // getters and setters
-    public static Time getCurrentTime() {
-        return new Time(timeStamp);
-    }
 
     public static void setTimeStamp(long timeStamp){
         WDBHourly.timeStamp = timeStamp;
@@ -151,4 +143,5 @@ public class WDBHourly {
     public  String getHumidity() {
         return humidity;
     }
+
 }
