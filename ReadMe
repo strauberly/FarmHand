@@ -11,6 +11,221 @@ Functionality to include but not limited to; weather observation, planning tasks
 
 The following is journal of how this came to be. Thank you for reading this and for checking out the project. Cheers!
 ===========================================================
+- 30 Nov 2021 -
+
+**Continuing through the to do list
+** Restructered observations class and removed significant amount of lines
+** moved two query methods to Weather Data Base
+** next steps to include altering gui and packaging  
+**uploading current build to git
+
+-----------------------------------------------------------------------------------------
+
+Dev1
+
+tasks completed
+-------------------
+-------------
+
+Dev2
+
+>> create new scenes for instructions
+
+>> adjust gui to be the same across any platform regardless of size
+
+>> auto scale fonts
+
+>> swap positions of stations, web sites and instruments
+
+>> change inventory values to messaging
+
+>> package program
+------------------------------------------------------------
+
+
+- 29 Nov 2021 -
+
+**Continuing through the to do list
+** Prepared statements and eliminate possibilities for sql injection
+   should  be ok with out diving in depth here as user does not have function of submitting a query. 
+   This could change and needs to be kept in mind.
+** New thread kicks off while calling api. Seems to help eliminate lag
+while simultaneously streaming pandora. 
+**included trim method in apicall so if user fat fingers the space bar it doesn't impede the function.
+
+-----------------------------------------------------------------------------------------
+
+Dev1
+  >> consider switch statements and address observations notes 
+
+-------------------
+-------------
+
+Dev2
+
+>> create new scenes for instructions
+
+>> adjust gui to be the same across any platform regardless of size
+
+>> auto scale fonts
+
+>> swap positions of stations, web sites and instruments
+
+>> package program
+-----------------------------------------------------------
+
+- 28 Nov 2021 -
+
+Notation of Dev 1 and Dev 2 is just me breaking down tasks and practicing project management. Dont think I'm quite losing my mind yet. ;)
+-----------------------------------------
+**Continuing through the to do list
+**User feedback for input errors provided for instruments
+**began work on stations but a regular expression may be needed in order to validate results. Will be a good reminder and excercise anyways.
+---------------------------------------------------------------------------
+if lat and long are not empty and are  
+a double (doesn't matter if positive or negative)
+submit values 
+
+if illigitimate values create alert
+
+** found means to verify user input is a double through simple means, also to validate values
+entered are within range of lat and long
+
+-----------------------------------------------------------------------------------------
+
+Dev1
+>> prepared statements and eliminate possibilities for sql injection
+
+>> go through each class and address notes
+
+>> look into rewriting controllers for more efficient use instead of being replicated
+
+>> look for places to inact multi thread and processing animations
+
+>> look into rewriting controllers for more efficient use instead of being replicated
+
+-------------------
+-------------
+
+Dev2
+>> create new scenes for instructions
+
+>> adjust gui to be the same across any platform regardless of size
+
+>> auto scale fonts
+
+>> swap positions of stations, web sites and instruments
+
+>> package program
+-----------------------------------------------------------
+
+- 27 Nov 2021 -
+
+Continuing through the to do list
+shifted properties from public to private for the following classes
+
+- instruments controller
+
+**some unneccesary FXML files removed
+-----------------------------------------------------------------------------------------
+
+>> create new scenes for instructions
+
+>> look into rewriting controllers for more efficient use instead of being replicated
+
+
+>> error pages and quantifiers
+
+>> handle exceptions
+
+>> package program
+
+>> adjust gui to be the same across any platform regardless of size
+such as while calling api
+
+>> look for places to inact multi thread and processing animations
+
+>> prepared statements and eliminate possibilities for sql injection
+
+>> go through each class and address notes
+
+>> auto scale fonts
+
+------------------------------------------------------------
+
+- 24 Nov 2021 -
+
+Continuing through the to do list
+shifted properties from public to private for the following classes
+- wdbdaily
+- dbcontroller
+- stations
+- stationscontroller
+- observations
+-----------------------------------------------------------------------------------------
+>> inact proper convention
+
+>> create new scenes for instructions
+
+>> look into rewriting controllers for more efficient use instead of being replicated
+
+>> FXML to be arranged so user interaction is seperate and thereby allows inclusion in all additional scenes
+including instructions
+
+>> error pages and quantifiers
+
+>> handle exceptions
+
+>> package program
+
+>> Desired FXML for stations non functional can not load new stage, either a 400 error as api does not have a location to call  >> work out other functionality in scene change leave stations as you had it just include new stations page without label 
+
+>> adjust gui to be the same across any platform regardless of size
+
+>> look for places to inact multi thread and processing animations
+
+>> prepared statements and eliminate possibilities for sql injection
+
+>> go through each class and address notes
+
+>> auto scale fonts
+------------------------------------------------------------
+
+- 22 Nov 2021 -
+shifted properties from public to private for the following classes
+- weather controller
+- webservices controller
+- weatherdb
+- wdbweekly
+- wdbhourly
+- wdbdaily
+- 
+-----------------------------------------------------------------------------------------
+>> try to inact proper convention
+
+>> create new scenes for instructions
+
+>> look into rewriting controllers for more efficient use insteaad of being replicated
+
+>> FXML to be arranged so user interaction is seperate and thereby allows inclusion in all additional scenes
+including instructions
+
+>> error pages and quantifiers
+
+>> handle exceptions
+
+>> package program
+
+>> Desired FXML for stations non functional can not load new stage, either a 400 error as api does not have a location to call  >> work out other functionality in scene change leave stations as you had it just include new stations page without label 
+
+>> adjust gui to be the same across any platform regardless of size
+
+>> look for places to inact multi thread
+
+>> prepared statements and eliminate possibilities for sql injection
+
+>> go through each class and address notes
+-----------------------------------------------------------
 
 - 20 Nov 2021 -
 New notation scheme 
