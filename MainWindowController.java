@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import main.Weather.WeatherController;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -22,6 +23,7 @@ import java.util.Objects;
 public class MainWindowController extends Main {
     private double xOffset = 0;
     private double yOffset = 0;
+
 
     @FXML
     private Button weatherButton;
@@ -50,7 +52,7 @@ public class MainWindowController extends Main {
     private void onWeatherClicked(MouseEvent mouseEvent) throws IOException {
         Stage weatherStage = new Stage();
         weatherStage.initStyle(StageStyle.TRANSPARENT);
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Weather/FXML/Weather.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/main/Weather/FXML/WeatherInstructions.fxml")));
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         weatherStage.setScene(scene);
@@ -78,6 +80,8 @@ public class MainWindowController extends Main {
 
             }
         });
+        System.out.println(WeatherController.isMaxed());
+        System.out.println(WeatherController.getSavedScene());
     }
 
 
@@ -161,7 +165,7 @@ public class MainWindowController extends Main {
         inventoryStage.setY(50);
         inventoryStage.show();
         if (inventoryStage.isShowing()) {
-            inventoryButton.setOnAction(event -> inventoryStage.close());
+             inventoryButton.setOnAction(event -> inventoryStage.close());
         }
         choresButton.setOnAction(event -> inventoryStage.close());
         weatherButton.setOnAction(event -> inventoryStage.close());
@@ -220,6 +224,7 @@ public class MainWindowController extends Main {
         Stage stage = (Stage) ((Node) released.getSource()).getScene().getWindow();
         stage.close();
     }
+
 }
 
 

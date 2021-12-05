@@ -79,7 +79,7 @@
 
     <Button fx:id="weatherButton" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#onWeatherClicked" onMouseEntered="#onWeatherEntered" onMouseExited="#onWeatherExited" onMousePressed="#onWeatherPressed" onMouseReleased="#onWeatherReleased" prefHeight="87.0" prefWidth="207.0" text="Weather" StackPane.alignment="TOP_LEFT">
         <font>
-            <Font name="Sawasdee" size="39.0" />
+            <Font size="31.0" />
         </font>
         <StackPane.margin>
             <Insets left="45.0" top="125.0" />
@@ -113,7 +113,7 @@
 
     <Button fx:id="choresButton" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#onChoresClicked" onMouseEntered="#onChoresEntered" onMouseExited="#onChoresExited" onMousePressed="#onChoresPressed" onMouseReleased="#onChoresReleased" prefHeight="87.0" prefWidth="207.0" text="Chores" StackPane.alignment="CENTER_LEFT">
         <font>
-            <Font name="Sawasdee" size="39.0" />
+            <Font size="31.0" />
         </font>
         <StackPane.margin>
             <Insets left="45.0" />
@@ -144,8 +144,7 @@
         </StackPane.margin>
     </Rectangle>
     <HBox prefHeight="56.0" prefWidth="305.0">
-        <Line endX="422.5826416015625" endY="46.13850402832031" fill="#8aee39" layoutX="60.0" layoutY="60.0" startX="678.5826416015625" startY="46.13850402832031" stroke="#98dd78"
-              strokeLineCap="ROUND" strokeMiterLimit="0.0" strokeWidth="3.0">
+        <Line endX="422.5826416015625" endY="46.13850402832031" fill="#8aee39" layoutX="60.0" layoutY="60.0" startX="678.5826416015625" startY="46.13850402832031" stroke="#98dd78" strokeLineCap="ROUND" strokeMiterLimit="0.0" strokeWidth="3.0">
            <HBox.margin>
                <Insets left="22.0" top="65.0" />
            </HBox.margin>
@@ -156,9 +155,9 @@
     </HBox>
 
 
-    <Button fx:id="inventoryButton" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#onInventoryClicked" onMouseEntered="#onInventoryEntered" onMouseExited="#onInventoryExited" onMousePressed="#onInventoryPressed" onMouseReleased="#onInventoryReleased" prefHeight="87.0" prefWidth="207.0" text="Inventory" StackPane.alignment="BOTTOM_LEFT">
+    <Button fx:id="inventoryButton" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#onInventoryClicked" onMouseEntered="#onInventoryEntered" onMouseExited="#onInventoryExited" onMousePressed="#onInventoryPressed" onMouseReleased="#onInventoryReleased" prefHeight="87.0" prefWidth="207.0" text="Messages" StackPane.alignment="BOTTOM_LEFT">
         <font>
-            <Font name="Sawasdee" size="39.0" />
+            <Font size="31.0" />
         </font>
         <StackPane.margin>
             <Insets bottom="125.0" left="45.0" />

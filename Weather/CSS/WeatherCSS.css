@@ -22,7 +22,7 @@
 -fx-font-size: 10pt;
 }
 
-#WeatherHeader{
+#weatherBannerText{
 -fx-font-family: Sawasdee;
 -fx-font-size: 35pt;
 -fx-text-background-color: yellow;
@@ -38,7 +38,12 @@
 #stationOutput{
 -fx-text-background-color:  rgba(255, 255, 255, 1);
 -fx-font-family: Serif Bold;
--fx-font-size: 14pt;
+-fx-background-color: transparent;
+}
+
+#instructions{
+-fx-text-background-color:  rgba(255, 255, 255, 1);
+-fx-font-family: Serif Bold;
 -fx-background-color: transparent;
 }
 
@@ -49,13 +54,11 @@
 #observationsText{
 -fx-text-background-color:  rgba(255, 255, 255, 1);
 -fx-font-family: Serif Bold;
--fx-font-size: 14pt;
 -fx-background-color: transparent;
 }
 
 #errorText{
 -fx-text-background-color:  rgba(255, 255, 255, 1);
 -fx-font-family: Serif Bold;
--fx-font-size: 14pt;
 -fx-background-color: transparent;
 }

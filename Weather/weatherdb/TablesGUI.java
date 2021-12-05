@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
+import main.Weather.WeatherController;
 import main.Weather.observations.Observations;
 
 import java.net.URL;
@@ -14,7 +15,7 @@ import java.sql.*;
 import java.util.ResourceBundle;
 
     //creates tableview of DB for display
-public class Tables implements Initializable {
+public class TablesGUI implements Initializable {
     @FXML
     public Label observationsText = new Label();
 
@@ -168,6 +169,26 @@ public class Tables implements Initializable {
         col_weeklyavgwind.setCellValueFactory(new PropertyValueFactory<>("weeklyavgwind"));
         col_weeklyavghumidity.setCellValueFactory(new PropertyValueFactory<>("weeklyavghumid"));
         weekly.setItems(weeklyList);
+
+        if (WeatherController.isMaxed()){
+            hourly.setScaleY(1.30);
+            hourly.setScaleX(1.20);
+            hourly.setPrefWidth(1300);
+            hourly.setTranslateY(25);
+            hourly.setTranslateX(125);
+
+            daily.setScaleY(1.30);
+            daily.setScaleX(1.20);
+            daily.setTranslateY(150);
+            daily.setTranslateX(125);
+            daily.setPrefWidth(1300);
+
+            weekly.setScaleY(1.30);
+            weekly.setScaleX(1.20);
+            weekly.setTranslateY(250);
+            weekly.setTranslateX(125);
+            weekly.setPrefWidth(1300);
+        }
 
     }
 }

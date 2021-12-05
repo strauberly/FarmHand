@@ -11,6 +11,679 @@ Functionality to include but not limited to; weather observation, planning tasks
 
 The following is journal of how this came to be. Thank you for reading this and for checking out the project. Cheers!
 ===========================================================
+- 5 Dec 2021 -
+
+** Continuing through the to do list
+
+** tables resize on max
+** observations resize on max 
+** eliminated need for station input error fxml by changing text on button press determined by conditions. So it is gone, so it goes.
+** instruments resize as intended
+** close button resets maxed to false so if weather restarted it does so at default and all operates as intended
+** web services instructions included.
+
+-----------------------------------------------------------------------------------------
+
+Dev1
+
+>> find out how to preload a method with a parameter ie mouse event
+
+>> package program
+- include water mark or com.
+
+>> look for more code fine tuning
+
+> implement controller schem from top to bottom. 
+objects
+objectmethods 
+init
+getters
+setters
+>add future implementations notes
+
+-------------------
+-------------
+
+Dev2
+>>  update read me and upload to git
+
+>> continue adjusting gui for resize
+
+>> adjust gui to be the same across any platform regardless of size
+
+>> auto scale fonts
+
+
+------------------------------------------------------------
+
+- 4 Dec 2021 -
+
+** Continuing through the to do list
+** including parameters in initialization is beginning to produce desired effects. Next check action event handler and source.
+
+** >> set  switch based on position of switch elements populate with certain if valus and populate with default values if switch in other position >> un the struglle bus with it for a bit until breaking the scenario back into basic parts
+
+** max button now operates as intended
+** observations fxml is no longer needed > now just resets stations output to get both bodies of text, could do with some renaming
+
+-----------------------------------------------------------------------------------------
+
+Dev1
+>> find out how to preload a method with a parameter ie mouse event
+-------------------
+-------------
+
+Dev2
+>> continue adjusting gui for resize
+
+>> adjust gui to be the same across any platform regardless of size
+
+>> auto scale fonts
+
+>> possibly adjust so that all three windows can be opened visible and then user can select wich window to enlarge >> could be creating way more headache could be the stand apart > possibly set it up so if already showing that window just goes to the front in that position  
+
+
+>> package program
+
+
+>> web services instructions
+
+---------------------------------------------------------
+Weather Controller
+
+package main.Weather;
+
+import com.sun.scenario.effect.impl.sw.java.JSWBlend_SRC_OUTPeer;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.effect.Glow;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import main.Weather.stations.StationsController;
+
+import java.awt.*;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Objects;
+import java.util.ResourceBundle;
+
+//Besides managing main weather button actions, also contains method for quickly setting scenes.
+public class WeatherController implements Initializable{
+    @FXML
+    protected Label instructions = new Label();
+   @FXML
+   protected Label weatherBannerText;
+   @FXML
+    protected static StackPane stack = new StackPane();
+   @FXML
+    private Rectangle weatherBanner = new Rectangle();
+    @FXML
+    private Button weatherMinButton = new Button();
+    @FXML
+    private Button weatherCloseButton = new Button();
+    @FXML
+    public Button weatherMaxButton = new Button();
+    @FXML
+    private Button stationsButton = new Button();
+    @FXML
+    private Button instrumentsButton = new Button();
+    @FXML
+    private Button webButton = new Button();
+
+    private static String savedScene;
+
+    Dimension displaySize = Toolkit.getDefaultToolkit().getScreenSize();
+
+    public static boolean maxed;
+
+
+
+    @FXML
+    private void weatherMinEnter(MouseEvent mouseEvent) {
+        weatherMinButton.setEffect(new Glow(.25));
+    }
+
+    @FXML
+    private void weatherMinExited(MouseEvent mouseEvent) {
+        weatherMinButton.setEffect(new Glow(.0));
+    }
+
+    @FXML
+    private void weatherMinPressed(MouseEvent mouseEvent) {
+        weatherMinButton.setEffect(new Glow(.80));
+
+    }
+
+    @FXML
+    private void weatherMinReleased(MouseEvent mouseEvent) {
+        weatherMinButton.setEffect(new Glow(.0));
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    @FXML
+    private void weatherMaxEnter(MouseEvent mouseEvent) {
+        weatherMaxButton.setEffect(new Glow(.25));
+    }
+
+    @FXML
+    private void weatherMaxExited(MouseEvent mouseEvent) {
+        weatherMaxButton.setEffect(new Glow(.0));
+    }
+
+    @FXML
+    // create method for weather big
+    private void weatherMaxPressed(MouseEvent mouseEvent) throws IOException {
+        System.out.println(maxed);
+    }
+
+    @FXML
+    private void weatherMaxReleased(MouseEvent mouseEvent) throws IOException {
+     maxedWeatherElements(mouseEvent);
+    }
+
+
+    @FXML
+    private void weatherCloseEnter(MouseEvent mouseEvent) {
+        weatherCloseButton.setEffect(new Glow(.25));
+    }
+
+    @FXML
+    private void weatherCloseExit(MouseEvent mouseEvent) {
+        weatherCloseButton.setEffect(new Glow(.0));
+    }
+
+    @FXML
+    private void weatherClosePressed(MouseEvent mouseEvent) {
+        weatherCloseButton.setEffect(new Glow(.80));
+    }
+
+    @FXML
+    private void weatherCloseReleased(MouseEvent mouseEvent) {
+        weatherCloseButton.setEffect(new Glow(.0));
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
+
+    @FXML
+    private void stationsEntered(MouseEvent mouseEvent) {
+        stationsButton.setEffect(new Glow(.25));
+    }
+
+    @FXML
+    private void stationsExited(MouseEvent mouseEvent) {
+        stationsButton.setEffect(new Glow(.0));
+    }
+
+    @FXML
+    private void stationsPressed(MouseEvent mouseEvent) throws IOException {
+        stationsButton.setEffect(new Glow(.80));
+    }
+
+    @FXML
+    private void stationsReleased(MouseEvent mouseEvent) throws IOException {
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        stationsButton.setEffect(new Glow(.0));
+        if (stage.isMaximized())
+            maxed = true;
+        setWeatherScene("Stations", mouseEvent);
+        System.out.println(maxed);
+        System.out.println(savedScene);
+    }
+
+
+
+    @FXML
+    private void instrumentsEnter(MouseEvent mouseEvent) {
+        instrumentsButton.setEffect(new Glow(.25));
+    }
+
+    @FXML
+    private void instrumentsExited(MouseEvent mouseEvent) {
+        instrumentsButton.setEffect(new Glow(.0));
+    }
+
+    @FXML
+    private void instrumentsPressed(MouseEvent mouseEvent) {
+        instrumentsButton.setEffect(new Glow(0.80));
+    }
+
+    @FXML
+    private void instrumentsReleased(MouseEvent mouseEvent) throws IOException {
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        instrumentsButton.setEffect(new Glow(0.0));
+        setWeatherScene("InstrumentsDBDisplay", mouseEvent);
+        if (stage.isMaximized())
+            maxed = true;
+        System.out.println(maxed);
+        System.out.println(savedScene);
+    }
+
+
+
+    @FXML
+    private void webEnter(MouseEvent mouseEvent) {
+        webButton.setEffect(new Glow(.25));
+    }
+
+    @FXML
+    private void webExited(MouseEvent mouseEvent) {
+        webButton.setEffect(new Glow(.0));
+    }
+
+    @FXML
+    private void webPressed(MouseEvent mouseEvent) {
+        webButton.setEffect(new Glow(.80));
+    }
+
+    @FXML
+    private void webReleased(MouseEvent mouseEvent) throws IOException {
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        setWeatherScene("WebServices", mouseEvent);
+        if (stage.isMaximized())
+            maxed = true;
+        System.out.println(maxed);
+        System.out.println(savedScene);
+    }
+
+
+    public static void setWeatherScene (String fileName, MouseEvent mouseEvent) throws IOException {
+        final double[] xOffset = {0};
+        final double[] yOffset = {0};
+        Parent root = FXMLLoader.load(Objects.requireNonNull(WeatherController.class.getResource("/main/Weather/FXML/" + fileName + ".fxml")));
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.show();
+
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset[0] = event.getSceneX();
+                yOffset[0] = event.getSceneY();
+            }
+        });
+
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                stage.setX(event.getScreenX() - xOffset[0]);
+                stage.setY(event.getScreenY() - yOffset[0]);
+
+            }
+        });
+        savedScene = fileName;
+        }
+
+    public static boolean instrumentsValidInput(String s) {
+        for (int i = 0; i < s.length(); i++)
+            if (!Character.isDigit(s.charAt(i)))
+                return false;
+        return true;
+    }
+
+    public static boolean stationsValidInput(String s) {
+        try {
+            Double.parseDouble(s);
+            return true;
+        } catch (Exception e){
+            return false;
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        instructions.setText("""
+                                                                        Hulloooooo, mAh d00d!
+                                    
+                                                                           Select from above:
+                                    
+                Stations to input your lat long and get a readout from a weather station,
+                log the readout to a database, view the database, and get observations based on the readouts stored.
+                                    
+                                    
+                Web Services to view different weather pages on the net. Helpful in seeing whats coming long term.
+                                    
+                                    
+                Instruments allows you to log data from manual gauges and get observations. You know...
+                in case zombies.
+
+                """);
+        if (maxed) {
+            weatherBanner.setWidth(displaySize.getWidth());
+            stationsButton.setTranslateX(200);
+            webButton.setTranslateX(400);
+            instrumentsButton.setTranslateX(600);
+            maxed = true;
+//        } else
+//        weatherBanner.setWidth(1200);
+//        stationsButton.setTranslateX(0);
+//        webButton.setTranslateX(0);
+//        instrumentsButton.setTranslateX(0);
+////        weatherMaxButton.setTranslateX(0);
+////        weatherMinButton.setTranslateX(0);
+////        weatherCloseButton.setTranslateX(0);
+//        maxed = false;
+        }
+    }
+
+    public static void setSavedScene() {
+        WeatherController.savedScene = "WeatherInstructions";
+    }
+
+    //create one of these for each and a return to
+    public void maxedWeatherElements(MouseEvent mouseEvent) throws IOException {
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        weatherMaxButton.setEffect(new Glow(.0));
+        if (!stage.isMaximized()) {
+            stage.setMaximized(true);
+            maxed = true;
+            System.out.println(true);
+            System.out.println(savedScene);
+        }else if ((stage.isMaximized()&& savedScene.equals("WeatherInstructions"))){
+            stage.setMaximized(false);
+            System.out.println(savedScene);
+            maxed = false;
+            System.out.println(false);
+        }else if (stage.isMaximized()){
+            stage.setMaximized(false);
+            maxed = false;
+            System.out.println(savedScene);
+            System.out.println(maxed);
+        }
+        setWeatherScene(savedScene,mouseEvent);
+    }
+
+    public static boolean isMaxed() {
+        return maxed;
+    }
+
+    public static void setMaxed(){
+        maxed = false;
+    }
+
+
+    // stage a universal variable from main controller?
+    public void maxedStationsElements(MouseEvent mouseEvent) throws IOException{
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        if (stage.isMaximized()){
+        }
+    }
+
+    public static String getSavedScene() {
+        return savedScene;
+    }
+}
+
+
+------------------------------------------------------------
+
+- 3 Dec 2021 -
+
+** Continuing through the to do list
+** including parameters in initialization is beginning to produce desired effects. Next check action event handler and source.
+
+** banged head against wall sorting out logic for max button and how it would affect other elements
+-----------------------------------------------------------------------------------------
+
+Dev1
+>> find out how to preload a method with a parameter ie mouse event
+-------------------
+-------------
+
+Dev2
+>>
+
+Start the following changes small for proof of concept
+
+>> rest element method
+
+>> current model is extended model has its elements
+and calls in base elements but so far does not control base elements -> need to figure out how to rectify this
+
+• at moment loads with base elements then changes only base elements vs 
+
+* change scene > check for maxed = true > 
+ if true (change properties of all elements) to fit maxed
+ scheme
+ 
+ * > in initialize check maxed > if maxed > load scene with maxed values
+ 
+ * attampt loading fxml with additional controllers > research nested controllers 
+
+
+!! all elements listed out into controller and on max button pressed all elements change appropriately this will take a fair bit of time so be patient and work at it one step at a time.
+
+>> adjust gui to be the same across any platform regardless of size
+
+>> auto scale fonts
+
+>> find means to get resolution and set dimensions accordingly
+
+>> possibly adjust so that all three windows can be opened visible and then user can select wich window to enlarge >> could be creating way more headache could be the stand apart > possibly set it up so if already showing that window just goes to the front in that position  
+
+
+>> package program
+
+
+>> web services instructions
+
+------------------------------------------------------------
+- 2 Dec 2021 -
+
+** Continuing through the to do list
+** max button initial function as desired
+** banner and banner buttons resizing as desired from Weather Instructions
+** all Weather submenus resize, next will be resizing their elements
+** created variable to hold name of fxml file name and entered when scene changes then logic is worked out based on from those values and if stage is maximized or not. Saved file name is reset to null if weather button clicked.
+
+** new elements below
+
+
+-----------------------------------------------------------------------------------------
+
+Dev1
+>> find out how to preload a method with a parameter
+-------------------
+-------------
+
+Dev2
+>>
+
+>> if saved scene == && max pushed || stage maxed and button pushed 
+resize elements 
+
+>> set big weather etc
+
+ 
+
+>> record filename set as variable > when min button is pressed setscene with file name and it should display as originally set up > set up set scene so that it does its job and returns file name variable then == set scene
+ 
+
+!! all elements listed out into controller and on max button pressed all elements change appropriately this will take a fair bit of time so be patient and work at it one step at a time.
+
+>> adjust gui to be the same across any platform regardless of size
+
+>> auto scale fonts
+
+>> find means to get resolution and set dimensions accordingly
+
+>> possibly adjust so that all three windows can be opened visible and then user can select wich window to enlarge >> could be creating way more headache could be the stand apart > possibly set it up so if already showing that window just goes to the front in that position  
+
+
+
+>> package program
+
+**updated
+
+
+static String savedScene;
+public static void setWeatherScene (String fileName, MouseEvent mouseEvent) throws IOException {
+    final double[] xOffset = {0};
+    final double[] yOffset = {0};
+    Parent root = FXMLLoader.load(Objects.requireNonNull(WeatherController.class.getResource("/main/Weather/FXML/" + fileName + ".fxml")));
+    Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+    Scene scene = new Scene(root);
+    scene.setFill(Color.TRANSPARENT);
+    stage.setScene(scene);
+    stage.show();
+
+    root.setOnMousePressed(new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            xOffset[0] = event.getSceneX();
+            yOffset[0] = event.getSceneY();
+        }
+    });
+
+    root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            stage.setX(event.getScreenX() - xOffset[0]);
+            stage.setY(event.getScreenY() - yOffset[0]);
+
+        }
+    });
+    System.out.println(fileName);
+    savedScene = fileName;
+    System.out.println(savedScene);
+}
+
+>> action event handler if event is max button / resize button 
+and saved scene == current scene/controller then resize the elements
+
+
+>> find out how to preload a method with a parameter
+
+>> web services instructions
+------------------------------------------------------------
+
+
+- 1 Dec 2021 -
+
+** Continuing through the to do list
+** added instructions to weather scene
+** swapped positions of stations, web sites and instruments
+** changed inventory values to messaging
+** user test with parents established that gui needs ability to size to full scale 
+-----------------------------------------------------------------------------------------
+
+Dev1
+- tasks complete at this point
+-------------------
+-------------
+
+Dev2
+>> 
+
+!! all elements listed out into controller and on max button pressed all elements change appropriately this will take a fair bit of time so be patient and work at it one step at a time.
+
+
+ * @web http://java-buddy.blogspot.com/
+ */
+public class JavaFX_Screen extends Application {
+
+    @Override
+    public void start(Stage primaryStage) {
+        
+        Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
+        
+        Label label = new Label();
+        label.setText(
+                visualBounds.getWidth() + " x " + visualBounds.getHeight());
+
+        StackPane root = new StackPane();
+        root.getChildren().add(label);
+        
+        Scene scene = new Scene(root, 
+                visualBounds.getWidth(), visualBounds.getHeight());
+        
+        primaryStage.setTitle("java-buddy.blogspot.com");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+
+
+
+Get Screen Size of Primary Monitor
+
+| 123456789101112131415 | import javafx.application.Application;import javafx.geometry.Rectangle2D;import javafx.stage.Screen;import javafx.stage.Stage; public class Main extends Application {   @Override  public void start(Stage primaryStage) {    //Get primary screen bounds    Rectangle2D screenBounds = Screen.getPrimary().getBounds();    System.out.println(screenBounds);    System.exit(0);  }} |
+
+
+
+Example Output
+
+
+
+| 1 | Rectangle2D [minX = 0.0, minY=0.0, maxX=1920.0, maxY=1080.0, width=1920.0, height=1080.0] |
+
+
+
+
+Get Number Of Monitors / Visual Devices
+Let’s see how we can find number of monitors currently attached to the system using the JavaFX Screen API.
+
+
+
+| 123456789101112 | import javafx.application.Application;import javafx.stage.Screen;import javafx.stage.Stage; public class Main extends Application {   @Override  public void start(Stage primaryStage) {    System.out.println(Screen.getScreens().size());    System.exit(0);  }} |
+
+
+
+Example Output
+
+
+
+| 1 | 2 |
+
+
+
+
+Get Screen Size Of All Monitors
+
+| 12345678910111213141516 | import javafx.application.Application;import javafx.collections.ObservableList;import javafx.stage.Screen;import javafx.stage.Stage; public class Main extends Application {   @Override  public void start(Stage primaryStage) {    ObservableList<Screen> screenSizes = Screen.getScreens();    screenSizes.forEach(screen -> {      System.out.println(screen.getBounds());    });    System.exit(0);  }} |
+
+
+
+
+
+
+
+**Start with if max button is pressed then either change to maxed css
+
+or change to maxed FXML that changes to maxed css
+
+
+
+>> adjust gui to be the same across any platform regardless of size
+
+>> auto scale fonts
+
+>> find means to get resolution and set dimensions accordingly
+
+
+>> package program
+
+------------------------------------------------------------
+
+
 - 30 Nov 2021 -
 
 **Continuing through the to do list

@@ -28,6 +28,7 @@
          <Font size="24.0" />
       </font>
    </Button>
+
    <Button fx:id="log" alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="400.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onMouseEntered="#logButtonEnter" onMouseExited="#logButtonExit" onMousePressed="#logButtonPressed" onMouseReleased="#logButtonReleased" text="Log Conditions">
       <font>
          <Font size="24.0" />
@@ -46,8 +47,8 @@
       </font>
    </Button>
 
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#49c3de94" height="579.0" layoutX="304.0" layoutY="114.0" stroke="#31eed2" strokeType="INSIDE" strokeWidth="2.0" width="814.0" />
-   <Label fx:id="stationOutput" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="345.0" layoutY="149.0" lineSpacing="3.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="528.0" prefWidth="740.0" stylesheets="@../CSS/WeatherCSS.css" text=" " textAlignment="CENTER" wrapText="true">
+   <Rectangle fx:id="readoutBox" arcHeight="5.0" arcWidth="5.0" fill="#49c3de94" height="579.0" layoutX="304.0" layoutY="114.0" stroke="#31eed2" strokeType="INSIDE" strokeWidth="2.0" width="814.0" />
+   <Label fx:id="stationOutput" alignment="TOP_CENTER" contentDisplay="TEXT_ONLY" layoutX="345.0" layoutY="100.0" lineSpacing="3.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="528.0" prefWidth="740.0" stylesheets="@../CSS/WeatherCSS.css" text=" "  wrapText="true">
       <font>
          <Font />
       </font>
