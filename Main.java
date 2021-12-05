@@ -28,8 +28,6 @@ public class Main extends Application {
         primaryStage.setX(50);
         primaryStage.setY(50);
         primaryStage.show();
-
-
     }
     public static void main(String[] args) throws IOException {
         launch(args);

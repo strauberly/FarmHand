@@ -5,6 +5,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import main.Weather.WeatherController;
 import main.Weather.observations.Observations;
 import main.Weather.weatherdb.WDBHourly;
@@ -15,10 +17,25 @@ import java.sql.*;
 import java.util.ResourceBundle;
 
 public class InstrumentsController implements Initializable {
+    public Rectangle observationsSquare = new Rectangle();
     @FXML
-    public Label errorText = new Label();
+    private Label errorText = new Label();
+    @FXML
+    private Rectangle errorSquare = new Rectangle();
     @FXML
     private Label observationsText = new Label();
+    @FXML
+    private TextField pressureField = new TextField();
+    @FXML
+    private TextField tempField = new TextField();
+    @FXML
+    private TextField windField = new TextField();
+    @FXML
+    private TextField humidityField = new TextField();
+    @FXML
+    private Button logButton = new Button();
+    @FXML
+    private Button observationsButton = new Button();
 
     @Override
     public void initialize(URL Location, ResourceBundle resources) {
@@ -31,21 +48,52 @@ public class InstrumentsController implements Initializable {
                 mAH d00d must enter ONLY digits, in ALL the fields.
 
                 Try again dumb-dumb.""");
+        if (WeatherController.isMaxed()) {
+
+            errorSquare.setWidth(1500);
+            errorSquare.setHeight(900);
+
+            observationsSquare.setWidth(1500);
+            observationsSquare.setHeight(900);
+
+            errorText.setPrefWidth(1500);
+            errorText.setPrefHeight(900);
+            errorText.setFont(Font.font(30));
+            errorText.setLayoutX(350);
+
+            observationsText.setPrefWidth(1500);
+            observationsText.setPrefHeight(900);
+            observationsText.setFont(Font.font(30));
+            observationsText.setLayoutX(350);
+
+
+            pressureField.setPrefWidth(240);
+            pressureField.setPrefHeight(80);
+            pressureField.setFont(Font.font(22));
+
+            tempField.setPrefWidth(240);
+            tempField.setPrefHeight(80);
+            tempField.setFont(Font.font(22));
+            tempField.setTranslateY(25);
+            
+            windField.setPrefWidth(240);
+            windField.setPrefHeight(60);
+            windField.setFont(Font.font(22));
+            windField.setTranslateY(50);
+            
+            humidityField.setPrefWidth(240);
+            humidityField.setPrefHeight(80);
+            humidityField.setFont(Font.font(22));
+            humidityField.setTranslateY(75);
+
+            logButton.setFont(Font.font(30));
+            logButton.setTranslateY(75);
+
+            observationsButton.setFont(Font.font(30));
+            observationsButton.setTranslateY(100);
+        }
     }
 
-    //buttons and fields
-    @FXML
-    private TextField pressureField;
-    @FXML
-    private TextField tempField;
-    @FXML
-    private TextField windField;
-    @FXML
-    private TextField humidityField;
-    @FXML
-    private Button logButton;
-    @FXML
-    private Button observationsButton;
 
     public void logButtonEnter(MouseEvent mouseEvent) {
         logButton.setEffect(new Glow(.25));

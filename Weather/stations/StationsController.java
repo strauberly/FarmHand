@@ -2,9 +2,13 @@ package main.Weather.stations;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import main.Weather.WeatherController;
 import main.Weather.observations.Observations;
 import main.Weather.weatherdb.WDBHourly;
@@ -15,27 +19,32 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-// possibly play with opacity setting on button clicks for elements and gaining desired effects
+    // address errors try to load with place holders and evaluate font aesthetics
 public class StationsController implements Initializable{
     private static String lat;
     private static String longi;
-    public TextField longitudeField;
-    public TextField latitudeField;
-
+    @FXML
+    public TextField longitudeField = new TextField();
+    @FXML
+    public TextField latitudeField = new TextField();
     @FXML
     public Label observationsText = new Label();
     @FXML
     public Label errorText = new Label();
     @FXML
-    private Button getReadOut;
+    public Rectangle readoutBox = new Rectangle();
     @FXML
-    private Button log;
+    private Button getReadOut = new Button();
     @FXML
-    public Button viewLog;
+    private Button log = new Button();
     @FXML
-    public Button observationsButton;
+    public Button viewLog = new Button();
+    @FXML
+    public Button observationsButton = new Button();
     @FXML
     public Label stationOutput = new Label();
+
+    public String savedReadout = String.valueOf(stationOutput);
 
     //button handling
     public void readOutButtonEnter(MouseEvent mouseEvent) {
@@ -68,8 +77,16 @@ public class StationsController implements Initializable{
                 }
             });
             new Thread(task).start();
+            savedReadout = String.valueOf(stationOutput);
+            System.out.println(savedReadout);
         }else
-        WeatherController.setWeatherScene("StationsInputError", mouseEvent);
+            stationOutput.setText("Either mAH d00d's lat and long are mixed up or..." + "\n" +
+                    "mAH d00d must enter ONLY digits, in ALL the fields.");
+        stationOutput.setAlignment(Pos.TOP_CENTER);
+        if (WeatherController.isMaxed()){
+            stationOutput.setTranslateY(150);
+            stationOutput.setTextAlignment(TextAlignment.CENTER);
+        }
     }
 
 
@@ -94,7 +111,12 @@ public class StationsController implements Initializable{
             Stations.apiLog();
             stationOutput.setText("Conditions are logged, mAH d00d.");
         }else
-            WeatherController.setWeatherScene("StationsInputError", mouseEvent);
+          stationOutput.setText("""
+                  mAH d00d has not entered the digits.
+                   
+                  Behold...!
+
+                  There is nothing to log. Try again dumb-dumb.""");
     }
 
     public void viewLogButtonEnter(MouseEvent mouseEvent) {
@@ -130,7 +152,11 @@ public class StationsController implements Initializable{
 
     public void observationsButtonReleased(MouseEvent mouseEvent) throws IOException {
         observationsButton.setEffect(new Glow(0.0));
-        WeatherController.setWeatherScene("StationsObservations", mouseEvent);
+        int hourlyEntries = 0;
+        if (!(WeatherDB.getID("hourly_id_", "hourly", hourlyEntries) > 2)) {
+            stationOutput.setText("mAH d00d needs at least 3 hourly entries for observations. ");
+        } else
+        stationOutput.setText(Observations.weatherReport());
     }
 
 // getters setters
@@ -152,12 +178,42 @@ public class StationsController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        int hourlyEntries = 0;
-        if (!(WeatherDB.getID("hourly_id_", "hourly", hourlyEntries) > 2)) {
-            observationsText.setText("mAH d00d needs at least 3 hourly entries for observations. ");
-        } else
-            observationsText.setText(Observations.weatherReport());
-    stationOutput.setText("Enter your lat and long, mAH d00d.");
+        stationOutput.setText("Enter your lat and long, mAH d00d.");
+        stationOutput.setFont(Font.font(20));
+        stationOutput.setTranslateY(40);
+    if (WeatherController.isMaxed()){
+        readoutBox.setWidth(1500);
+        readoutBox.setHeight(900);
+        readoutBox.setTranslateX(50);
+        
+        stationOutput.setFont(Font.font(28));
+        stationOutput.setPrefWidth(1500);
+        stationOutput.setPrefHeight(900);
+        stationOutput.setTranslateX(50);
+        stationOutput.setTranslateY(200);
+        
+        latitudeField.setPrefWidth(240);
+        latitudeField.setPrefHeight(80);
+        latitudeField.setFont(Font.font(22));
+
+        longitudeField.setPrefWidth(240);
+        longitudeField.setPrefHeight(80);
+        longitudeField.setFont(Font.font(22));
+        longitudeField.setTranslateY(50);
+
+        getReadOut.setFont(Font.font(25));
+        getReadOut.setTranslateY(100);
+
+        log.setFont(Font.font(25));
+        log.setTranslateY(150);
+
+        viewLog.setFont(Font.font(25));
+        viewLog.setTranslateY(200);
+
+        observationsButton.setFont(Font.font(25));
+        observationsButton.setTranslateY(250);
+
+    }
     }
 }
 

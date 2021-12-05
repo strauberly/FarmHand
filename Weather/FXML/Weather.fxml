@@ -13,11 +13,11 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" scaleShape="false" stylesheets="@../CSS/WeatherCSS.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Weather.WeatherController">
-      <StackPane prefHeight="10.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+<AnchorPane centerShape="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" scaleShape="false" stylesheets="@../CSS/WeatherCSS.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Weather.WeatherController">
+   <StackPane fx:id="stack" prefHeight="80.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
 
 
-         <Rectangle height="80.0" width="1200.0" StackPane.alignment="TOP_CENTER">
+         <Rectangle fx:id="weatherBanner" height="80.0" width="1200.0" StackPane.alignment="TOP_LEFT">
             <fill>
                <LinearGradient cycleMethod="REPEAT">
                   <stops>
@@ -59,11 +59,19 @@
          </Line>
 
 
-         <Label fx:id="WeatherHeader" alignment="CENTER" prefHeight="51.0" prefWidth="249.0" stylesheets="@../CSS/WeatherCSS.css" text="Weather" StackPane.alignment="CENTER_LEFT">
+         <Label fx:id="weatherBannerText" alignment="CENTER" prefHeight="51.0" prefWidth="249.0" stylesheets="@../CSS/WeatherCSS.css" text="Weather" StackPane.alignment="CENTER_LEFT">
             <StackPane.margin>
                <Insets left="35.0" />
             </StackPane.margin>
          </Label>
+      <Button fx:id="weatherMaxButton" alignment="CENTER" centerShape="false" mnemonicParsing="false" onMouseEntered="#weatherMaxEnter" onMouseExited="#weatherMaxExited" onMousePressed="#weatherMaxPressed" onMouseReleased="#weatherMaxReleased" prefHeight="45.0" prefWidth="19.0" stylesheets="@../CSS/WeatherCSS.css" text="^" StackPane.alignment="TOP_RIGHT">
+         <font>
+            <Font size="21.0" />
+         </font>
+         <StackPane.margin>
+            <Insets right="35.0" top="6.0" />
+         </StackPane.margin>
+      </Button>
 
 
          <Button fx:id="weatherMinButton" alignment="CENTER" centerShape="false" mnemonicParsing="false" onMouseEntered="#weatherMinEnter" onMouseExited="#weatherMinExited" onMousePressed="#weatherMinPressed" onMouseReleased="#weatherMinReleased" stylesheets="@../CSS/WeatherCSS.css" text="__" StackPane.alignment="TOP_RIGHT">
@@ -71,7 +79,7 @@
                <Font size="21.0" />
             </font>
             <StackPane.margin>
-               <Insets right="55.0" top="8.0" />
+               <Insets right="75.0" top="8.0" />
             </StackPane.margin>
          </Button>
 
@@ -91,22 +99,22 @@
                <Font size="21.0" />
             </font>
             <StackPane.margin>
-               <Insets left="650.0" top="22.0" />
-            </StackPane.margin>
-         </Button>
-
-
-         <Button fx:id="instrumentsButton" alignment="CENTER" onMouseEntered="#instrumentsEnter" onMouseExited="#instrumentsExited" onMousePressed="#instrumentsPressed" onMouseReleased="#instrumentsReleased" stylesheets="@../CSS/WeatherCSS.css" text="Instruments" StackPane.alignment="CENTER_LEFT">
-            <font>
-               <Font size="21.0" />
-            </font>
-            <StackPane.margin>
                <Insets left="370.0" top="22.0" />
             </StackPane.margin>
          </Button>
 
 
          <Button fx:id="webButton" alignment="CENTER" onMouseEntered="#webEnter" onMouseExited="#webExited" onMousePressed="#webPressed" onMouseReleased="#webReleased" stylesheets="@../CSS/WeatherCSS.css" text=" Web Services" StackPane.alignment="CENTER_LEFT">
+            <font>
+               <Font size="21.0" />
+            </font>
+            <StackPane.margin>
+               <Insets left="600.0" top="22.0" />
+            </StackPane.margin>
+         </Button>
+
+
+         <Button fx:id="instrumentsButton" alignment="CENTER" onMouseEntered="#instrumentsEnter" onMouseExited="#instrumentsExited" onMousePressed="#instrumentsPressed" onMouseReleased="#instrumentsReleased" stylesheets="@../CSS/WeatherCSS.css" text="Instruments" StackPane.alignment="CENTER_LEFT">
             <font>
                <Font size="21.0" />
             </font>
