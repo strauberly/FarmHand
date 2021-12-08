@@ -1,10 +1,9 @@
 package main.Weather.weatherdb;
+
 import java.sql.*;
 import java.util.ArrayList;
 
-
 public class WeatherDB {
-
     private static String high;
     private static String low;
     private static String avg;
@@ -23,7 +22,7 @@ public class WeatherDB {
                     " humidity STRING, time STRING)");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS daily " +
                     " (daily_id_ INTEGER PRIMARY KEY AUTOINCREMENT, timestamp LONG, highpressure STRING, lowpressure STRING, avgpressure STRING," +
-                   "hightemp STRING, lowtemp STRING, avgtemp STRING, highwind STRING, avgwind STRING, avghumid STRING, date STRING)");
+                    "hightemp STRING, lowtemp STRING, avgtemp STRING, highwind STRING, avgwind STRING, avghumid STRING, date STRING)");
 
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS weekly " +
                     " (weekly_id_ INTEGER PRIMARY KEY AUTOINCREMENT, weeklytimestamp LONG, weeklyhighpressure STRING, weeklylowpressure STRING, weeklyavgpressure STRING," +
@@ -49,9 +48,9 @@ public class WeatherDB {
             WeatherDB.resetTable("hourly");
         }
         WDBHourly.writeToHourly();
-        }
+    }
 
-   public static void resetTable(String table) {
+    public static void resetTable(String table) {
         try {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement statement = conn.createStatement();
@@ -101,7 +100,7 @@ public class WeatherDB {
         return low;
     }
 
-   public static String getAvg (String column, String table){
+    public static String getAvg (String column, String table){
         try {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement statement = conn.createStatement();
@@ -118,7 +117,7 @@ public class WeatherDB {
         return avg;
     }
 
-  public static Integer getID(String column, String table, int variable) {
+    public static Integer getID(String column, String table, int variable) {
         try {
             Connection conn = DriverManager.getConnection(WeatherDB.CONNECTION_STRING);
             Statement statement = conn.createStatement();

@@ -2,7 +2,6 @@
 -fx-background-color: rgba(77, 150, 96, .80);
 }
 .button{
-
 -fx-text-fill:rgba(187, 250, 194, 1);
 -fx-background-color: transparent;
 
@@ -12,16 +11,16 @@
     -fx-text-fill: yellow;
 }
 
-#choresCloseButton{
+#messagesCloseButton{
 -fx-font-size: 10pt;
 }
 
-#choresMinButton{
+#messagesMinButton{
 -fx-font-size: 10pt;
 }
 
 
-#InventoryHeader{
+#messagesHeader{
 -fx-font-family: Sawasdee;
 -fx-font-size: 35pt;
 -fx-text-background-color: yellow;

@@ -11,6 +11,78 @@ Functionality to include but not limited to; weather observation, planning tasks
 
 The following is journal of how this came to be. Thank you for reading this and for checking out the project. Cheers!
 ===========================================================
+- 7 Dec 2021 -
+
+** Continuing through the to do 
+
+** Have begun rebuilding project in Maven
+> project set up is really unintuitive in comparison to older set up and now
+apparently intellij wont let you set up a javafx program with out maven. Incredibly frustrating.
+>trying to sort why in fxml file I trace controller paths with dots and then when listing out fxml files in a controller it appears to be with slashes
+ or something else I cant seem to put my finger on. Really excited to get it figured out though.
+ ** a tad stuck reorganizing with Maven will give it another go down the road. Have rebuilt Project without in the mean time    
+ 
+ 
+
+-----------------------------------------------------------------------------------------
+
+Dev1
+
+>> package program > learn more about maven
+
+
+
+-------------------
+-------------
+
+Dev2
+>> continue adjusting gui for resize
+>> adjust gui to be the same across any platform regardless of size
+
+>> auto scale fonts
+
+-------------------------------------------------------------
+
+- 6 Dec 2021 -
+
+** Continuing through the to do 
+
+** adjusted stations label position
+** trade positions of web view and label and box for webservices on click
+**reformatted MainController
+**reformatted WebServicesController > added method for setting webviewer
+**reformatted StationsController
+**reformatted InstrumentsController
+**reformatted WeatherController
+
+**Time spent researching packaging and deployment
+> looks like options are creating a fat/uber jarr in Maven with shadow plugin or building out a file for each operating system.
+> most documentation seems to be for a machine with a java version already installed
+> Looking a way to package with an instance of java runtime
+> feels like I may have just jumped back in over my head a little but will hope to resolve, package, deploy and share before year end.
+ 
+-----------------------------------------------------------------------------------------
+
+Dev1
+
+>> package program > learn more about maven
+
+
+
+-------------------
+-------------
+
+Dev2
+>> continue adjusting gui for resize
+>> adjust gui to be the same across any platform regardless of size
+
+>> auto scale fonts
+
+
+
+------------------------------------------------------------
+
+
 - 5 Dec 2021 -
 
 ** Continuing through the to do list

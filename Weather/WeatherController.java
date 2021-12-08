@@ -1,9 +1,6 @@
 package main.Weather;
 
-import com.sun.scenario.effect.impl.sw.java.JSWBlend_SRC_OUTPeer;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -14,12 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import main.Weather.stations.StationsController;
-import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.io.IOException;
@@ -27,16 +20,20 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-//Besides managing main weather button actions, also contains method for quickly setting scenes.
-public class WeatherController implements Initializable{
+import static java.awt.Color.*;
+import static java.awt.Font.*;
+import static javafx.scene.paint.Color.TRANSPARENT;
+import static javafx.scene.text.Font.font;
+
+public class WeatherController implements Initializable {
     public Rectangle instructionsSquare = new Rectangle();
     @FXML
     protected Label instructions = new Label();
-   @FXML
-   protected Label weatherBannerText;
-   @FXML
+    @FXML
+    protected Label weatherBannerText;
+    @FXML
     protected static StackPane stack = new StackPane();
-   @FXML
+    @FXML
     private Rectangle weatherBanner = new Rectangle();
     @FXML
     private Button weatherMinButton = new Button();
@@ -61,17 +58,17 @@ public class WeatherController implements Initializable{
 
 
     @FXML
-    private void weatherMinEnter(MouseEvent mouseEvent) {
+    private void weatherMinEnter() {
         weatherMinButton.setEffect(new Glow(.25));
     }
 
     @FXML
-    private void weatherMinExited(MouseEvent mouseEvent) {
+    private void weatherMinExited() {
         weatherMinButton.setEffect(new Glow(.0));
     }
 
     @FXML
-    private void weatherMinPressed(MouseEvent mouseEvent) {
+    private void weatherMinPressed() {
         weatherMinButton.setEffect(new Glow(.80));
 
     }
@@ -84,38 +81,37 @@ public class WeatherController implements Initializable{
     }
 
     @FXML
-    private void weatherMaxEnter(MouseEvent mouseEvent) {
+    private void weatherMaxEnter() {
         weatherMaxButton.setEffect(new Glow(.25));
     }
 
     @FXML
-    private void weatherMaxExited(MouseEvent mouseEvent) {
+    private void weatherMaxExited() {
         weatherMaxButton.setEffect(new Glow(.0));
     }
 
     @FXML
-    private void weatherMaxPressed(MouseEvent mouseEvent) throws IOException {
-        System.out.println(maxed);
+    private void weatherMaxPressed() {
     }
 
     @FXML
     private void weatherMaxReleased(MouseEvent mouseEvent) throws IOException {
-      maxedWeatherElements(mouseEvent);
+        maxedWeatherElements(mouseEvent);
     }
 
 
     @FXML
-    private void weatherCloseEnter(MouseEvent mouseEvent) {
+    private void weatherCloseEnter() {
         weatherCloseButton.setEffect(new Glow(.25));
     }
 
     @FXML
-    private void weatherCloseExit(MouseEvent mouseEvent) {
+    private void weatherCloseExit() {
         weatherCloseButton.setEffect(new Glow(.0));
     }
 
     @FXML
-    private void weatherClosePressed(MouseEvent mouseEvent) {
+    private void weatherClosePressed() {
         weatherCloseButton.setEffect(new Glow(.80));
     }
 
@@ -129,17 +125,17 @@ public class WeatherController implements Initializable{
 
 
     @FXML
-    private void stationsEntered(MouseEvent mouseEvent) {
+    private void stationsEntered() {
         stationsButton.setEffect(new Glow(.25));
     }
 
     @FXML
-    private void stationsExited(MouseEvent mouseEvent) {
+    private void stationsExited() {
         stationsButton.setEffect(new Glow(.0));
     }
 
     @FXML
-    private void stationsPressed(MouseEvent mouseEvent) throws IOException {
+    private void stationsPressed() {
         stationsButton.setEffect(new Glow(.80));
     }
 
@@ -150,24 +146,22 @@ public class WeatherController implements Initializable{
         if (stage.isMaximized())
             maxed = true;
         setWeatherScene("Stations", mouseEvent);
-        System.out.println(maxed);
-        System.out.println(savedScene);
     }
 
 
 
     @FXML
-    private void instrumentsEnter(MouseEvent mouseEvent) {
+    private void instrumentsEnter() {
         instrumentsButton.setEffect(new Glow(.25));
     }
 
     @FXML
-    private void instrumentsExited(MouseEvent mouseEvent) {
+    private void instrumentsExited() {
         instrumentsButton.setEffect(new Glow(.0));
     }
 
     @FXML
-    private void instrumentsPressed(MouseEvent mouseEvent) {
+    private void instrumentsPressed() {
         instrumentsButton.setEffect(new Glow(0.80));
     }
 
@@ -178,8 +172,6 @@ public class WeatherController implements Initializable{
         setWeatherScene("InstrumentsDBDisplay", mouseEvent);
         if (stage.isMaximized())
             maxed = true;
-        System.out.println(maxed);
-        System.out.println(savedScene);
     }
 
 
@@ -205,8 +197,6 @@ public class WeatherController implements Initializable{
         setWeatherScene("WebServices", mouseEvent);
         if (stage.isMaximized())
             maxed = true;
-        System.out.println(maxed);
-        System.out.println(savedScene);
     }
 
 
@@ -216,7 +206,7 @@ public class WeatherController implements Initializable{
         Parent root = FXMLLoader.load(Objects.requireNonNull(WeatherController.class.getResource("/main/Weather/FXML/" + fileName + ".fxml")));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
-        scene.setFill(Color.TRANSPARENT);
+        scene.setFill(TRANSPARENT);
         stage.setScene(scene);
         stage.show();
 
@@ -231,7 +221,7 @@ public class WeatherController implements Initializable{
 
         });
         savedScene = fileName;
-        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -262,7 +252,7 @@ public class WeatherController implements Initializable{
             instrumentsButton.setTranslateX(600);
             maxed = true;
 
-            instructions.setFont(Font.font(28));
+            instructions.setFont(font(28));
             instructions.setPrefHeight(900);
             instructions.setPrefWidth(1500);
             instructions.setTranslateX(170);
@@ -273,51 +263,25 @@ public class WeatherController implements Initializable{
         }
     }
 
+    //behaviour if stage is or isn't maxed used by max/resize button
     public void maxedWeatherElements(MouseEvent mouseEvent) throws IOException {
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         weatherMaxButton.setEffect(new Glow(.0));
         if (!stage.isMaximized()) {
             stage.setMaximized(true);
             maxed = true;
-            System.out.println(true);
-            System.out.println(savedScene);
         }else if ((stage.isMaximized()&& savedScene.equals("WeatherInstructions"))){
             stage.setMaximized(false);
-            System.out.println(savedScene);
             maxed = false;
-            System.out.println(false);
         }else if (stage.isMaximized()){
             stage.setMaximized(false);
             maxed = false;
-            System.out.println(savedScene);
-            System.out.println(maxed);
         }
         setWeatherScene(savedScene,mouseEvent);
-        System.out.println(maxed);
     }
 
     public static boolean isMaxed() {
         return maxed;
     }
 
-    public static String getSavedScene() {
-        return savedScene;
-    }
-
-    public static boolean instrumentsValidInput(@NotNull String s) {
-        for (int i = 0; i < s.length(); i++)
-            if (!Character.isDigit(s.charAt(i)))
-                return false;
-        return true;
-    }
-
-    public static boolean stationsValidInput(String s) {
-        try {
-            Double.parseDouble(s);
-            return true;
-        } catch (Exception e){
-            return false;
-        }
-    }
 }
-

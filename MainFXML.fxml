@@ -14,8 +14,8 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="305.0" style="-fx-background-color: transparent;" stylesheets="@MainWindowCss.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainWindowController">
-   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="71.0" prefWidth="178.0" StackPane.alignment="TOP_LEFT" />
+<StackPane alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="305.0" style="-fx-background-color: transparent;" stylesheets="@Main.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
+    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="71.0" prefWidth="178.0" StackPane.alignment="TOP_LEFT" />
     <Rectangle fill="#283626" height="720.0" width="305.0" />
     <Rectangle fill="#6d8f67" height="720.0" width="300.0" />
 
@@ -84,9 +84,9 @@
         <StackPane.margin>
             <Insets left="45.0" top="125.0" />
         </StackPane.margin>
-      <effect>
-         <Glow level="0.0" />
-      </effect>
+        <effect>
+            <Glow level="0.0" />
+        </effect>
     </Button>
 
 
@@ -145,17 +145,17 @@
     </Rectangle>
     <HBox prefHeight="56.0" prefWidth="305.0">
         <Line endX="422.5826416015625" endY="46.13850402832031" fill="#8aee39" layoutX="60.0" layoutY="60.0" startX="678.5826416015625" startY="46.13850402832031" stroke="#98dd78" strokeLineCap="ROUND" strokeMiterLimit="0.0" strokeWidth="3.0">
-           <HBox.margin>
-               <Insets left="22.0" top="65.0" />
-           </HBox.margin>
+            <HBox.margin>
+                <Insets left="22.0" top="65.0" />
+            </HBox.margin>
         </Line>
-      <StackPane.margin>
-         <Insets bottom="650.0" />
-      </StackPane.margin>
+        <StackPane.margin>
+            <Insets bottom="650.0" />
+        </StackPane.margin>
     </HBox>
 
 
-    <Button fx:id="inventoryButton" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#onInventoryClicked" onMouseEntered="#onInventoryEntered" onMouseExited="#onInventoryExited" onMousePressed="#onInventoryPressed" onMouseReleased="#onInventoryReleased" prefHeight="87.0" prefWidth="207.0" text="Messages" StackPane.alignment="BOTTOM_LEFT">
+    <Button fx:id="messagesButton" alignment="CENTER" contentDisplay="CENTER"  onMouseEntered="#onMessagesEntered" onMouseExited="#onMessagesExited" onMousePressed="#onMessagesPressed"  onMouseClicked="#onMessagesClicked" onMouseReleased="#onMessagesReleased" prefHeight="87.0" prefWidth="207.0" text="Messages" StackPane.alignment="BOTTOM_LEFT">
         <font>
             <Font size="31.0" />
         </font>
@@ -166,58 +166,58 @@
 
     <Rectangle fill="#ebffd0" height="6.0" layoutX="10.0" layoutY="10.0" width="300.0" StackPane.alignment="TOP_LEFT" />
 
-   <Circle layoutX="286.0" layoutY="47.0" radius="17.0" StackPane.alignment="TOP_LEFT">
-      <StackPane.margin>
-         <Insets left="248.0" top="17.0" />
-      </StackPane.margin>
-   </Circle>
+    <Circle layoutX="286.0" layoutY="47.0" radius="17.0" StackPane.alignment="TOP_LEFT">
+        <StackPane.margin>
+            <Insets left="248.0" top="17.0" />
+        </StackPane.margin>
+    </Circle>
 
-   <Circle fill="#e9f8dc" layoutX="281.0" layoutY="45.0" radius="17.0" StackPane.alignment="TOP_LEFT">
-      <StackPane.margin>
-         <Insets left="251.0" top="18.0" />
-      </StackPane.margin>
-   </Circle>
+    <Circle fill="#e9f8dc" layoutX="281.0" layoutY="45.0" radius="17.0" StackPane.alignment="TOP_LEFT">
+        <StackPane.margin>
+            <Insets left="251.0" top="18.0" />
+        </StackPane.margin>
+    </Circle>
 
-   <Circle fill="#d3e4ca" radius="18.0" StackPane.alignment="TOP_LEFT">
-      <StackPane.margin>
-         <Insets left="249.0" top="17.0" />
-      </StackPane.margin>
-   </Circle>
+    <Circle fill="#d3e4ca" radius="18.0" StackPane.alignment="TOP_LEFT">
+        <StackPane.margin>
+            <Insets left="249.0" top="17.0" />
+        </StackPane.margin>
+    </Circle>
 
 
-   <Button fx:id="closeButton" alignment="TOP_LEFT" contentDisplay="CENTER" onMouseEntered="#onCloseEntered" onMouseExited="#onCloseExited" onMousePressed="#onClosePressed" onMouseReleased="#onCloseReleased" text="X" StackPane.alignment="TOP_LEFT">
-      <StackPane.margin>
-         <Insets left="250.0" top="20.0" />
-      </StackPane.margin>
-      <font>
-         <Font size="16.0" />
-      </font>
-   </Button>
+    <Button fx:id="closeButton" alignment="TOP_LEFT" contentDisplay="CENTER" onMouseEntered="#onCloseEntered" onMouseExited="#onCloseExited" onMousePressed="#onClosePressed" onMouseReleased="#onCloseReleased" text="X" StackPane.alignment="TOP_LEFT">
+        <StackPane.margin>
+            <Insets left="250.0" top="20.0" />
+        </StackPane.margin>
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Button>
 
-   <Circle layoutX="281.0" layoutY="45.0" radius="17.0" StackPane.alignment="TOP_LEFT">
-      <StackPane.margin>
-         <Insets left="199.0" top="17.0" />
-      </StackPane.margin>
-   </Circle>
+    <Circle layoutX="281.0" layoutY="45.0" radius="17.0" StackPane.alignment="TOP_LEFT">
+        <StackPane.margin>
+            <Insets left="199.0" top="17.0" />
+        </StackPane.margin>
+    </Circle>
 
-   <Circle fill="#e9f8dc" layoutX="285.0" layoutY="47.0" radius="17.0" StackPane.alignment="TOP_LEFT">
-      <StackPane.margin>
-         <Insets left="200.0" top="18.0" />
-      </StackPane.margin>
-   </Circle>
+    <Circle fill="#e9f8dc" layoutX="285.0" layoutY="47.0" radius="17.0" StackPane.alignment="TOP_LEFT">
+        <StackPane.margin>
+            <Insets left="200.0" top="18.0" />
+        </StackPane.margin>
+    </Circle>
 
-   <Circle fill="#d3e4ca" layoutX="283.0" layoutY="46.0" radius="18.0" StackPane.alignment="TOP_LEFT">
-      <StackPane.margin>
-         <Insets left="201.0" top="17.0" />
-      </StackPane.margin>
-   </Circle>
+    <Circle fill="#d3e4ca" layoutX="283.0" layoutY="46.0" radius="18.0" StackPane.alignment="TOP_LEFT">
+        <StackPane.margin>
+            <Insets left="201.0" top="17.0" />
+        </StackPane.margin>
+    </Circle>
 
-   <Button fx:id="minButton" alignment="TOP_LEFT" contentDisplay="TOP" onMouseEntered="#onMinEntered" onMouseExited="#onMinExited" onMousePressed="#onMinPressed" onMouseReleased="#onMinReleased" text="--" StackPane.alignment="TOP_LEFT">
-      <font>
-         <Font size="16.0" />
-      </font>
-      <StackPane.margin>
-         <Insets left="200.0" top="20.0" />
-      </StackPane.margin>
-   </Button>
+    <Button fx:id="minButton" alignment="TOP_LEFT" contentDisplay="TOP" onMouseEntered="#onMinEntered" onMouseExited="#onMinExited" onMousePressed="#onMinPressed" onMouseReleased="#onMinReleased" text="--" StackPane.alignment="TOP_LEFT">
+        <font>
+            <Font size="16.0" />
+        </font>
+        <StackPane.margin>
+            <Insets left="200.0" top="20.0" />
+        </StackPane.margin>
+    </Button>
 </StackPane>
