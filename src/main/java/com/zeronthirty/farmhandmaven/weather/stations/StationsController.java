@@ -149,8 +149,7 @@ public class StationsController implements Initializable {
 
     public void observationsButtonReleased() {
         observationsButton.setEffect(new Glow(0.0));
-        int hourlyEntries = 0;
-        if (!(WeatherDB.getID("hourly_id_", "hourly", hourlyEntries) > 2)) {
+        if (!(WeatherDB.getID("hourly_id_", "hourly") > 2)) {
             stationOutput.setText("mAH d00d needs at least 3 hourly entries for observations. ");
         } else
             stationOutput.setText(Observations.weatherReport());

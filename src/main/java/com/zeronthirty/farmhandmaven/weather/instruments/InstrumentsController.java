@@ -51,7 +51,7 @@ public class InstrumentsController implements Initializable {
         logButton.setEffect(new Glow(.0));
     }
 
-    public void logButtonPressed() throws IOException {
+    public void logButtonPressed() {
         logButton.setEffect(new Glow(.80));
         WDBHourly.setTimeStamp(System.currentTimeMillis());
     }
@@ -68,9 +68,9 @@ public class InstrumentsController implements Initializable {
             WDBHourly.setWindFieldValue(windField.getText());
             WDBHourly.setHumidityFieldValue(humidityField.getText());
             WeatherDB.log();
-            WeatherController.setWeatherScene("instrumentsDBDisplay.fxml", mouseEvent);
+            WeatherController.setWeatherScene("instrumentsDBDisplay", mouseEvent);
         }else
-            WeatherController.setWeatherScene("instrumentsInputError.fxml", mouseEvent);
+            WeatherController.setWeatherScene("instrumentsInputError", mouseEvent);
     }
 
 
@@ -88,14 +88,13 @@ public class InstrumentsController implements Initializable {
 
     public void observationsButtonReleased (MouseEvent mouseEvent) throws IOException {
         observationsButton.setEffect(new Glow(0.0));
-        WeatherController.setWeatherScene("instrumentsObservations.fxml", mouseEvent);
+        WeatherController.setWeatherScene("instrumentsObservations", mouseEvent);
     }
 
 
     @Override
     public void initialize(URL Location, ResourceBundle resources) {
-        int hourlyEntries = 0;
-        if (!(WeatherDB.getID("hourly_id_", "hourly", hourlyEntries) > 2)) {
+        if (!(WeatherDB.getID("hourly_id_", "hourly") > 2)) {
             observationsText.setText("mAH d00d needs at least 3 hourly entries for observations. ");
         } else
             observationsText.setText(Observations.weatherReport());

@@ -18,7 +18,6 @@ public class WDBHourly {
     private static String windFieldValue;
     private static String humidityFieldValue;
     private static long timeStamp;
-    public static int getHourlyEntries;
 
     //constructor
     public WDBHourly(String pressure, String temperature, String wind, String humidity, String time) {

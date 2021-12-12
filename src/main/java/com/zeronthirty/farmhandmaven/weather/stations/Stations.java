@@ -103,12 +103,12 @@ public class Stations {
         }
 
         public static void apiLog() throws SQLException {
-            if (WDBDaily.notSameDates() && WeatherDB.getID("daily_id_","daily", WDBDaily.getDailyEntries) == 7){
+            if (WDBDaily.notSameDates() && WeatherDB.getID("daily_id_","daily") == 7){
                 WDBWeekly.writeToWeekly();
                 WeatherDB.resetTable("daily");
                 WDBDaily.writeToDaily();
                 WeatherDB.resetTable("hourly");
-            }else if (WDBDaily.notSameDates() && WeatherDB.getID("hourly_id_", "hourly", WDBHourly.getHourlyEntries) > 0){
+            }else if (WDBDaily.notSameDates() && WeatherDB.getID("hourly_id_", "hourly") > 0){
                 WDBDaily.writeToDaily();
                 WeatherDB.resetTable("hourly");
             }

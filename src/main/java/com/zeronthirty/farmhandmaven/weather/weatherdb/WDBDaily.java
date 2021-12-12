@@ -25,7 +25,6 @@ public class WDBDaily {
     // calculation variables
     private static long loggedDate;
     private static final Long dateValue = getLoggedDate();
-    public static int getDailyEntries;
     private static String observableDate;
 
 

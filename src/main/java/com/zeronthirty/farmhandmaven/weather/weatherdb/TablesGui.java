@@ -86,8 +86,7 @@ public class TablesGui implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        int hourlyEntries = 0;
-        if (!(WeatherDB.getID("hourly_id_", "hourly", hourlyEntries) > 2)) {
+        if (!(WeatherDB.getID("hourly_id_", "hourly") > 2)) {
             observationsText.setText("mAH d00d needs at least 3 hourly entries for observations. ");
         } else
             observationsText.setText(Observations.weatherReport());
