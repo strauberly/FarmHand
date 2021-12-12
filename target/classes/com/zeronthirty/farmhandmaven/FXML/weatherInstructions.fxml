@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" scaleShape="false" stylesheets="@../CSS/WeatherCSS.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zeronthirty.farmhandmaven.weather.WeatherController">
+    <fx:include source="weather.fxml" />
+
+    <Rectangle fx:id="instructionsSquare" arcHeight="5.0" arcWidth="5.0" fill="#49c3de94" height="579.0" layoutX="75.0" layoutY="114.0" stroke="#31eed2" strokeType="INSIDE" strokeWidth="2.0" width="1034.0" />
+
+    <Label fx:id="instructions" alignment="TOP_CENTER" contentDisplay="TEXT_ONLY" layoutX="150.0" layoutY="144.0" lineSpacing="3.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="579.0" prefWidth="925.0" stylesheets="@../CSS/WeatherCSS.css" text=" " wrapText="true">
+        <font>
+            <Font size="20.0" />
+        </font>
+        <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+        </padding>
+    </Label>
+
+</AnchorPane>

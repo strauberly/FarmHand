@@ -11,6 +11,110 @@ Functionality to include but not limited to; weather observation, planning tasks
 
 The following is journal of how this came to be. Thank you for reading this and for checking out the project. Cheers!
 ===========================================================
+- 12 Dec 2021 -
+
+** Continuing through the to do 
+
+** Maven Version uploaded to repository 
+** rough logo icorporated
+** fixed broken code in instruments pertaining to includinf .fxml vs just the file name
+** corrected input error bug introduced during rebuild  
+
+
+
+-----------------------------------------------------------------------------------------
+
+Dev1
+
+>> package program 
+
+
+
+-------------------
+-------------
+
+Dev2
+
+
+>> continue adjusting gui for resize
+>> adjust gui to be the same across any platform regardless of size
+
+>> auto scale fonts
+------------------------------------------------------------
+
+
+- 9 Dec 2021 -
+
+ ** Continuing through the to do 
+** Project successfully rebuilt with Maven
+** Webview in web services required finding and incorporating libjfxwebkit
+** Backing up and wil upload to git as a branch 
+** created from development notifications for chores and messaging
+** moved classes to corresponding packages so that Maven project design is near identical to original app design attempt
+to keep code well organised
+** took a while to get into Maven but hate it much less now
+
+
+-----------------------------------------------------------------------------------------
+
+Dev1
+
+>> package program > create third branch for maven
+
+
+
+-------------------
+-------------
+
+Dev2
+
+>> create logo
+>> continue adjusting gui for resize
+>> adjust gui to be the same across any platform regardless of size
+
+>> auto scale fonts
+
+----------------------------------------------------------
+
+- 8 Dec 2021 -
+
+ 
+ ** Continuing through the to do 
+
+** Project mostly rebuilt in Maven
+**project completely rebuilt without Maven 
+ 
+ 
+
+-----------------------------------------------------------------------------------------
+
+Dev1
+
+>> package program > learn more about maven
+>>try packaging with earlier version
+>> need to figure out its formatting url for relative paths and resources
+>> try running earlier version of fxml and java in dependencies
+>> also try creating running java jar files now with new JDK 
+>> try fast forwarding through a javafx maven tutorial to get the jist, look for a jdbc/mysql
+
+
+
+-------------------
+-------------
+
+Dev2
+>> continue adjusting gui for resize
+>> adjust gui to be the same across any platform regardless of size
+
+>> auto scale fonts
+ 
+
+------------------------------------------------------------
+
+
+
+
+=======
 - 7 Dec 2021 -
 
 ** Continuing through the to do 
