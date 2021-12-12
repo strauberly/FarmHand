@@ -1,5 +1,6 @@
 package com.zeronthirty.farmhandmaven;
 
+import com.zeronthirty.farmhandmaven.weather.observations.Observations;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

@@ -10,11 +10,11 @@ import java.util.Objects;
 // all subject to change
 public class Observations {
 
-    public static String weatherReport;
     // weather reports
     // possibly organize this as a map with switch statements as it grows
     // possibly add observations based on data from recorded days and weeks to look for trends
     public static String weatherReport() {
+        String weatherReport;
         if (stormyDefinition()) {
             weatherReport =  getWeatherReport() +
                     "Better batten down the hatches, and be prepared to respond because a storm is likely." +
@@ -37,22 +37,27 @@ public class Observations {
                     "Keep an eye out for it to get worse and see what you need to put away or protect." + "\n" + "\n" +
                     "After all that, see what you can get done inside.";
             return weatherReport;
+        }else if (Objects.equals(risingFallingUnSettledSteady("pressure", "hourly"), "fairly steady")) {
+            weatherReport = getWeatherReport() +
+                    "Keep on keeping on, mAH d00d. Looks like more of the same for a bit.";
+            return weatherReport;
         } else if (Objects.equals(risingFallingUnSettledSteady("pressure", "hourly"), "unsettled") && Objects.equals(risingFallingUnSettledSteady("temperature", "hourly"), "rising")){
             weatherReport = getWeatherReport() +
-                    "Little weird out there for mAH d00ds but I might Keep an eye on the sky and be flexible.";
+                    "Little weird out there for mAH d00ds but I might just keep an eye on the sky.";
+            return weatherReport;
+        }else if (Objects.equals(risingFallingUnSettledSteady("pressure", "hourly"), "unsettled") && Objects.equals(risingFallingUnSettledSteady("temperature", "hourly"), "falling")){
+            weatherReport = getWeatherReport() +
+                    "Little weird out there for mAH d00ds. Keep an eye on the sky and be flexible but I'd probably take it inside.";
             return weatherReport;
         } else if (Objects.equals(risingFallingUnSettledSteady("pressure", "hourly"), "unsettled") && Objects.equals(risingFallingUnSettledSteady("temperature", "hourly"), "unsettled")){
             weatherReport = getWeatherReport() +
                     "Little weird out there for mAH d00ds. Cup of tea while you wait a bit?";
             return weatherReport;
-        }else if (Objects.equals(risingFallingUnSettledSteady("pressure", "hourly"), "fairly steady") && Objects.equals(risingFallingUnSettledSteady("wind", "hourly"), "fairly steady")) {
-            weatherReport = getWeatherReport() +
-                    "Keep on keeping on, mAH d00d. Looks like more of the same for a bit.";
-            return weatherReport;
-        }else if (Objects.equals(risingFallingUnSettledSteady("pressure", "hourly"), "unsettled")){
-                weatherReport = getWeatherReport() +
-                        "Little weird out there for mAH d00ds. Keep an eye on the sky and be flexible but I'd probably take it inside.";
-                return weatherReport;
+//
+//        }else if (Objects.equals(risingFallingUnSettledSteady("pressure", "hourly"), "unsettled") && Objects.equals(risingFallingUnSettledSteady("temperature", "hourly"), "falling")){
+//                weatherReport = getWeatherReport() +
+//                        "Little weird out there for mAH d00ds. Keep an eye on the sky and be flexible but I'd probably take it inside.";
+//                return weatherReport;
         }else
             return """
                    Whups. Looks like you've been entering nonsense.
@@ -62,7 +67,7 @@ public class Observations {
                    Figure it oot.""";
     }
 
-    private  static String getWeatherReport(){
+    private static String getWeatherReport(){
         return returnCurrentConditions() + "\n" + "\n" +
                 "But, pressure is " + risingFallingUnSettledSteady("pressure", "hourly") + ", temperature is " +
                 risingFallingUnSettledSteady("temperature", "hourly") + ", wind is " +
@@ -71,11 +76,11 @@ public class Observations {
     }
 
     private static String returnCurrentConditions(){
-        return "Well, it's " + tempDefinition() + humidityDefinition() + windDefinition();
+        return "Well, it's " + (tempDefinition()) + (humidityDefinition()) + (windDefinition());
     }
 
     // definitions
-    public static String risingFallingUnSettledSteady(String column, String table) {
+    private static String risingFallingUnSettledSteady(String column, String table) {
         double readingOne;
         double readingTwo;
         double readingThree;
@@ -104,7 +109,7 @@ public class Observations {
             return "falling";
         }else if (Math.abs(readingOne-readingThree) <= 9){
             return "fairly steady";
-        }else if ((readingOne < readingTwo && readingTwo < readingThree) || (readingThree > readingTwo && readingTwo < readingOne))
+        }else if ((readingOne < readingTwo && readingThree < readingTwo) || (readingOne > readingTwo && readingThree > readingTwo))
             return "unsettled";
         else
             return null;
@@ -123,9 +128,9 @@ public class Observations {
 
     private static String humidityDefinition() {
         if (WeatherDB.last3ReadingsAvg("humidity", "hourly") > 50 && (WeatherDB.last3ReadingsAvg("humidity", "hourly") < 75)) {
-            return "damp, ";
+            return " a bit humid, ";
         } else if (WeatherDB.last3ReadingsAvg("humidity", "hourly") > 75) {
-            return "swampy, ";
+            return "wet, ";
         } else if (WeatherDB.last3ReadingsAvg("humidity", "hourly") < 45) {
             return "dry, ";
         } else
@@ -154,10 +159,10 @@ public class Observations {
     }
 
     private static boolean stormyDefinition() {
-        return (risingFallingUnSettledSteady("pressure", "hourly").equals("falling")
+        return (Objects.equals(risingFallingUnSettledSteady("pressure", "hourly"), "falling")
                 && pressureSpeedDefinition().equals("quickly"))
-                && risingFallingUnSettledSteady("wind", "hourly").equals("rising") && risingFallingUnSettledSteady("humidity", "hourly").equals("rising")
-                && risingFallingUnSettledSteady("temperature", "hourly").equals("falling");
+                && Objects.equals(risingFallingUnSettledSteady("wind", "hourly"), "rising") && risingFallingUnSettledSteady("humidity", "hourly").equals("rising")
+                && Objects.equals(risingFallingUnSettledSteady("temperature", "hourly"), "falling");
     }
 
     private static boolean hotAndDryDefinition(){
@@ -166,10 +171,10 @@ public class Observations {
     }
 
     private static boolean improvingDefinition() {
-        return risingFallingUnSettledSteady("pressure", "hourly").equals("rising");
+        return Objects.equals(risingFallingUnSettledSteady("pressure", "hourly"), "rising");
     }
 
     private static boolean deterioratingDefinition(){
-        return risingFallingUnSettledSteady("pressure", "hourly").equals("falling");
+        return Objects.equals(risingFallingUnSettledSteady("pressure", "hourly"), "falling");
     }
 }

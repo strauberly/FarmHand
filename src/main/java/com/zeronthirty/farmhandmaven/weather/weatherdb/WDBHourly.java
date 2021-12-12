@@ -20,7 +20,7 @@ public class WDBHourly {
     private static long timeStamp;
 
     //constructor
-    public WDBHourly(String pressure, String temperature, String wind, String humidity, String time) {
+    WDBHourly(String pressure, String temperature, String wind, String humidity, String time) {
         this.pressure = pressure;
         this.temperature = temperature;
         this.wind = wind;
@@ -112,15 +112,15 @@ public class WDBHourly {
         this.pressure = pressure;
     }
 
-    public  void setTemperature(String temperature) {
+    public void setTemperature(String temperature) {
         this.temperature = temperature;
     }
 
-    public  void setWind(String wind) {
+    public void setWind(String wind) {
         this.wind = wind;
     }
 
-    public  void setHumidity(String humidity) {
+    public void setHumidity(String humidity) {
         this.humidity = humidity;
     }
 
