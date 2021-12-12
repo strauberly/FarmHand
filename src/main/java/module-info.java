@@ -1,9 +1,9 @@
 module com.zeronthirty.farmhandmaven {
-    requires javafx.controls;
-    requires javafx.fxml;
+
     requires java.sql;
     requires json.simple;
     requires javafx.web;
+    requires javafx.fxml;
 
 
     opens com.zeronthirty.farmhandmaven to javafx.fxml;

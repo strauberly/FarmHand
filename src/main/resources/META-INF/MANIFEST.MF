@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Main-Class: com.zeronthirty.farmhandmaven.Launcher
+Class-Path: javafx-graphics-16-linux.jar javafx-fxml-16-win.jar javafx-g
+ raphics-16.jar javafx.media.jar javafx.controls.jar javafx-fxml-16-mac.
+ jar javafx-base-16-linux.jar javafx.web.jar javafx-fxml-16-linux.jar ja
+ vafx-base-16.jar sqlite-jdbc-3.32.3.2.jar json-simple-1.1.1.jar
+
