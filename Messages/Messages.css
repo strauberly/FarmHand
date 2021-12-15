@@ -1,0 +1,27 @@
+.root {
+-fx-background-color: rgba(77, 150, 96, .80);
+}
+.button{
+-fx-text-fill:rgba(187, 250, 194, 1);
+-fx-background-color: transparent;
+
+}
+
+.button:hover {
+    -fx-text-fill: yellow;
+}
+
+#messagesCloseButton{
+-fx-font-size: 10pt;
+}
+
+#messagesMinButton{
+-fx-font-size: 10pt;
+}
+
+
+#messagesHeader{
+-fx-font-family: Sawasdee;
+-fx-font-size: 35pt;
+-fx-text-background-color: yellow;
+}

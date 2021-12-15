@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+
+<?import javafx.scene.control.Label?>
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" stylesheets="@../CSS/Weather.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Weather.WebServices.WebServicesController">
+    <fx:include source="Weather.fxml" />
+    <VBox layoutX="14.0" layoutY="95.0" prefHeight="616.0" prefWidth="262.0">
+        <Button fx:id="windyButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseEntered="#windyEnter" onMouseExited="#windyExit" onMousePressed="#windyPressed" onMouseReleased="#windyReleased" stylesheets="@../CSS/Weather.css" text="Windy">
+            <VBox.margin>
+                <Insets top="60.0" />
+            </VBox.margin>
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Button>
+        <Button fx:id="noaaButton" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="62.0" mnemonicParsing="false" onMouseEntered="#noaaEnter" onMouseExited="#noaaExit" onMousePressed="#noaaPressed" onMouseReleased="#noaaReleased" stylesheets="@../CSS/Weather.css" text="NOAA">
+            <VBox.margin>
+                <Insets top="60.0" />
+            </VBox.margin>
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Button>
+        <Button fx:id="farmersButton" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onMouseEntered="#farmersEnter" onMouseExited="#farmersExit" onMousePressed="#farmersPressed" onMouseReleased="#farmersReleased" stylesheets="@../CSS/Weather.css" text="Farmer's Almanac">
+            <VBox.margin>
+                <Insets top="60.0" />
+            </VBox.margin>
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Button>
+        <Button fx:id="wunderButton" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseEntered="#wunderButtonEnter" onMouseExited="#wunderButtonExit" onMousePressed="#wunderButtonPressed" onMouseReleased="#wunderButtonReleased" stylesheets="@../CSS/Weather.css" text="WunderGround">
+            <VBox.margin>
+                <Insets top="60.0" />
+            </VBox.margin>
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Button>
+        <Button fx:id="accuButton" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onMouseEntered="#accuButtonEnter" onMouseExited="#accuButtonExit" onMousePressed="#accuButtonPressed" onMouseReleased="#accuButtonReleased" stylesheets="@../CSS/Weather.css" text="AccuWeather">
+            <VBox.margin>
+                <Insets top="60.0" />
+            </VBox.margin>
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Button>
+    </VBox>
+    <StackPane layoutX="298.0" layoutY="85.0" prefHeight="616.0" prefWidth="800.0">
+        <WebView fx:id="webViewer" opacity="0"/>
+        <Rectangle fx:id="instructionBox" arcHeight="5.0" arcWidth="5.0" fill="#49c3de94" height="608.0" stroke="#31eed2"
+                   strokeType="INSIDE" strokeWidth="2.0" width="797.0"/>
+
+        <Label fx:id="instructions" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="150.0" layoutY="144.0" lineSpacing="3.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="608.0" prefWidth="797.0" stylesheets="@../CSS/Weather.css" text=" " wrapText="true">
+            <font>
+                <Font size="20.0" />
+            </font>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+        </Label>
+    </StackPane>
+</AnchorPane>

@@ -1,0 +1,64 @@
+.table-view {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+-fx-background-color: rgb(38, 152, 186);
+}
+
+.table-view .column-header-background .filler {
+  -fx-background-color: rgba(38, 152, 186);
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header .label{
+-fx-text-fill: white;
+-fx-alignment: CENTER;
+}
+
+.table-cell{
+-fx-text-fill: rgb(61, 103, 202);
+  -fx-alignment: CENTER;
+}
+
+.table-row-cell: odd{
+    -fx-background-color: rgb(157, 239, 251);
+-fx-alignment: CENTER;
+}
+
+.table-row-cell: even{
+    -fx-background-color: rgb(202, 240, 251);
+     -fx-alignment: CENTER;
+}
+
+.table-view .scroll-bar:vertical, horizontal,
+ table-view .scroll-bar .corner .filler{
+ -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical, horizontal,
+.scroll-bar .thumb{
+-fx-background-color: rgb(42, 225, 246);
+}
+
+.table-view  .scroll-bar:vertical, horizontal,
+.table-view  .scroll-bar .track,
+.table-view  .scroll-bar .track-background{
+-fx-background-color: rgb(38, 152, 186);
+}
+
+
+.table-view  .scroll-bar: vertical, horizontal,
+.table-view  .scroll-bar .decrement-button,
+.table-view  .scroll-bar .decrement-arrow,
+.table-view  .scroll-bar .increment-arrow{
+ -fx-background-color: transparent;
+-fx-padding: 0
+ }
+
+
+
+
