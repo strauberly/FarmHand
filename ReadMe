@@ -11,6 +11,204 @@ Functionality to include but not limited to; weather observation, planning tasks
 
 The following is journal of how this came to be. Thank you for reading this and for checking out the project. Cheers!
 ===========================================================
+- 14 Dec 2021 -
+
+** Continuing through the to do 
+
+** jpackage 90% successful but ultimately still ending up
+no manifest error
+
+** shaded plugin however worked
+
+** next steps will include a fresh build of current project retyping code 
+
+**possibly in eclipse
+
+**rebuilt code - project now has a working executable jar (for linux at least) as a prototype. May not seem like a lot but exciting for me!
+Has definitely increased understanding of Maven Jpackage Jlink and building out programs beyond an IDE and getting them ready for the wild.
+
+-----------------------------------------------------------------------------------------
+
+Dev1
+
+
+
+
+
+
+-------------------
+-------------
+
+Dev2
+
+
+>> continue adjusting gui for resize
+>> adjust gui to be the same across any platform regardless of size
+
+>> auto scale fonts
+
+
+
+
+
+
+------------------------------------------------------------
+
+
+- 13 Dec 2021 -
+
+** Continuing through the to do 
+
+** attempted cross-platform jar without much luck going to individual platform packaging as seems to be the norm 
+
+
+-----------------------------------------------------------------------------------------
+
+Dev1
+
+>> package program 
+
+
+
+
+-------------------
+-------------
+
+Dev2
+
+
+>> continue adjusting gui for resize
+>> adjust gui to be the same across any platform regardless of size
+
+>> auto scale fonts
+
+
+
+Maven plugin
+
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-shade-plugin</artifactId>
+    <version>3.2.4</version>
+    <configuration>
+        <transformers>
+            <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                <mainClass>com.zeronthirty.farmhandmaven.Launcher</mainClass>
+            </transformer>
+        </transformers>
+    </configuration>
+    <executions>
+        <execution>
+            <phase>package</phase>
+            <goals>
+                <goal>shade</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+
+
+JPackagePlugin
+
+
+OpenJDK 16 and JPackage
+OpenJDK 16 has been released on 16th March. However, this is not the right post to talk about all the new shining features and tools, but it is the right post to talk about a new particular tool: JPackage.
+JPackage was introduced as an incubating tool from JDK 14 to JDK 15 and is now production-ready for packaging self-contained Java applications.
+As above we want to rely on Maven and fortunately, we got a well-packed plugin (JPackage Plugin) on Maven Central that we can add:
+
+<plugin>
+  <groupId>org.panteleyev</groupId>
+  <artifactId>jpackage-maven-plugin</artifactId>
+  <version>1.4.0</version>
+  <configuration>
+    <name>TreeFX</name>
+    <appVersion>1.0.0</appVersion>
+    <vendor>com.acme</vendor>
+    <destination>target/dist</destination>
+    <module>treefx/com.acme.treefx.TreeFX</module>
+    <runtimeImage>target/treefx</runtimeImage>
+    <linuxShortcut>true</linuxShortcut>
+    <linuxPackageName>treefx</linuxPackageName>
+    <linuxAppCategory>Utilities</linuxAppCategory>
+    <linuxMenuGroup>Utilities</linuxMenuGroup>
+    <icon>${project.basedir}/duke.png</icon>
+    <javaOptions>
+      <option>-Dfile.encoding=UTF-8</option>
+    </javaOptions>
+  </configuration>
+</plugin>
+
+
+
+I have to spend some words about the configuration because it's a little bit tricky on some points.
+Easy part
+• name sets the application name (you don't say!)
+• appVersion as any other application, our TreeFX has a release version too!
+• vendor sets the vendor or our Acme company
+• destination sets the destination folder for the generated package
+
+Tricky part
+◇ module we set the module and the main class of our application since JPackage will generate a new executable for our package
+◇ runtimeImage is usually set to our development OpenJDK, because JPackge could work with JLink to create the custom JRE, but because of some issues I found with JavaFX and JLink (the process is not straightforward), we trick JPackage and we tell it to take the previous custom JRE created with the OpenJFX plugin
+
+Linux part (I put it just for the sake of completeness)
+◇ linuxShortcut creates a shortcut after the application installation process
+◇ linuxPackageName sets the final deb package name
+◇ linuxAppCategory sets the Linux application category
+◇ linuxMenuGroup sets the Linux menu-group
+
+Maybe I have to spend more words on the tricky part. As mentioned above, JPackage is a tool for packaging a self-contained Java application, any kind of Java application, modularized and non-modularized applications. But for this example, we want to distribute a simple animation and it would be quite weird to distribute a whole JRE image for the sake of one animation. Therefore, always think about what you really need for your application and let the right tool works for you.
+About linux part. JPackage allows you to package not only for Linux, but also for Windows and MacOS. However, JPackage depends on the operating system in order to work, so you can't package a Linux app, if you're using Window or MacOS, in a nutshell, no, cross-compiling is not an option. We will try to package our TreeFX app for Windows in an addendum to this article (maybe next week).
+Enough chatting. Let's see it work:
+
+ $ mvn clean compile javafx:jlink jpackage:jpackage
+
+
+
+Wait a while and then:
+
+ $ ls target/dist/
+treefx_1.0.0-1_amd64.deb
+
+
+
+Nice fourice! We now have our package for AMD64 arch (yeah that's mine). If we still have some curiosity about how the deb package is organized, we can unpack it:
+
+ $ dpkg-deb -R target/dist/treefx_1.0.0-1_amd64.deb target/unpacked
+ $ tree target/unpacked
+
+
+
+target/unpacked
+├── DEBIAN
+│   ├── control
+│   ├── postinst
+│   ├── postrm
+│   ├── preinst
+│   └── prerm
+└── opt
+    └── treefx
+        ├── bin
+        │   └── TreeFX
+        ├── lib
+        │   ├── app
+        │   │   └── TreeFX.cfg
+        │   ├── runtime
+        │   │   ├── [...]
+        │   ├── TreeFX.png
+        │   └── treefx-TreeFX.desktop
+        └── share
+            └── doc
+                └── copyright
+
+
+
+We could optimize things and surf into other JPackage configurations, but so far so good (as an old Bryan Adams' album and song said).
+
+
+
+-----------------------------------------------------------
+
 - 12 Dec 2021 -
 
 ** Continuing through the to do 
@@ -114,7 +312,6 @@ Dev2
 
 
 
-=======
 - 7 Dec 2021 -
 
 ** Continuing through the to do 
