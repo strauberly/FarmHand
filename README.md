@@ -23,13 +23,13 @@ Weather observation, planning tasks in accordance with weather conditions, monit
 
 - Future development notes made.
 
-Now that there is a working prototype and proof of concept version. Development here will begin to slow as I will be beggining a new web based project focused on java web services and api's as well as continuing courses.
+Now that there is a working prototype and proof of concept version. Development here will begin to slow as I will be begining a new web based project focused on java web services and api's as well as continuing courses.
 
 If nothing else the read me will live on with updates.
 
 Please feel free to download source and take for a spin.
 
-Check out the tech read me for further notes on design
+Check out the technical read me for further notes on design
 and construction of the program. Short demo videos to follow and be uploaded.
 
 ---

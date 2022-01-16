@@ -10,7 +10,8 @@ public class WeatherDB {
         private static String low;
         private static String avg;
         private static final String DB_NAME = "weather.db";
-        public static final String CONNECTION_STRING = "jdbc:sqlite:" + DB_NAME;
+    public static final String CONNECTION_STRING = "jdbc:sqlite:" + DB_NAME;
+        //        public static final String CONNECTION_STRING = "jdbc:sqlite:" + "farmhand/src/Weather/weatherdb/" + DB_NAME;
 
 
         //creation of weather database
