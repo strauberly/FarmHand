@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1039.0" stylesheets="Weather/CSS/WeatherCSS.css"
+<AnchorPane prefHeight="720.0" prefWidth="1039.0" stylesheets="@../CSS/WeatherCSS.css"
             xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="Weather.stations.StationsController">
     <fx:include source="weather.fxml"/>
@@ -68,7 +68,7 @@
                layoutY="114.0" stroke="#31eed2" strokeType="INSIDE" strokeWidth="2.0" width="814.0"/>
     <Label fx:id="stationOutput" alignment="TOP_CENTER" contentDisplay="TEXT_ONLY" layoutX="345.0" layoutY="100.0"
            lineSpacing="3.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="528.0" prefWidth="740.0"
-           stylesheets="Weather/CSS/WeatherCSS.css" text=" " textAlignment="CENTER" wrapText="true">
+           stylesheets="@../CSS/WeatherCSS.css" text=" " textAlignment="CENTER" wrapText="true">
         <font>
             <Font/>
         </font>

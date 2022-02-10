@@ -70,9 +70,9 @@ import java.util.ResourceBundle;
                 WDBHourly.setWindFieldValue(windField.getText());
                 WDBHourly.setHumidityFieldValue(humidityField.getText());
                 WeatherDB.log();
-                WeatherController.setWeatherScene("InstrumentsDBDisplay", mouseEvent);
+                WeatherController.setWeatherScene("instrumentsDBDisplay", mouseEvent);
             }else
-                WeatherController.setWeatherScene("InstrumentsInputError", mouseEvent);
+                WeatherController.setWeatherScene("instrumentsInputError", mouseEvent);
         }
 
 
@@ -90,7 +90,7 @@ import java.util.ResourceBundle;
 
         public void observationsButtonReleased (MouseEvent mouseEvent) throws IOException {
             observationsButton.setEffect(new Glow(0.0));
-            WeatherController.setWeatherScene("InstrumentsObservations", mouseEvent);
+            WeatherController.setWeatherScene("instrumentsObservations", mouseEvent);
         }
 
 

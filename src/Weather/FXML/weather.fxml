@@ -65,7 +65,7 @@
 
 
         <Label fx:id="weatherBannerText" alignment="CENTER" prefHeight="51.0" prefWidth="249.0"
-               stylesheets="Weather/CSS/WeatherCSS.css" text="Weather" StackPane.alignment="CENTER_LEFT">
+               stylesheets="@../CSS/WeatherCSS.css" text="Weather" StackPane.alignment="CENTER_LEFT">
             <StackPane.margin>
                 <Insets left="35.0"/>
             </StackPane.margin>
@@ -73,7 +73,7 @@
         <Button fx:id="weatherMaxButton" alignment="CENTER" centerShape="false" mnemonicParsing="false"
                 onMouseEntered="#weatherMaxEnter" onMouseExited="#weatherMaxExited" onMousePressed="#weatherMaxPressed"
                 onMouseReleased="#weatherMaxReleased" prefHeight="45.0" prefWidth="19.0"
-                stylesheets="Weather/CSS/WeatherCSS.css" text="^" StackPane.alignment="TOP_RIGHT">
+                stylesheets="@../CSS/WeatherCSS.css" text="^" StackPane.alignment="TOP_RIGHT">
             <font>
                 <Font size="21.0"/>
             </font>
@@ -85,7 +85,7 @@
 
         <Button fx:id="weatherMinButton" alignment="CENTER" centerShape="false" mnemonicParsing="false"
                 onMouseEntered="#weatherMinEnter" onMouseExited="#weatherMinExited" onMousePressed="#weatherMinPressed"
-                onMouseReleased="#weatherMinReleased" stylesheets="Weather/CSS/WeatherCSS.css" text="__"
+                onMouseReleased="#weatherMinReleased" stylesheets="@../CSS/WeatherCSS.css" text="__"
                 StackPane.alignment="TOP_RIGHT">
             <font>
                 <Font size="21.0"/>
@@ -99,7 +99,7 @@
         <Button fx:id="weatherCloseButton" alignment="CENTER" centerShape="false" mnemonicParsing="false"
                 onMouseEntered="#weatherCloseEnter" onMouseExited="#weatherCloseExit"
                 onMousePressed="#weatherClosePressed" onMouseReleased="#weatherCloseReleased" scaleShape="false"
-                stylesheets="Weather/CSS/WeatherCSS.css" text="X" StackPane.alignment="TOP_RIGHT">
+                stylesheets="@../CSS/WeatherCSS.css" text="X" StackPane.alignment="TOP_RIGHT">
             <font>
                 <Font size="21.0"/>
             </font>
@@ -111,7 +111,7 @@
 
         <Button fx:id="stationsButton" alignment="CENTER" centerShape="false" onMouseEntered="#stationsEntered"
                 onMouseExited="#stationsExited" onMousePressed="#stationsPressed" onMouseReleased="#stationsReleased"
-                stylesheets="Weather/CSS/WeatherCSS.css" text="Stations" StackPane.alignment="CENTER_LEFT">
+                stylesheets="@../CSS/WeatherCSS.css" text="Stations" StackPane.alignment="CENTER_LEFT">
             <font>
                 <Font size="21.0"/>
             </font>
@@ -122,7 +122,7 @@
 
 
         <Button fx:id="webButton" alignment="CENTER" onMouseEntered="#webEnter" onMouseExited="#webExited"
-                onMousePressed="#webPressed" onMouseReleased="#webReleased" stylesheets="Weather/CSS/WeatherCSS.css"
+                onMousePressed="#webPressed" onMouseReleased="#webReleased" stylesheets="@../CSS/WeatherCSS.css"
                 text=" Web Services" StackPane.alignment="CENTER_LEFT">
             <font>
                 <Font size="21.0"/>
@@ -135,7 +135,7 @@
 
         <Button fx:id="instrumentsButton" alignment="CENTER" onMouseEntered="#instrumentsEnter"
                 onMouseExited="#instrumentsExited" onMousePressed="#instrumentsPressed"
-                onMouseReleased="#instrumentsReleased" stylesheets="Weather/CSS/WeatherCSS.css" text="Instruments"
+                onMouseReleased="#instrumentsReleased" stylesheets="@../CSS/WeatherCSS.css" text="Instruments"
                 StackPane.alignment="CENTER_LEFT">
             <font>
                 <Font size="21.0"/>

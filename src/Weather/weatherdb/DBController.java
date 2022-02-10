@@ -14,7 +14,7 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
-public class TablesGui implements Initializable {
+public class DBController implements Initializable {
     @FXML
     public Label observationsText = new Label();
 
