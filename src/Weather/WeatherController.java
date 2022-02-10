@@ -77,6 +77,8 @@ public class WeatherController implements Initializable {
         weatherMinButton.setEffect(new Glow(.0));
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         stage.setIconified(true);
+        maxed = false;
+        System.out.println();
     }
 
     @FXML

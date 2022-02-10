@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="720.0" prefWidth="1200.0" scaleShape="false" stylesheets="Weather/CSS/WeatherCSS.css"
+            prefHeight="720.0" prefWidth="1200.0" scaleShape="false" stylesheets="@../CSS/WeatherCSS.css"
             xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="Weather.WeatherController">
     <fx:include source="weather.fxml"/>

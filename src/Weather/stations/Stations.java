@@ -33,9 +33,10 @@ public class Stations {
 
     public static String getConditions() throws IOException {
         // takes the information entered as lat. and long. by user and applies values to api url
+        //provide your own api key from open weather map  https://openweathermap.org/api
         String urlLat = StationsController.getLat();
         String urlLongi = StationsController.getLongi();
-        String apiUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + urlLat.trim() + "&lon=" + urlLongi.trim() + "&units=imperial&appid=ba12fc74c50358f79d2f837033e212d7";
+        String apiUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + urlLat.trim() + "&lon=" + urlLongi.trim() + "&units=imperial&appid=<your api key>";
 
         // /creates variable "apiString" then opens connection to api url and makes get request
         // scanner then receives response and appends the string and closes scanner

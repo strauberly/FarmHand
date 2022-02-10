@@ -18,7 +18,7 @@
 <?import javafx.scene.image.Image?>
 <StackPane alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
            prefHeight="720.0" prefWidth="305.0" style="-fx-background-color: transparent;"
-           stylesheets="ApplicationCSS.css" xmlns="http://javafx.com/javafx/15.0.1"
+           stylesheets="MainCSS.css" xmlns="http://javafx.com/javafx/15.0.1"
            xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="71.0" prefWidth="178.0"
                 StackPane.alignment="TOP_LEFT"/>
