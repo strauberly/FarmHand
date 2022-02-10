@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
-            prefWidth="1200.0" stylesheets="Weather/CSS/WeatherCSS.css" xmlns="http://javafx.com/javafx/15.0.1"
+            prefWidth="1200.0" stylesheets="@../CSS/WeatherCSS.css" xmlns="http://javafx.com/javafx/15.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="Weather.instruments.InstrumentsController">
     <fx:include source="instruments.fxml"/>
@@ -16,7 +16,7 @@
 
     <Label fx:id="errorText" alignment="TOP_CENTER" contentDisplay="TEXT_ONLY" layoutX="400.0" layoutY="170.0"
            lineSpacing="3.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="505.0" prefWidth="580.0"
-           stylesheets="Weather/CSS/WeatherCSS.css" text=" " wrapText="true">
+           stylesheets="@../CSS/WeatherCSS.css" text=" " wrapText="true">
         <font>
             <Font size="24.0"/>
         </font>
