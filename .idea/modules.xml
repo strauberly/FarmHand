@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FarmHanda.iml" filepath="$PROJECT_DIR$/FarmHanda.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FarmHandMaven.iml" filepath="$PROJECT_DIR$/FarmHandMaven.iml" />
     </modules>
   </component>
 </project>
