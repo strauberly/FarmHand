@@ -1,8 +1,10 @@
 # Farm Hand
 
-This application is developed by Adam Straub 2021 - current, and is intended as a demonstration of programming ability in Java for consideration by recruiters and future employers.
+This application is developed by Adam Straub 2021 - current, and is intended as a demonstration of programming ability
+in Java for consideration by recruiters and future employers.
 
-If you have any questions about the project, have an employment opportunity, or know of any; I would love to hear from you! Please use superduper.farmhand@manyme.com for correspondence. Cheers!
+If you have any questions about the project, have an employment opportunity, or know of any; I would love to hear from
+you! Please use superduper.farmhand@manyme.com for correspondence. Cheers!
 
 ---
 
@@ -23,11 +25,15 @@ If you have any questions about the project, have an employment opportunity, or 
 
 # I. General Information
 
-This project is an application designed for use by a small team to assist in the management of a small scale farm or hobby farm. It was developed with Agile Scrum principles in mind while imagining the application being developed by a small team.
+This project is an application designed for use by a small team to assist in the management of a small scale farm or
+hobby farm. It was developed with Agile Scrum principles in mind while imagining the application being developed by a
+small team.
 
-It is meant to be implemented from a standalone terminal in a central location frequented by team members. Functions to include monitoring and recording weather, tracking progress of tasks, basic communication between team members.
+It is meant to be implemented from a standalone terminal in a central location frequented by team members. Functions to
+include monitoring and recording weather, tracking progress of tasks, basic communication between team members.
 
-Current functioning implementations include the main window for selecting subsections of the application and the weather subsection. Please see further documentation for descriptions.
+Current functioning implementations include the main window for selecting subsections of the application and the weather
+subsection. Please see further documentation for descriptions.
 
 In this repository you will note 3 separate branches used during development.
 
@@ -35,7 +41,8 @@ In this repository you will note 3 separate branches used during development.
 - 'source_2' was used while developing GUI
 - 'maven_build' was used while developing as maven based project
 
-Ideas for additional features can be found in the code, section six of this README and the DEV-JOURNAL.md file in this repository.
+Ideas for additional features can be found in the code, section six of this README and the DEV-JOURNAL.md file in this
+repository.
 
 ---
 
@@ -46,12 +53,12 @@ Ideas for additional features can be found in the code, section six of this READ
 - java 17.0.1
 - javaFX 17.0.1
 
-  - base.jar
-  - controls.jar
-  - fxml.jar
-  - graphics.jar
-  - media.jar
-  - web.jar
+    - base.jar
+    - controls.jar
+    - fxml.jar
+    - graphics.jar
+    - media.jar
+    - web.jar
 
 - sqlite-jdbc 3.32.3.2.jar
 - json-simple 1.1.1.jar
@@ -67,7 +74,9 @@ Ideas for additional features can be found in the code, section six of this READ
 
 # III. Setup
 
-You may consult the 'maven' branch found in this repository to assist with dependencies or you will need the libraries listed above for your platform. Please note that javafx is not maintained by oracle and the libraries are operating system specific.
+You may consult the 'maven' branch found in this repository to assist with dependencies or you will need the libraries
+listed above for your platform. Please note that javafx is not maintained by oracle and the libraries are operating
+system specific.
 
 If you are unfamiliar with setting up a javafx project please consider the following resources.
 
