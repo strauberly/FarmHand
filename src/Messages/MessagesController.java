@@ -17,61 +17,61 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MessagesController implements Initializable {
-        public Rectangle messagesBanner;
-        @FXML
-        private Rectangle messagesSquare;
-        @FXML
-        private Button messagingMinButton;
-        @FXML
-        private Label messagesNotes;
+    public Rectangle messagesBanner;
+    @FXML
+    private Rectangle messagesSquare;
+    @FXML
+    private Button messagingMinButton;
+    @FXML
+    private Label messagesNotes;
 
-        private static boolean maxed = false;
-        private static final Rectangle2D displaySize = Screen.getPrimary().getBounds();
-
-
-        public void messagingMinEnter(MouseEvent mouseEvent) {
-            messagingMinButton.setEffect(new Glow(.25));
-        }
-
-        public void messagingMinExit(MouseEvent mouseEvent) {
-            messagingMinButton.setEffect(new Glow(.0));
-        }
-
-        public void messagingMinPressed(MouseEvent mouseEvent) {
-            messagingMinButton.setEffect(new Glow(.80));
-
-        }
-
-        public void messagingMinReleased(MouseEvent mouseEvent) {
-            messagingMinButton.setEffect(new Glow(.0));
-            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-            stage.setIconified(true);
-        }
+    private static boolean maxed = false;
+    private static final Rectangle2D displaySize = Screen.getPrimary().getBounds();
 
 
-        public Button messagingCloseButton;
+    public void messagingMinEnter(MouseEvent mouseEvent) {
+        messagingMinButton.setEffect(new Glow(.25));
+    }
 
-        public void messagingCloseEnter(MouseEvent mouseEvent) {
-            messagingCloseButton.setEffect(new Glow(.25));
-        }
+    public void messagingMinExit(MouseEvent mouseEvent) {
+        messagingMinButton.setEffect(new Glow(.0));
+    }
 
-        public void messagingCloseExit(MouseEvent mouseEvent) {
-            messagingCloseButton.setEffect(new Glow(.0));
-        }
+    public void messagingMinPressed(MouseEvent mouseEvent) {
+        messagingMinButton.setEffect(new Glow(.80));
 
-        public void messagingClosePressed(MouseEvent mouseEvent) {
-            messagingCloseButton.setEffect(new Glow(.80));
-        }
+    }
 
-        public void messagingCloseReleased(MouseEvent mouseEvent) {
-            messagingCloseButton.setEffect(new Glow(.0));
-            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-            stage.close();
-        }
+    public void messagingMinReleased(MouseEvent mouseEvent) {
+        messagingMinButton.setEffect(new Glow(.0));
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
 
-        @Override
-        public void initialize(URL url, ResourceBundle resourceBundle) {
-            messagesNotes.setText("""
+
+    public Button messagingCloseButton;
+
+    public void messagingCloseEnter(MouseEvent mouseEvent) {
+        messagingCloseButton.setEffect(new Glow(.25));
+    }
+
+    public void messagingCloseExit(MouseEvent mouseEvent) {
+        messagingCloseButton.setEffect(new Glow(.0));
+    }
+
+    public void messagingClosePressed(MouseEvent mouseEvent) {
+        messagingCloseButton.setEffect(new Glow(.80));
+    }
+
+    public void messagingCloseReleased(MouseEvent mouseEvent) {
+        messagingCloseButton.setEffect(new Glow(.0));
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        messagesNotes.setText("""
                                                                             Behold!
                                                    This Section Is Under Development.
                                      
@@ -85,19 +85,19 @@ public class MessagesController implements Initializable {
 
                  """);
 
-            if (maxed) {
-                messagesBanner.setWidth(displaySize.getWidth());
-                maxed = true;
+        if (maxed) {
+            messagesBanner.setWidth(displaySize.getWidth());
+            maxed = true;
 
-                messagesNotes.setFont(Font.font(28));
-                messagesNotes.setPrefHeight(900);
-                messagesNotes.setPrefWidth(1500);
-                messagesNotes.setTranslateX(170);
+            messagesNotes.setFont(Font.font(28));
+            messagesNotes.setPrefHeight(900);
+            messagesNotes.setPrefWidth(1500);
+            messagesNotes.setTranslateX(170);
 
-                messagesSquare.setHeight(900);
-                messagesSquare.setWidth(1500);
-                messagesSquare.setTranslateX(240);
+            messagesSquare.setHeight(900);
+            messagesSquare.setWidth(1500);
+            messagesSquare.setTranslateX(240);
 
-            }
         }
     }
+}
