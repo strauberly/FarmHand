@@ -39,7 +39,8 @@
         </Button>
         <Button fx:id="farmersButton" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="36.0"
                 mnemonicParsing="false" onMouseEntered="#farmersEnter" onMouseExited="#farmersExit"
-                onMousePressed="#farmersPressed" onMouseReleased="#farmersReleased" stylesheets="Weather/CSS/WeatherCSS.css"
+                onMousePressed="#farmersPressed" onMouseReleased="#farmersReleased"
+                stylesheets="Weather/CSS/WeatherCSS.css"
                 text="Farmer's Almanac">
             <VBox.margin>
                 <Insets top="60.0"/>

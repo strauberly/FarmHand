@@ -1,20 +1,57 @@
-The following is the development journal of how this project came to be. Thank you for reading this and for checking out the project.
+## The following is the development journal of how this project came to be. Thank you for reading this and for checking out the project.
 
-This is my first solo application built from scratch, and is built while juggling a life filled with full time employment, family, and continued education in order to make a career change.
+This is my first solo application built from scratch, and is built while juggling a life filled with full time
+employment, family, and continued education in order to make a career change.
 
 Cheers!
+---
 
--A
+-- 24 Feb 2022 --
+
+Created new file iChores packages to help organize and outline future version as we bgin on that section.
+
+
+-- 21 Feb 2022 --
+
+Will look into also kicking off new thread at beginning to build db and load first webpage.
+
+---
+
+-- 12 Feb 2022 --
+
+Maven project has started producing error of:
+
+class javafx.fxml.FXMLLoader$ValueElement (in module javafx.fxml) cannot access class com.zeronthirty.farmhandmaven.weather.stations.StationsController (in module com.zeronthirty.farmhandmaven) because module com.zeronthirty.farmhandmaven does not export com.zeronthirty.farmhandmaven.weather.stations to module javafx.fxml
+
+Appears that controllers can no longer be defined from sub packages so have moved all into main source package for time being. This is not ideal as it is a bit messy and will continue to be a compounding issue as project grows, but project is at least back to functioning.
+
+ Will require more investigation at a later time.
+
+### update: 
+
+Renaming the weather Package from "weather" to "Weather" initially seemed to rectify the situation but was still having issues in subsequent controllers. Appears to be rectified. 
+
+module paths were not updating and this issue appears to be fixed.
+
+Also fixed file paths for db so they should now be relative to the application and not the host system creating the db from with in the application.
+
+
+
+
 
 ---
 
 -- 8 Feb 2022 --
 
-Had a bug in Weather class that manifested from when the weather min button was activated from full screen mode on weather stage and then weather button was clicked resulting in standard window being called but display elements as though still in fullscreen mode.
+Had a bug in Weather class that manifested from when the weather min button was activated from full screen mode on
+weather stage and then weather button was clicked resulting in standard window being called but display elements as
+though still in fullscreen mode.
 
-Issue was that 'maxed' flag was not being reset when clicking min button. This has now been rectified and elements are displaying as intended.
+Issue was that 'maxed' flag was not being reset when clicking min button. This has now been rectified and elements are
+displaying as intended.
 
 New artifact has been generated reflecting the changes.
+
 
 ---
 
@@ -28,25 +65,27 @@ This is now the development journal and accompanies the actual README file. Alwa
 
 Found bug in InstrumentsController that was causing failure on while logging instruments.
 
-Taking a look at program layout I will most likely end up refactoring in order for fxml and css to live in package of associated classes. Am thinking this might create better organization and be easier to follow if I was another person working on this. Open to suggestions. Working on technical readme. Hope it will be clear. :)
+Taking a look at program layout I will most likely end up refactoring in order for fxml and css to live in package of
+associated classes. Am thinking this might create better organization and be easier to follow if I was another person
+working on this. Open to suggestions. Working on technical readme. Hope it will be clear. :)
 
 ---
 
 -- 15 Dec 2021 --
 
-- Code currently stable and functioning as intendeded to
-  best of my knowledge. Huzzah.
+- Code currently stable and functioning as intendeded to best of my knowledge. Huzzah.
 
 - Future development notes made.
 
-Now that there is a working prototype and proof of concept version. Development here will begin to slow as I will be beggining a new web based project focused on java web services and api's as well as continuing courses.
+Now that there is a working prototype and proof of concept version. Development here will begin to slow as I will be
+beggining a new web based project focused on java web services and api's as well as continuing courses.
 
 If nothing else the read me will live on with updates.
 
 Please feel free to download source and take for a spin.
 
-Check out the tech read me for further notes on design
-and construction of the program. Short demo videos to follow and be uploaded.
+Check out the tech read me for further notes on design and construction of the program. Short demo videos to follow and
+be uploaded.
 
 ---
 
@@ -72,12 +111,12 @@ Dev2
 
 - shaded plugin however worked
 
-- next steps will include a fresh build of current project retyping code,
-  possibly in eclipse
+- next steps will include a fresh build of current project retyping code, possibly in eclipse
 
-- rebuilt code - project now has a working executable jar (for linux at least) as a prototype. May not seem like a lot but exciting for me!
+- rebuilt code - project now has a working executable jar (for linux at least) as a prototype. May not seem like a lot
+  but exciting for me!
 
-### Has definitely increased understanding of Maven, Jpackage, Jlink and building out programs beyond an IDE and getting them ready for the wild.
+# Has definitely increased understanding of Maven, Jpackage, Jlink and building out programs beyond an IDE and getting them ready for the wild.
 
 Dev1
 
@@ -99,7 +138,8 @@ Dev2
 
 \*\* Continuing through the to do
 
-- attempted cross-platform jar without much luck going to individual platform packaging as seems to be the norm with a gui app. Will continue to investigate down the road.
+- attempted cross-platform jar without much luck going to individual platform packaging as seems to be the norm with a
+  gui app. Will continue to investigate down the road.
 
 ---
 
@@ -146,10 +186,11 @@ Maven plugin notes and tutorial
 
 JPackagePlugin
 
-OpenJDK 16 and JPackage
-OpenJDK 16 has been released on 16th March. However, this is not the right post to talk about all the new shining features and tools, but it is the right post to talk about a new particular tool: JPackage.
-JPackage was introduced as an incubating tool from JDK 14 to JDK 15 and is now production-ready for packaging self-contained Java applications.
-As above we want to rely on Maven and fortunately, we got a well-packed plugin (JPackage Plugin) on Maven Central that we can add:
+OpenJDK 16 and JPackage OpenJDK 16 has been released on 16th March. However, this is not the right post to talk about
+all the new shining features and tools, but it is the right post to talk about a new particular tool: JPackage. JPackage
+was introduced as an incubating tool from JDK 14 to JDK 15 and is now production-ready for packaging self-contained Java
+applications. As above we want to rely on Maven and fortunately, we got a well-packed plugin (JPackage Plugin) on Maven
+Central that we can add:
 
 <plugin>
   <groupId>org.panteleyev</groupId>
@@ -173,62 +214,46 @@ As above we want to rely on Maven and fortunately, we got a well-packed plugin (
   </configuration>
 </plugin>
 
-I have to spend some words about the configuration because it's a little bit tricky on some points.
-Easy part
-• name sets the application name (you don't say!)
-• appVersion as any other application, our TreeFX has a release version too!
-• vendor sets the vendor or our Acme company
-• destination sets the destination folder for the generated package
+I have to spend some words about the configuration because it's a little bit tricky on some points. Easy part • name
+sets the application name (you don't say!)
+• appVersion as any other application, our TreeFX has a release version too!
+• vendor sets the vendor or our Acme company • destination sets the destination folder for the generated package
 
-Tricky part
-◇ module we set the module and the main class of our application since JPackage will generate a new executable for our package
-◇ runtimeImage is usually set to our development OpenJDK, because JPackge could work with JLink to create the custom JRE, but because of some issues I found with JavaFX and JLink (the process is not straightforward), we trick JPackage and we tell it to take the previous custom JRE created with the OpenJFX plugin
+Tricky part ◇ module we set the module and the main class of our application since JPackage will generate a new
+executable for our package ◇ runtimeImage is usually set to our development OpenJDK, because JPackge could work with
+JLink to create the custom JRE, but because of some issues I found with JavaFX and JLink (the process is not
+straightforward), we trick JPackage and we tell it to take the previous custom JRE created with the OpenJFX plugin
 
-Linux part (I put it just for the sake of completeness)
-◇ linuxShortcut creates a shortcut after the application installation process
-◇ linuxPackageName sets the final deb package name
-◇ linuxAppCategory sets the Linux application category
-◇ linuxMenuGroup sets the Linux menu-group
+Linux part (I put it just for the sake of completeness)
+◇ linuxShortcut creates a shortcut after the application installation process ◇ linuxPackageName sets the final deb
+package name ◇ linuxAppCategory sets the Linux application category ◇ linuxMenuGroup sets the Linux menu-group
 
-Maybe I have to spend more words on the tricky part. As mentioned above, JPackage is a tool for packaging a self-contained Java application, any kind of Java application, modularized and non-modularized applications. But for this example, we want to distribute a simple animation and it would be quite weird to distribute a whole JRE image for the sake of one animation. Therefore, always think about what you really need for your application and let the right tool works for you.
-About linux part. JPackage allows you to package not only for Linux, but also for Windows and MacOS. However, JPackage depends on the operating system in order to work, so you can't package a Linux app, if you're using Window or MacOS, in a nutshell, no, cross-compiling is not an option. We will try to package our TreeFX app for Windows in an addendum to this article (maybe next week).
-Enough chatting. Let's see it work:
+Maybe I have to spend more words on the tricky part. As mentioned above, JPackage is a tool for packaging a
+self-contained Java application, any kind of Java application, modularized and non-modularized applications. But for
+this example, we want to distribute a simple animation and it would be quite weird to distribute a whole JRE image for
+the sake of one animation. Therefore, always think about what you really need for your application and let the right
+tool works for you. About linux part. JPackage allows you to package not only for Linux, but also for Windows and MacOS.
+However, JPackage depends on the operating system in order to work, so you can't package a Linux app, if you're using
+Window or MacOS, in a nutshell, no, cross-compiling is not an option. We will try to package our TreeFX app for Windows
+in an addendum to this article (maybe next week). Enough chatting. Let's see it work:
 
 $ mvn clean compile javafx:jlink jpackage:jpackage
 
 Wait a while and then:
 
-$ ls target/dist/
-treefx_1.0.0-1_amd64.deb
+$ ls target/dist/ treefx_1.0.0-1_amd64.deb
 
-Nice fourice! We now have our package for AMD64 arch (yeah that's mine). If we still have some curiosity about how the deb package is organized, we can unpack it:
+Nice fourice! We now have our package for AMD64 arch (yeah that's mine). If we still have some curiosity about how the
+deb package is organized, we can unpack it:
 
-$ dpkg-deb -R target/dist/treefx_1.0.0-1_amd64.deb target/unpacked
-$ tree target/unpacked
+$ dpkg-deb -R target/dist/treefx_1.0.0-1_amd64.deb target/unpacked $ tree target/unpacked
 
-target/unpacked
-├── DEBIAN
-│   ├── control
-│   ├── postinst
-│   ├── postrm
-│   ├── preinst
-│   └── prerm
-└── opt
-└── treefx
-├── bin
-│   └── TreeFX
-├── lib
-│   ├── app
-│   │   └── TreeFX.cfg
-│   ├── runtime
-│   │   ├── [...]
-│   ├── TreeFX.png
-│   └── treefx-TreeFX.desktop
-└── share
-└── doc
-└── copyright
+target/unpacked ├── DEBIAN │ ├── control │ ├── postinst │ ├── postrm │ ├── preinst │ └── prerm └── opt └── treefx ├──
+bin │ └── TreeFX ├── lib │ ├── app │ │ └── TreeFX.cfg │ ├── runtime │ │ ├── [...]
+│ ├── TreeFX.png │ └── treefx-TreeFX.desktop └── share └── doc └── copyright
 
-We could optimize things and surf into other JPackage configurations, but so far so good (as an old Bryan Adams' album and song said).
+We could optimize things and surf into other JPackage configurations, but so far so good (as an old Bryan Adams' album
+and song said).
 
 ---
 
@@ -268,16 +293,16 @@ Dev2
 
   \*\* Continuing through the to do
 
-  - Project successfully rebuilt with Maven
+    - Project successfully rebuilt with Maven
 
-  - Webview in web services required finding and incorporating libjfxwebkit
+    - Webview in web services required finding and incorporating libjfxwebkit
 
-  - Backing up and wil upload to git as a branch
+    - Backing up and wil upload to git as a branch
 
-  - created from development notifications for chores and messaging
+    - created from development notifications for chores and messaging
 
-  - moved classes to corresponding packages so that Maven project design is near identical to original app design attempt
-    to keep code well organised
+    - moved classes to corresponding packages so that Maven project design is near identical to original app design
+      attempt to keep code well organised
 
   \*\* took a while to get into Maven but hate it much less now
 
@@ -349,10 +374,12 @@ Dev2
 
 - apparently intellij wont let you set up a javafx program with out maven. Incredibly frustrating.
 
-- trying to sort why in fxml file I trace controller paths with dots and then when listing out fxml files in a controller it appears to be with slashes
+- trying to sort why in fxml file I trace controller paths with dots and then when listing out fxml files in a
+  controller it appears to be with slashes
 
 - or something else I cant seem to put my finger on. Really excited to get it figured out though.
-- \*\* a tad stuck reorganizing with Maven will give it another go down the road. Have rebuilt Project without in the mean time
+- \*\* a tad stuck reorganizing with Maven will give it another go down the road. Have rebuilt Project without in the
+  mean time
 
 ---
 
@@ -383,18 +410,19 @@ Dev2
 **reformatted MainController
 **reformatted WebServicesController > added method for setting webviewer
 **reformatted StationsController
-**reformatted InstrumentsController
-\*\*reformatted WeatherController
+**reformatted InstrumentsController \*\*reformatted WeatherController
 
 \*\*Time spent researching packaging and deployment
 
-- looks like options are creating a fat/uber jarr in Maven with shadow plugin or building out a file for each operating system.
+- looks like options are creating a fat/uber jarr in Maven with shadow plugin or building out a file for each operating
+  system.
 
 - most documentation seems to be for a machine with a java version already installed
 
 - Looking a way to package with an instance of java runtime
 
-- feels like I may have just jumped back in over my head a little but will hope to resolve, package, deploy and share before year end.
+- feels like I may have just jumped back in over my head a little but will hope to resolve, package, deploy and share
+  before year end.
 
 ---
 
@@ -422,7 +450,8 @@ Dev2
 
 ** tables resize on max
 ** observations resize on max
-** eliminated need for station input error fxml by changing text on button press determined by conditions. So it is gone, so it goes.
+** eliminated need for station input error fxml by changing text on button press determined by conditions. So it is
+gone, so it goes.
 ** instruments resize as intended
 ** close button resets maxed to false so if weather restarted it does so at default and all operates as intended
 ** web services instructions included.
@@ -467,13 +496,16 @@ Dev2
 
 \*\* Continuing through the to do list
 
-- including parameters in initialization is beginning to produce desired effects. Next check action event handler and source.
+- including parameters in initialization is beginning to produce desired effects. Next check action event handler and
+  source.
 
-- set switch based on position of switch elements populate with certain if valus and populate with default values if switch in other position >> un the struglle bus with it for a bit until breaking the scenario back into basic parts
+- set switch based on position of switch elements populate with certain if valus and populate with default values if
+  switch in other position >> un the struglle bus with it for a bit until breaking the scenario back into basic parts
 
 # \*\* max button now operates as intended
 
-- observations fxml is no longer needed now just resets stations output to get both bodies of text, could do with some renaming
+- observations fxml is no longer needed now just resets stations output to get both bodies of text, could do with some
+  renaming
 
 ---
 
@@ -491,7 +523,9 @@ Dev2
 
 - auto scale fonts
 
-- possibly adjust so that all three windows can be opened visible and then user can select wich window to enlarge >> could be creating way more headache could be the stand apart > possibly set it up so if already showing that window just goes to the front in that position
+- possibly adjust so that all three windows can be opened visible and then user can select wich window to enlarge >>
+  could be creating way more headache could be the stand apart > possibly set it up so if already showing that window
+  just goes to the front in that position
 
 - package program
 
@@ -503,53 +537,24 @@ Weather Controller
 
 package main.Weather;
 
-import com.sun.scenario.effect.impl.sw.java.JSWBlend_SRC_OUTPeer;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
+import com.sun.scenario.effect.impl.sw.java.JSWBlend_SRC_OUTPeer; import javafx.event.EventHandler; import
+javafx.fxml.FXML;
 
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.effect.Glow;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
-import main.Weather.stations.StationsController;
+import javafx.fxml.FXMLLoader; import javafx.fxml.Initializable; import javafx.scene.Node; import javafx.scene.Parent;
+import javafx.scene.Scene; import javafx.scene.control.Button; import javafx.scene.control.Label; import
+javafx.scene.effect.Glow; import javafx.scene.input.MouseEvent; import javafx.scene.layout.StackPane; import
+javafx.scene.paint.Color; import javafx.scene.shape.Rectangle; import javafx.stage.Stage; import
+main.Weather.stations.StationsController;
 
-import java.awt.\*;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.awt.\*; import java.io.IOException; import java.net.URL; import java.util.Objects; import
+java.util.ResourceBundle;
 
-//Besides managing main weather button actions, also contains method for quickly setting scenes.
-public class WeatherController implements Initializable{
-@FXML
-protected Label instructions = new Label();
-@FXML
-protected Label weatherBannerText;
-@FXML
-protected static StackPane stack = new StackPane();
-@FXML
-private Rectangle weatherBanner = new Rectangle();
-@FXML
-private Button weatherMinButton = new Button();
-@FXML
-private Button weatherCloseButton = new Button();
-@FXML
-public Button weatherMaxButton = new Button();
-@FXML
-private Button stationsButton = new Button();
-@FXML
-private Button instrumentsButton = new Button();
-@FXML
-private Button webButton = new Button();
+//Besides managing main weather button actions, also contains method for quickly setting scenes. public class
+WeatherController implements Initializable{ @FXML protected Label instructions = new Label(); @FXML protected Label
+weatherBannerText; @FXML protected static StackPane stack = new StackPane(); @FXML private Rectangle weatherBanner = new
+Rectangle(); @FXML private Button weatherMinButton = new Button(); @FXML private Button weatherCloseButton = new
+Button(); @FXML public Button weatherMaxButton = new Button(); @FXML private Button stationsButton = new Button(); @FXML
+private Button instrumentsButton = new Button(); @FXML private Button webButton = new Button();
 
     private static String savedScene;
 
@@ -779,17 +784,9 @@ private Button webButton = new Button();
             instrumentsButton.setTranslateX(600);
             maxed = true;
 
-// } else
-// weatherBanner.setWidth(1200);
-// stationsButton.setTranslateX(0);
-// webButton.setTranslateX(0);
-// instrumentsButton.setTranslateX(0);
-//// weatherMaxButton.setTranslateX(0);
-//// weatherMinButton.setTranslateX(0);
-//// weatherCloseButton.setTranslateX(0);
-// maxed = false;
-}
-}
+// } else // weatherBanner.setWidth(1200); // stationsButton.setTranslateX(0); // webButton.setTranslateX(0); //
+instrumentsButton.setTranslateX(0); //// weatherMaxButton.setTranslateX(0); //// weatherMinButton.setTranslateX(0); ////
+weatherCloseButton.setTranslateX(0); // maxed = false; } }
 
     public static void setSavedScene() {
         WeatherController.savedScene = "WeatherInstructions";
@@ -875,14 +872,14 @@ Start the following changes small for proof of concept
 - at moment loads with base elements then changes only base elements vs
 
 - change scene > check for maxed = true >
-  if true (change properties of all elements) to fit maxed
-  scheme
+  if true (change properties of all elements) to fit maxed scheme
 
 - > in initialize check maxed > if maxed > load scene with maxed values
 
 - attampt loading fxml with additional controllers > research nested controllers
 
-!! all elements listed out into controller and on max button pressed all elements change appropriately this will take a fair bit of time so be patient and work at it one step at a time.
+!! all elements listed out into controller and on max button pressed all elements change appropriately this will take a
+fair bit of time so be patient and work at it one step at a time.
 
 - adjust gui to be the same across any platform regardless of size
 
@@ -890,7 +887,9 @@ Start the following changes small for proof of concept
 
 - find means to get resolution and set dimensions accordingly
 
-- possibly adjust so that all three windows can be opened visible and then user can select wich window to enlarge >> could be creating way more headache could be the stand apart > possibly set it up so if already showing that window just goes to the front in that position
+- possibly adjust so that all three windows can be opened visible and then user can select wich window to enlarge >>
+  could be creating way more headache could be the stand apart > possibly set it up so if already showing that window
+  just goes to the front in that position
 
 - package program
 
@@ -908,7 +907,8 @@ Start the following changes small for proof of concept
 
 - all Weather submenus resize, next will be resizing their elements
 
-- created variable to hold name of fxml file name and entered when scene changes then logic is worked out based on from those values and if stage is maximized or not.
+- created variable to hold name of fxml file name and entered when scene changes then logic is worked out based on from
+  those values and if stage is maximized or not.
 
 - Saved file name is reset to null if weather button clicked.
 
@@ -924,13 +924,15 @@ Dev2
 
 - if saved scene == && max pushed || stage maxed and button pushed
 
-  - resize elements
+    - resize elements
 
 - set big weather etc
 
-- record filename set as variable > when min button is pressed setscene with file name and it should display as originally set up > set up set scene so that it does its job and returns file name variable then == set scene
+- record filename set as variable > when min button is pressed setscene with file name and it should display as
+  originally set up > set up set scene so that it does its job and returns file name variable then == set scene
 
-!! all elements listed out into controller and on max button pressed all elements change appropriately this will take a fair bit of time so be patient and work at it one step at a time.
+!! all elements listed out into controller and on max button pressed all elements change appropriately this will take a
+fair bit of time so be patient and work at it one step at a time.
 
 - adjust gui to be the same across any platform regardless of size
 
@@ -938,7 +940,9 @@ Dev2
 
 - find means to get resolution and set dimensions accordingly
 
-- possibly adjust so that all three windows can be opened visible and then user can select wich window to enlarge >> could be creating way more headache could be the stand apart > possibly set it up so if already showing that window just goes to the front in that position
+- possibly adjust so that all three windows can be opened visible and then user can select wich window to enlarge >>
+  could be creating way more headache could be the stand apart > possibly set it up so if already showing that window
+  just goes to the front in that position
 
 - package program
 
@@ -946,16 +950,11 @@ Dev2
 
 # updated
 
-static String savedScene;
-public static void setWeatherScene (String fileName, MouseEvent mouseEvent) throws IOException {
-final double[] xOffset = {0};
-final double[] yOffset = {0};
-Parent root = FXMLLoader.load(Objects.requireNonNull(WeatherController.class.getResource("/main/Weather/FXML/" + fileName + ".fxml")));
-Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-Scene scene = new Scene(root);
-scene.setFill(Color.TRANSPARENT);
-stage.setScene(scene);
-stage.show();
+static String savedScene; public static void setWeatherScene (String fileName, MouseEvent mouseEvent) throws IOException
+{ final double[] xOffset = {0}; final double[] yOffset = {0}; Parent root = FXMLLoader.load(Objects.requireNonNull(
+WeatherController.class.getResource("/main/Weather/FXML/" + fileName + ".fxml"))); Stage stage = (Stage) ((Node)
+mouseEvent.getSource()).getScene().getWindow(); Scene scene = new Scene(root); scene.setFill(Color.TRANSPARENT);
+stage.setScene(scene); stage.show();
 
     root.setOnMousePressed(new EventHandler<MouseEvent>() {
         @Override
@@ -994,8 +993,8 @@ stage.show();
 ** Continuing through the to do list
 ** added instructions to weather scene
 ** swapped positions of stations, web sites and instruments
-** changed inventory values to messaging
-\*\* user test with parents established that gui needs ability to size to full scale
+** changed inventory values to messaging \*\* user test with parents established that gui needs ability to size to full
+scale
 
 ---
 
@@ -1011,11 +1010,11 @@ Dev2
 
 > >
 
-!! all elements listed out into controller and on max button pressed all elements change appropriately this will take a fair bit of time so be patient and work at it one step at a time.
+!! all elements listed out into controller and on max button pressed all elements change appropriately this will take a
+fair bit of time so be patient and work at it one step at a time.
 
 - @web http://java-buddy.blogspot.com/
-  \*/
-  public class JavaFX_Screen extends Application {
+  \*/ public class JavaFX_Screen extends Application {
 
       @Override
       public void start(Stage primaryStage) {
@@ -1043,16 +1042,21 @@ Dev2
 
 # Get Screen Size of Primary Monitor
 
-| 123456789101112131415 | import javafx.application.Application;import javafx.geometry.Rectangle2D;import javafx.stage.Screen;import javafx.stage.Stage; public class Main extends Application {   @Override  public void start(Stage primaryStage) {    //Get primary screen bounds    Rectangle2D screenBounds = Screen.getPrimary().getBounds();    System.out.println(screenBounds);    System.exit(0);  }} |
+| 123456789101112131415 | import javafx.application.Application;import javafx.geometry.Rectangle2D;import
+javafx.stage.Screen;import javafx.stage.Stage; public class Main extends Application { @Override public void start(Stage
+primaryStage) { //Get primary screen bounds Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+System.out.println(screenBounds); System.exit(0); }} |
 
 Example Output
 
 | 1 | Rectangle2D [minX = 0.0, minY=0.0, maxX=1920.0, maxY=1080.0, width=1920.0, height=1080.0] |
 
-Get Number Of Monitors / Visual Devices
-Let’s see how we can find number of monitors currently attached to the system using the JavaFX Screen API.
+Get Number Of Monitors / Visual Devices Let’s see how we can find number of monitors currently attached to the system
+using the JavaFX Screen API.
 
-| 123456789101112 | import javafx.application.Application;import javafx.stage.Screen;import javafx.stage.Stage; public class Main extends Application {   @Override  public void start(Stage primaryStage) {    System.out.println(Screen.getScreens().size());    System.exit(0);  }} |
+| 123456789101112 | import javafx.application.Application;import javafx.stage.Screen;import javafx.stage.Stage; public
+class Main extends Application { @Override public void start(Stage primaryStage) { System.out.println(
+Screen.getScreens().size()); System.exit(0); }} |
 
 Example Output
 
@@ -1060,7 +1064,10 @@ Example Output
 
 Get Screen Size Of All Monitors
 
-| 12345678910111213141516 | import javafx.application.Application;import javafx.collections.ObservableList;import javafx.stage.Screen;import javafx.stage.Stage; public class Main extends Application {   @Override  public void start(Stage primaryStage) {    ObservableList<Screen> screenSizes = Screen.getScreens();    screenSizes.forEach(screen -> {      System.out.println(screen.getBounds());    });    System.exit(0);  }} |
+| 12345678910111213141516 | import javafx.application.Application;import javafx.collections.ObservableList;import
+javafx.stage.Screen;import javafx.stage.Stage; public class Main extends Application { @Override public void start(Stage
+primaryStage) { ObservableList<Screen> screenSizes = Screen.getScreens(); screenSizes.forEach(screen -> {
+System.out.println(screen.getBounds()); }); System.exit(0); }} |
 
 \*\*Start with if max button is pressed then either change to maxed css
 
@@ -1115,13 +1122,12 @@ Dev2
 
 \*\*Continuing through the to do list
 
-- Prepared statements and eliminate possibilities for sql injection
-  should be ok with out diving in depth here as user does not have function of submitting a query.
+- Prepared statements and eliminate possibilities for sql injection should be ok with out diving in depth here as user
+  does not have function of submitting a query.
 
 - This could change and needs to be kept in mind.
 
-- New thread kicks off while calling api. Seems to help eliminate lag
-  while simultaneously streaming pandora.
+- New thread kicks off while calling api. Seems to help eliminate lag while simultaneously streaming pandora.
 
 - Included trim method in api call so if user fat fingers the space bar it doesn't impede the function.
 
@@ -1159,7 +1165,8 @@ Dev2
 
 - User feedback for input errors provided for instruments
 
-- Began work on stations but a regular expression may be needed in order to validate results. Will be a good reminder and excercise anyways.
+- Began work on stations but a regular expression may be needed in order to validate results. Will be a good reminder
+  and excercise anyways.
 
 ---
 
@@ -1169,8 +1176,8 @@ Dev2
 
 - if illigitimate values create alert
 
-\*\* found means to verify user input is a double through simple means, also to validate values
-entered are within range of lat and long
+\*\* found means to verify user input is a double through simple means, also to validate values entered are within range
+of lat and long
 
 ---
 
@@ -1206,8 +1213,7 @@ Dev2
 
 -- 27 Nov 2021 --
 
-Continuing through the to do list
-shifted properties from public to private for the following classes
+Continuing through the to do list shifted properties from public to private for the following classes
 
 - instruments controller
 
@@ -1225,8 +1231,7 @@ shifted properties from public to private for the following classes
 
 - package program
 
-- adjust gui to be the same across any platform regardless of size
-  such as while calling api
+- adjust gui to be the same across any platform regardless of size such as while calling api
 
 - look for places to inact multi thread and processing animations
 
@@ -1240,8 +1245,7 @@ shifted properties from public to private for the following classes
 
 -- 24 Nov 2021 --
 
-Continuing through the to do list
-shifted properties from public to private for the following classes
+Continuing through the to do list shifted properties from public to private for the following classes
 
 - wdbdaily
 - dbcontroller
@@ -1257,8 +1261,8 @@ shifted properties from public to private for the following classes
 
 - look into rewriting controllers for more efficient use instead of being replicated
 
-- FXML to be arranged so user interaction is seperate and thereby allows inclusion in all additional scenes
-  including instructions
+- FXML to be arranged so user interaction is seperate and thereby allows inclusion in all additional scenes including
+  instructions
 
 - error pages and quantifiers
 
@@ -1266,7 +1270,9 @@ shifted properties from public to private for the following classes
 
 - package program
 
-- Desired FXML for stations non functional can not load new stage, either a 400 error as api does not have a location to call >> work out other functionality in scene change leave stations as you had it just include new stations page without label
+- Desired FXML for stations non functional can not load new stage, either a 400 error as api does not have a location to
+  call >> work out other functionality in scene change leave stations as you had it just include new stations page
+  without label
 
 - adjust gui to be the same across any platform regardless of size
 
@@ -1308,7 +1314,9 @@ Shifted properties from public to private for the following classes
 
 - package program
 
-- Desired FXML for stations non functional can not load new stage, either a 400 error as api does not have a location to call >> work out other functionality in scene change leave stations as you had it just include new stations page without label
+- Desired FXML for stations non functional can not load new stage, either a 400 error as api does not have a location to
+  call >> work out other functionality in scene change leave stations as you had it just include new stations page
+  without label
 
 - Adjust gui to be the same across any platform regardless of size
 
@@ -1324,16 +1332,18 @@ Shifted properties from public to private for the following classes
 
 ## Uploading version to git
 
-\*\* DB is now written directly into project instead of on an absolute path limiting what system program operates from without changing values.
+\*\* DB is now written directly into project instead of on an absolute path limiting what system program operates from
+without changing values.
 
-\*\* If written for specific client and none other it would be written to a specific file path and makes program unusable to others?
+\*\* If written for specific client and none other it would be written to a specific file path and makes program
+unusable to others?
 
 create new scenes for instructions
 
 - Look into rewriting controllers for more efficient use insteaad of being replicated
 
-- FXML to be arranged so user interaction is seperate and thereby allows inclusion in all additional scenes
-  including instructions
+- FXML to be arranged so user interaction is seperate and thereby allows inclusion in all additional scenes including
+  instructions
 
 - error pages and quantifiers
 
@@ -1341,7 +1351,9 @@ create new scenes for instructions
 
 - package program
 
-- Desired FXML for stations non functional can not load new stage, either a 400 error as api does not have a location to call >> work out other functionality in scene change leave stations as you had it just include new stations page without label
+- Desired FXML for stations non functional can not load new stage, either a 400 error as api does not have a location to
+  call >> work out other functionality in scene change leave stations as you had it just include new stations page
+  without label
 
 - Adjust gui to be the same across any platform regardless of size
 
@@ -1351,8 +1363,8 @@ create new scenes for instructions
 
 - DB columns now appear By order of last entered perhaps, still sortable ?
 
-- FXML to be arranged so user interaction is seperate and thereby allows inclusion in all additional scenes
-  including instructions
+- FXML to be arranged so user interaction is seperate and thereby allows inclusion in all additional scenes including
+  instructions
 
 - Error pages and quantifiers
 
@@ -1362,7 +1374,9 @@ create new scenes for instructions
 
 - Package program
 
-- Desired FXML for stations non functional can not load new stage, either a 400 error as api does not have a location to call >> work out other functionality in scene change leave stations as you had it just include new stations page without label
+- Desired FXML for stations non functional can not load new stage, either a 400 error as api does not have a location to
+  call >> work out other functionality in scene change leave stations as you had it just include new stations page
+  without label
 
 ---
 
@@ -1382,8 +1396,7 @@ _!!Stations failure >> no longer populating label as desired back to drawing boa
 
 - Work backed up among drives git upload to follow shortly
 
-“Say now... You better straighten up and fly right!”
--- Leonard Lee Dill - 14 Nov 2021 (RIP)
+“Say now... You better straighten up and fly right!” -- Leonard Lee Dill - 14 Nov 2021 (RIP)
 ========
 
 ---
@@ -1408,7 +1421,8 @@ Updated a bit of Stations FXML and current conditions from stations class. Now l
 
 -- 10 Nov 2021 --
 
-- Created weather class to house scene change method and any other repetitive methods that need to be called into a controller
+- Created weather class to house scene change method and any other repetitive methods that need to be called into a
+  controller
 - Reformatted scene change method to accept string and mouse event
 
 - Reformatted scene change method to house local variables in the method for position x and y.
@@ -1421,14 +1435,16 @@ Updated a bit of Stations FXML and current conditions from stations class. Now l
 
 -created method for setting stage
 
-Need to gather all fxml into singular package for a non muddled integration,
-be prepared that you are most likely about to break a fair bit of your code, but this should eliminate 21 lines of code where used
+Need to gather all fxml into singular package for a non muddled integration, be prepared that you are most likely about
+to break a fair bit of your code, but this should eliminate 21 lines of code where used
 
-- unable to acheive desired results as method containing scene change must have a file name put in and still be able to be called a mouse event, where as method that opens and closes stage hard codes the fxml. Will take a bit more work.
-- main stage is no longer moveable but weather stage and all scenes contained are. Intention is for more of an experience of main stage being anchored while extra stage can be moved out of the way to view windows in background.
+- unable to acheive desired results as method containing scene change must have a file name put in and still be able to
+  be called a mouse event, where as method that opens and closes stage hard codes the fxml. Will take a bit more work.
+- main stage is no longer moveable but weather stage and all scenes contained are. Intention is for more of an
+  experience of main stage being anchored while extra stage can be moved out of the way to view windows in background.
 
-Would like to possibly play with the whole window being resizeable.
-Will play around with visual formatting of gui and then see about logging data provided from the called weather api. Feels like its starting to get ready to present.
+Would like to possibly play with the whole window being resizeable. Will play around with visual formatting of gui and
+then see about logging data provided from the called weather api. Feels like its starting to get ready to present.
 
 ---
 
@@ -1452,7 +1468,8 @@ include errors for leaving fields blank or garbage
 
 - try writing as regular expressions
 
-Next to include attempts to test, optimize, display on different screen sizes, write db to a location neutral to type of system, clean code and check for best practices
+Next to include attempts to test, optimize, display on different screen sizes, write db to a location neutral to type of
+system, clean code and check for best practices
 
 Current state of code to be pushed to GIT
 
@@ -1482,7 +1499,8 @@ Definitions for observations logic(ie. rising, falling, hot, cold, windy etc.)
 
 -- 20 Oct 2021 --
 
-HourlyDB is displaying now in tableview as it should. Next Rinse and repeat for other 2 tables, clean up, and begin observations logic.
+HourlyDB is displaying now in tableview as it should. Next Rinse and repeat for other 2 tables, clean up, and begin
+observations logic.
 
 ---
 
@@ -1496,7 +1514,8 @@ Next steps to include building out classes properly and attempting to display on
 
 -- 30 Sept 2021 --
 
-Much research into displaying data some work put into restructuring methods into more suitable classes. Efforts are to streamline before displaying.
+Much research into displaying data some work put into restructuring methods into more suitable classes. Efforts are to
+streamline before displaying.
 
 ## Dayjob finally starting to slow for the year and so hoping for more available time to renew efforts in development.
 
@@ -1504,7 +1523,8 @@ Much research into displaying data some work put into restructuring methods into
 
 -- 22 Aug 2021 --
 
-Created method that selects all timestamps from hourly table and converts them into an observable array list of human readable times. Goal is to then bind list to the appropriate column.
+Created method that selects all timestamps from hourly table and converts them into an observable array list of human
+readable times. Goal is to then bind list to the appropriate column.
 
 ## Wish me luck.
 
@@ -1519,8 +1539,8 @@ Began creating fxml file to display database after logging an entry.
 Sorted through one more possible means to save useable formatted date. Results unsatifactory.
 
 Next step will include calling time from tables and converting each entry to user readable, storing in a list and then
-populating appropriate column with results stored in list. Hoping to populate remaining columns with a table view or
-or queries. Possibly a multi threaded process in order to aide in spead and efficiency.
+populating appropriate column with results stored in list. Hoping to populate remaining columns with a table view or or
+queries. Possibly a multi threaded process in order to aide in spead and efficiency.
 
 ---
 
@@ -1530,7 +1550,8 @@ or queries. Possibly a multi threaded process in order to aide in spead and effi
 
 Created weekly class and worked out logic for when to write to each table.
 
-Next is a version upload, followed by displaying results in in the gui followed by observations predictions and that will conclude the Weather section of this application for the time being!
+Next is a version upload, followed by displaying results in in the gui followed by observations predictions and that
+will conclude the Weather section of this application for the time being!
 
 # But first a celebratory beer!
 
@@ -1538,12 +1559,12 @@ Next is a version upload, followed by displaying results in in the gui followed 
 
 -- 17 Aug 2021 --
 
-Date conversion struggle bus was attributed to breaking time (rolling system clock backwards) as well as sequence of calling methods.
+Date conversion struggle bus was attributed to breaking time (rolling system clock backwards) as well as sequence of
+calling methods.
 
 possible fix might be
 
-- compare if logged date is greater than current date,
-  if so write contents of db up until conflict to new db >>
+- compare if logged date is greater than current date, if so write contents of db up until conflict to new db >>
   write conflict properly to new db >> clear old db >> write new db to old db >> clear new db.
 
 Cleaned code and sequence and now to next stage.
@@ -1552,14 +1573,14 @@ Cleaned code and sequence and now to next stage.
 
 -- 16 Aug 2021 --
 
-Seperated out methods and variables between Weather Database
-Hourly and Daily classes.
+Seperated out methods and variables between Weather Database Hourly and Daily classes.
 
 Created methods for getting highs, lows and avg of any column in any table in the database.
 
 Created Conditionl statements for writing to hourly or daily table.
 
-Program is still struggling with its ability to convert stored longs (timestamps) back into dates accurately for comparison making comparisons as currently implemented unreliable.
+Program is still struggling with its ability to convert stored longs (timestamps) back into dates accurately for
+comparison making comparisons as currently implemented unreliable.
 
 Will be subject of accute focus moving forward.
 
@@ -1579,9 +1600,11 @@ Program does not apprecitate system being set in reverse and hangs writing the s
 
 -- 14 Aug 2021 --
 
-Progress on SQL Database. Variables and methods in place to log to the hourly table and get required information to order to self increment id values and compare time and dates.
+Progress on SQL Database. Variables and methods in place to log to the hourly table and get required information to
+order to self increment id values and compare time and dates.
 
-Next will be comparing stored vs current time to determine if it is a new day and if so gather hourly entries and write to daily values for a daily entry before recording more hourly entries.
+Next will be comparing stored vs current time to determine if it is a new day and if so gather hourly entries and write
+to daily values for a daily entry before recording more hourly entries.
 
 ---
 
@@ -1593,7 +1616,8 @@ Weather DB will be created by application at first start up.
 
 Have found means for getting current time and converting it to easily read format and storing into DB.
 
-Possibilty to streamline database by consolidating date and time columns into single column labeled "timestamp" and then letting application convert into understandable formats for creating following methods for comparison of timestamps.
+Possibilty to streamline database by consolidating date and time columns into single column labeled "timestamp" and then
+letting application convert into understandable formats for creating following methods for comparison of timestamps.
 
 Next phase to include fleshing out methods for writing to and reading from DB for data manipultaion to finally begin.
 
@@ -1605,7 +1629,8 @@ Proper SQL queries and storage of variables should eliminate extra step.
 
 -- 16 June 2021 --
 
-Created getters and setters in WeatherDB. Gave Parameters to Instruments controller on logButtonReleased and now intruments fields data is captured as variables.
+Created getters and setters in WeatherDB. Gave Parameters to Instruments controller on logButtonReleased and now
+intruments fields data is captured as variables.
 
 Next will be casting fields as numerlogical data types for comparison (doubles).
 
@@ -1619,27 +1644,25 @@ Will push changes at next stage.
 
 -- 15 June 2021 --
 
-Created weather.db in Weather package with corresponding tables (hourly, daily, weekly) in Java. Application will ship with database ready to be written to.
+Created weather.db in Weather package with corresponding tables (hourly, daily, weekly) in Java. Application will ship
+with database ready to be written to.
 
 rough sketch of instrument data to database as follows:
 
 enter data into fields >> click log >>
-assign field data to variables
-all table entries to a map or array list
-assign field data to variables
-create variable last date and last time
-weather addtodatabase method ()
+assign field data to variables all table entries to a map or array list assign field data to variables create variable
+last date and last time weather addtodatabase method ()
 (if)
 time > last time and date == last date >>
 add current values as hourly entry
 (if not)
-all hourly values on a seperate thread calculated and stored to daily variables && all current values stored as hourly entry
+all hourly values on a seperate thread calculated and stored to daily variables && all current values stored as hourly
+entry
 (if)
-amount of days stored == 7
-values of everyday calculated through weekly methods and store as a weekly entry && daily values stored as new daily entry
+amount of days stored == 7 values of everyday calculated through weekly methods and store as a weekly entry && daily
+values stored as new daily entry
 (if)
-days stored < 7
-add daily entry
+days stored < 7 add daily entry
 
 repository updated
 
@@ -1647,10 +1670,11 @@ repository updated
 
 -- 14 June 2021 --
 
-At this time have settled on a SQLite database as a means to gather weather data in a central file. This data will be used to offer suggestions in planning out the days chores and compare past conditions. Should be a relatively simple and lightweight solution since program access is isolated.
+At this time have settled on a SQLite database as a means to gather weather data in a central file. This data will be
+used to offer suggestions in planning out the days chores and compare past conditions. Should be a relatively simple and
+lightweight solution since program access is isolated.
 
-Have also begun making notes on how database should be initiated and methods that will call data and populate
-fields.
+Have also begun making notes on how database should be initiated and methods that will call data and populate fields.
 
 WeatherDB class has been added to Weather package.
 
@@ -1660,7 +1684,8 @@ WeatherDB class has been added to Weather package.
 
 -- 10 June 2021 --
 
-Have begun fleshing out weather database structure and proposed functionality. Looking forward to increased development once life stabilizes a bit.
+Have begun fleshing out weather database structure and proposed functionality. Looking forward to increased development
+once life stabilizes a bit.
 
 Also optimized font size for station readout and altered getConditions method for better implementation.
 
@@ -1670,11 +1695,13 @@ Changes pushed to version branch and merged into Master.
 
 -- 3 June 2021 --
 
-Api is now called, parsed, formatted and displayed on stations sub window. Whew! Functionality for adding new coordinates and getting a read out from nearest station. Most precise coordinates provides most precise results.
+Api is now called, parsed, formatted and displayed on stations sub window. Whew! Functionality for adding new
+coordinates and getting a read out from nearest station. Most precise coordinates provides most precise results.
 
 Next steps will be logging conditions to a database and make chore reccomendations based on recorded weather trends.
 
-! Future improvements may include calling a more robust weather api. Perhaps NOAA. Might also include calling coordinates by current ip address to create a sort of auto feature instead of manually entering coordinates.
+! Future improvements may include calling a more robust weather api. Perhaps NOAA. Might also include calling
+coordinates by current ip address to create a sort of auto feature instead of manually entering coordinates.
 
 Respository updated.
 
@@ -1682,9 +1709,11 @@ Respository updated.
 
 -- 31 May 2021 --
 
-Was not receiving desired results and so began re-evaluting means to parse data from JSON response. New discoveries ARE returning desired results and so formatting of desired data has begun. Hooray!
+Was not receiving desired results and so began re-evaluting means to parse data from JSON response. New discoveries ARE
+returning desired results and so formatting of desired data has begun. Hooray!
 
-Next steps will include continued formatting followed by setting the data to a label to be displayed on "Stations" sub window.
+Next steps will include continued formatting followed by setting the data to a label to be displayed on "Stations" sub
+window.
 
 "Never forget those who gave their all in order for us to enjoy what we have today."
 
@@ -1692,19 +1721,24 @@ Next steps will include continued formatting followed by setting the data to a l
 
 -- 27 May 2021 --
 
-Found means to parse returned JSON keys and accompanying data. Next steps will include parsing nested data and formatting. Pushed to repository.
+Found means to parse returned JSON keys and accompanying data. Next steps will include parsing nested data and
+formatting. Pushed to repository.
 
 ---
 
 --19 May 2021--
 
-Began work on methods for Weather sub window. Started with api inclusion for reading data out of a station. Verified obtaining the field input through print out. Next will be a string variable formatted to accept the field values and insert into the url address used for the API call.
+Began work on methods for Weather sub window. Started with api inclusion for reading data out of a station. Verified
+obtaining the field input through print out. Next will be a string variable formatted to accept the field values and
+insert into the url address used for the API call.
 
-Following will be parsing the returned JSON keys and applying them to a java map and variables in order to log data to the upcoming weather data base and display conditions.
+Following will be parsing the returned JSON keys and applying them to a java map and variables in order to log data to
+the upcoming weather data base and display conditions.
 
 Have decided to hold off on transferring to GIT hub for source control when I have already started with BitBucket.
 
-Have not seen a great difference in functionality and really appreciate that BitBucket isn't trying to log my every sign in or machine.
+Have not seen a great difference in functionality and really appreciate that BitBucket isn't trying to log my every sign
+in or machine.
 
 Will begin next day of development work with pushing current build into repository.
 
@@ -1712,17 +1746,19 @@ Will begin next day of development work with pushing current build into reposito
 
 -- 18 May 2021 --
 
-Relocation mostly complete. Began adding UI for Stations section and fleshed out more of the functionality.
-Will be migrating the project to GitHub from BitBucket in near future as per current industry standard. Would love to see that change.
+Relocation mostly complete. Began adding UI for Stations section and fleshed out more of the functionality. Will be
+migrating the project to GitHub from BitBucket in near future as per current industry standard. Would love to see that
+change.
 
 ---
 
 -- 5 May 2021 --
 
-Implemented web viewer with buttons for switching between online weather services. Created WebServicesController and updated WebServices.fxml
+Implemented web viewer with buttons for switching between online weather services. Created WebServicesController and
+updated WebServices.fxml
 
-Beginning reasearch on JSON parsing. Plan is to implent
-Open Weather Map API for stations section. Then it will be on to creating database for logging weather and comparing data. Followed by methods for observations.
+Beginning reasearch on JSON parsing. Plan is to implent Open Weather Map API for stations section. Then it will be on to
+creating database for logging weather and comparing data. Followed by methods for observations.
 
 Development will be on hold while relocating.
 
@@ -1736,7 +1772,8 @@ Began creating user interface for Weather sub window.
 
 // Created InstrumentsFXML, InstrumentsController, ObservationsFXML, WebServicesFXML and WebServicesController.
 
-// Implemented WebServicesFXML and InstrumentsFXML in WeatherController in order to switch displays on Weather SubWindow.
+// Implemented WebServicesFXML and InstrumentsFXML in WeatherController in order to switch displays on Weather
+SubWindow.
 
 //Added instruction to WeatherCSS
 
@@ -1750,8 +1787,10 @@ Began creating user interface for Weather sub window.
 
 Base template of GUI completed and uploaded to Repository.
 
-// A Main Window for launching 3 sub-windows for Weather, Chores and Inventory with buttons for selecting sub window and minimize and close.
+// A Main Window for launching 3 sub-windows for Weather, Chores and Inventory with buttons for selecting sub window and
+minimize and close.
 
-// Considering swapping Inventory functionality for basic messaging functionality as database integration will be demonstrated in the application through the other sub sets.
+// Considering swapping Inventory functionality for basic messaging functionality as database integration will be
+demonstrated in the application through the other sub sets.
 
 Would still like to develop inventory functionality, but at a later time.

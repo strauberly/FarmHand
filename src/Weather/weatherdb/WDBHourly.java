@@ -1,4 +1,5 @@
 package Weather.weatherdb;
+
 import java.sql.*;
 
 //contains constructor for writing to viewable table
