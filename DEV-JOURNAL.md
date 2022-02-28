@@ -4,12 +4,58 @@ This is my first solo application built from scratch, and is built while jugglin
 employment, family, and continued education in order to make a career change.
 
 Cheers!
+
+---
+
+-- 28 Feb 2022 --
+
+Have begun mapping out tasks in a todo file in the Chores package.
+
+Development of the Chores section will follow prior role scheme:
+
+- Dev 1
+  - Will focus on Model and Controller
+
+- Dev 2
+  - Will focus on the view
+
+Maven Build will be updated towards end of version release.
+
+Devs will make notes to the update section as completed.
+
+## Moving forward notation will follow the scheme of:
+
+#### updates to project: (example) 
+
+Updated chores to do with notes
+
+packages for fxml, css, datamodel created
+
+created in progress fxml file in FXML package
+
+Created ChoresDB OutsideChore and InsideChore in Data Model
+
+----
+##### tickets for Dev 1: (example)
+
+Begin creation of a chore object and creation of chores database,
+use mySQl  , use inheritance to in creating an outside chore or inside chore
+
+---
+
+##### tickets for Dev 2:  (example)
+
+Begin work on Main Chores Window GUI:
+button for create chores, list view for inside and outside,
+
+---
 ---
 
 -- 24 Feb 2022 --
 
-Created new file iChores packages to help organize and outline future version as we bgin on that section.
+Created new file in Chores packages to help organize and outline future version as we begin on that section.
 
+---
 
 -- 21 Feb 2022 --
 
