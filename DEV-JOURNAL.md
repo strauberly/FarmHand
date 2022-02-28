@@ -350,7 +350,7 @@ Dev2
     - moved classes to corresponding packages so that Maven project design is near identical to original app design
       attempt to keep code well organised
 
-  \*\* took a while to get into Maven but hate it much less now
+
 
 ---
 
