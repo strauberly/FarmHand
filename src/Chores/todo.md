@@ -1,13 +1,34 @@
 Initial build  -
 
-###release 1.1
+###release 1.1 : initialize chores section functionality
 
 ---
 
 Two list views: 
 
+initialized placement
+resize if maxed  reference from weather
+
 1. Inside Chores
 2. Outside Chores
+
+button for create chore
+button for inside or outside
+priority button for low, medium, high
+field for chore description
+items needed
+due date
+
+
+
+
+modal window pops up for the selected chore and this
+is update
+
+if marked complete make note to update logs
+then delete at date change
+
+
 
 CRUD functionality
 
