@@ -6,6 +6,19 @@ employment, family, and continued education in order to make a career change.
 Cheers!
 
 ---
+-- 8 Mar 2022 --
+
+Dev 1 Created OutsideChore and InsideChore classes by extending Chore class within DataModel
+package. Updated Dev tickets.
+
+- Dev 1
+  - Begin creation of Chores database. Use MySQL. After completion, begin creation of methods for writing to database
+  after user completes necessary input.
+  
+- Dev 2
+  - Begin reconfiguring Chores GUI to create new chore and create displays for chore items. Use list views. 
+
+---
 
 -- 28 Feb 2022 ---
 
@@ -39,7 +52,7 @@ Created ChoresDB OutsideChore and InsideChore in Data Model
 ##### tickets for Dev 1: (example)
 
 Begin creation of a chore object and creation of chores database,
-use mySQl  , use inheritance to in creating an outside chore or inside chore
+use mySQl  , use inheritance also in creating an outside chore or inside chore
 
 ---
 
@@ -162,7 +175,7 @@ Dev2
 - rebuilt code - project now has a working executable jar (for linux at least) as a prototype. May not seem like a lot
   but exciting for me!
 
-# Has definitely increased understanding of Maven, Jpackage, Jlink and building out programs beyond an IDE and getting them ready for the wild.
+### Has definitely increased understanding of Maven, Jpackage, Jlink and building out programs beyond an IDE and getting them ready for the wild.
 
 Dev1
 
