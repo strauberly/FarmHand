@@ -78,11 +78,6 @@ You may consult the 'maven' branch found in this repository to assist with depen
 listed above for your platform. Please note that javafx is not maintained by oracle and the libraries are operating
 system specific.
 
-You may consult the 'maven' branch found in this repository to assist with dependencies or you will need the libraries listed above for your platform. The maven build will most likely overtake the master build in the future. 
-
-Please note that javafx is not maintained by oracle and the libraries are operating system specific.
-
-
 If you are unfamiliar with setting up a javafx project please consider the following resources.
 
 Eclipse:

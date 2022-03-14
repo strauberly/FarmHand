@@ -1,6 +1,8 @@
 .root {
 -fx-background-color: rgba(100,98,75,0.80);
 }
+
+
 .button{
 
 -fx-text-fill: rgba(254, 225, 187, 1);
@@ -21,7 +23,7 @@
 }
 
 
-#ChoresHeader{
+#choresBannerText{
 -fx-font-family: Sawasdee;
 -fx-font-size: 35pt;
 -fx-text-background-color: yellow;
