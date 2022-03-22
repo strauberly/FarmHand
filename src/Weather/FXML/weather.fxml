@@ -15,7 +15,7 @@
 <AnchorPane centerShape="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0"
             scaleShape="false" stylesheets="@ ../CSS/WeatherCSS.css" xmlns="http://javafx.com/javafx/15.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="Weather.WeatherController">
-    <StackPane fx:id="stack" prefHeight="80.0" prefWidth="1200.0" alignment="CENTER">
+    <StackPane fx:id="stack" prefHeight="80.0" prefWidth="1200.0">
 
 
         <Rectangle fx:id="weatherBanner" height="80.0" width="1200.0" StackPane.alignment="TOP_LEFT">

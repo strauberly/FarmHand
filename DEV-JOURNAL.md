@@ -6,6 +6,26 @@ employment, family, and continued education in order to make a career change.
 Cheers!
 
 ---
+
+
+-- 13 Mar 2022 --
+
+Dev 2 completed initial fxml file for chores section and began work in the controllers to clone behavior
+of weather section. Dev 2 will begin work on modal window after for creating a new chore so Dev 1 can get data to work
+with. 
+
+Dev 1 realised that working in MySQL in order to create the database for chores would be counter-productive
+to the initial design of the application and so the project will be sticking with SQLite for the time being.
+
+Tickets are updated.
+
+- Dev 1
+  - Continue working through best practices for database usage in application and mapping out data joins and seperations.
+
+- Dev 2
+  - Finish controller work for maximised window behaviour and begin work on modal window.
+
+---
 -- 8 Mar 2022 --
 
 Dev 1 Created OutsideChore and InsideChore classes by extending Chore class within DataModel
@@ -20,7 +40,7 @@ package. Updated Dev tickets.
 
 ---
 
--- 28 Feb 2022 --
+-- 28 Feb 2022 ---
 
 Have begun mapping out tasks in a todo file in the Chores package.
 
