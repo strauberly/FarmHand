@@ -13,6 +13,8 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.util.Objects;
 
+// should be able to reduce setting the stage and making it draggable to a method
+
 public class MainController {
     private double xOffset = 0;
     private double yOffset = 0;
@@ -104,20 +106,28 @@ public class MainController {
     private void onChoresClicked() throws IOException {
         Stage choresStage = new Stage();
         choresStage.initStyle(StageStyle.TRANSPARENT);
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Chores/chores.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Chores/FXML/choresInProgress.fxml")));
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         choresStage.setScene(scene);
         choresStage.setX(355);
         choresStage.setY(50);
         choresStage.show();
-
         if (choresStage.isShowing()) {
             choresButton.setOnAction(event -> choresStage.close());
         }
 
         weatherButton.setOnAction(event -> choresStage.close());
         messagesButton.setOnAction(event -> choresStage.close());
+    root.setOnMousePressed(event -> {
+        xOffset = event.getSceneX();
+        yOffset = event.getSceneY();
+    });
+
+    root.setOnMouseDragged(event -> {
+        choresStage.setX(event.getScreenX() - xOffset);
+        choresStage.setY(event.getScreenY() - yOffset);
+    });
     }
 
 
@@ -144,20 +154,20 @@ public class MainController {
 
     @FXML
     private void onMessagesClicked() throws IOException {
-        Stage inventoryStage = new Stage();
-        inventoryStage.initStyle(StageStyle.TRANSPARENT);
+        Stage messagesStage = new Stage();
+        messagesStage.initStyle(StageStyle.TRANSPARENT);
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Messages/messages.fxml")));
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
-        inventoryStage.setScene(scene);
-        inventoryStage.setX(355);
-        inventoryStage.setY(50);
-        inventoryStage.show();
-        if (inventoryStage.isShowing()) {
-            messagesButton.setOnAction(event -> inventoryStage.close());
+        messagesStage.setScene(scene);
+        messagesStage.setX(355);
+        messagesStage.setY(50);
+        messagesStage.show();
+        if (messagesStage.isShowing()) {
+            messagesButton.setOnAction(event -> messagesStage.close());
         }
-        choresButton.setOnAction(event -> inventoryStage.close());
-        weatherButton.setOnAction(event -> inventoryStage.close());
+        choresButton.setOnAction(event -> messagesStage.close());
+        weatherButton.setOnAction(event -> messagesStage.close());
     }
 
 

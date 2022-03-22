@@ -93,6 +93,7 @@ public class WeatherController implements Initializable {
 
     @FXML
     private void weatherMaxPressed() {
+        weatherMinButton.setEffect(new Glow(.80));
     }
 
     @FXML
@@ -225,7 +226,7 @@ public class WeatherController implements Initializable {
             stationsButton.setTranslateX(200);
             webButton.setTranslateX(400);
             instrumentsButton.setTranslateX(600);
-            maxed = true;
+//            maxed = true;
 
             instructions.setFont(Font.font(28));
             instructions.setPrefHeight(900);

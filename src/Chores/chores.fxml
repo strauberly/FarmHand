@@ -13,7 +13,7 @@
 
 <?import javafx.scene.text.Font?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
-            prefWidth="1200.0" stylesheets="/Chores/ChoresCSS.css" xmlns="http://javafx.com/javafx/15.0.1"
+            prefWidth="1200.0" stylesheets="/Chores/CSS/ChoresCSS.css" xmlns="http://javafx.com/javafx/15.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="Chores.ChoresController">
     <top>
         <StackPane prefHeight="10.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
@@ -56,7 +56,7 @@
                     <Insets left="300.0"/>
                 </StackPane.margin>
             </Line>
-            <Label fx:id="ChoresHeader" stylesheets="/Chores/ChoresCSS.css" text="Chores"
+            <Label fx:id="ChoresHeader" stylesheets="/Chores/CSS/ChoresCSS.css" text="Chores"
                    StackPane.alignment="CENTER_LEFT">
                 <StackPane.margin>
                     <Insets left="85.0"/>
@@ -68,7 +68,7 @@
 
             <Label fx:id="choresNotes" alignment="TOP_CENTER" contentDisplay="TEXT_ONLY" layoutX="150.0" layoutY="144.0"
                    lineSpacing="3.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="579.0" prefWidth="925.0"
-                   stylesheets="/Chores/ChoresCSS.css" text=" " wrapText="true">
+                   stylesheets="/Chores/CSS/ChoresCSS.css" text=" " wrapText="true">
                 <font>
                     <Font size="20.0"/>
                 </font>
@@ -80,7 +80,7 @@
             <Button fx:id="choresMaxButton" alignment="CENTER" centerShape="false" mnemonicParsing="false"
                     onMouseEntered="#choresMaxEnter" onMouseExited="#choresMaxExited" onMousePressed="#choresMaxPressed"
                     onMouseReleased="#choresMaxReleased" prefHeight="45.0" prefWidth="19.0"
-                    stylesheets="/Chores/ChoresCSS.css" text="^" StackPane.alignment="TOP_RIGHT">
+                    stylesheets="/Chores/CSS/ChoresCSS.css" text="^" StackPane.alignment="TOP_RIGHT">
                 <font>
                     <Font size="21.0"/>
                 </font>
@@ -90,7 +90,7 @@
             </Button>
             <Button fx:id="choresMinButton" centerShape="false" mnemonicParsing="false" onMouseEntered="#choresMinEnter"
                     onMouseExited="#choresMinExited" onMousePressed="#choresMinPressed"
-                    onMouseReleased="#choresMinReleased" scaleShape="false" stylesheets="/Chores/ChoresCSS.css"
+                    onMouseReleased="#choresMinReleased" scaleShape="false" stylesheets="/Chores/CSS/ChoresCSS.css"
                     text="__" StackPane.alignment="TOP_RIGHT">
                 <StackPane.margin>
                     <Insets right="55.0" top="8.0"/>
@@ -99,7 +99,7 @@
             <Button fx:id="choresCloseButton" alignment="CENTER" centerShape="false" mnemonicParsing="false"
                     onMouseEntered="#choresCloseEnter" onMouseExited="#choresCloseExit"
                     onMousePressed="#choresClosePressed" onMouseReleased="#choresCloseReleased" scaleShape="false"
-                    stylesheets="/Chores/ChoresCSS.css" text="X" StackPane.alignment="TOP_RIGHT">
+                    stylesheets="/Chores/CSS/ChoresCSS.css" text="X" StackPane.alignment="TOP_RIGHT">
                 <StackPane.margin>
                     <Insets right="15.0" top="10.0"/>
                 </StackPane.margin>

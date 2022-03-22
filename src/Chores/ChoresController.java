@@ -1,28 +1,41 @@
 package Chores;
 
+import Weather.WeatherController;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ChoresController implements Initializable {
     @FXML
-    Label ChoresHeader;
+    private StackPane stack;
+    @FXML
+    public Label choresBannerText;
+
+    @FXML
+    private Button newChoreButton;
     @FXML
     private Rectangle choresBanner;
-    @FXML
-    private Label choresNotes = new Label();
+//    @FXML
+//    private Label choresInstructions = new Label();
     @FXML
     private Rectangle choresSquare = new Rectangle();
     @FXML
@@ -31,6 +44,10 @@ public class ChoresController implements Initializable {
     public Button choresMaxButton = new Button();
     @FXML
     private Button choresCloseButton = new Button();
+
+    private static final String relativePath = "FXML/";
+
+    public static String savedScene = "choresInProgress.fxml";
 
     private static boolean maxed = false;
 
@@ -75,58 +92,134 @@ public class ChoresController implements Initializable {
         stage.close();
     }
 
-    public void choresMaxReleased(MouseEvent mouseEvent) {
-        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-        choresMaxButton.setEffect(new Glow(.0));
-//        String savedScene = "FXML/choresDevelopment.fxml";
-        if (!stage.isMaximized()) {
-            stage.setMaximized(true);
-            maxed = true;
-        } else {
-            stage.isMaximized();
-            if (stage.isMaximized()) {
-                stage.setMaximized(false);
-                maxed = false;
-            }
-        }
-    }
 
-    public void choresMaxPressed(MouseEvent mouseEvent) {
+    public void choresMaxEnter(MouseEvent mouseEvent) {
+        choresMaxButton.setEffect(new Glow(.25));
+
     }
 
     public void choresMaxExited(MouseEvent mouseEvent) {
+        choresMaxButton.setEffect(new Glow(.0));
+
     }
 
-    public void choresMaxEnter(MouseEvent mouseEvent) {
+    public void choresMaxPressed(MouseEvent mouseEvent) {
+        choresMaxButton.setEffect(new Glow(.80));
     }
+    public void choresMaxReleased(MouseEvent mouseEvent) throws IOException {
+        System.out.println(maxed);
+        System.out.println(savedScene);
+        maxedChoresElements(mouseEvent);
+
+    }
+//        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+//        choresMaxButton.setEffect(new Glow(.0));
+//        String savedScene = "FXML/choresInProgress.fxml";
+//        if (!stage.isMaximized()) {
+//            stage.setMaximized(true);
+//            maxed = true;
+//        } else {
+//            stage.isMaximized();
+//            if (stage.isMaximized()) {
+//                stage.setMaximized(false);
+//                maxed = false;
+//            }
+//        }
+//    }
+
+
+
+
+    public void newChoreEnter(MouseEvent mouseEvent) {
+    }
+
+    public void newChorePressed(MouseEvent mouseEvent) {
+    }
+
+    public void newChoreExited(MouseEvent mouseEvent) {
+    }
+
+    public void newChoreReleased(MouseEvent mouseEvent) {
+    }
+
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        choresNotes.setText("""
-                                                                            Behold!
-                                                   This Section Is Under Development.
-                                     
-                Imagine this, A dashboard showing progress of chores and the ability to make a list for indoors and outdoors!
-                Perhaps also notes for chores plus due dates etc? Maybe a heat map showing how busy a week is... might be kind of hip.
-                               
-                How does that sound to mAH d00d?
-                               
-                Far out... Will get back to you on that.
-
-                 """);
+//        choresInstructions.setText("""
+//                                                                           Hulloooooo, mAh d00d!
+//
+//                                                                             Select from above:
+//
+//                Stations:
+//                Input your lat long and get a readout from a weather station,
+//                log the readout to a database, view the database, and get observations based on the readouts stored.
+//
+//
+//                Web Services:
+//                View different weather pages on the net. Helpful in seeing whats coming long term.
+//
+//
+//                Instruments:
+//                Allows you to log data from manual gauges and get observations.
+//                You know... in case zombies.
+//
+//                """);
 
         if (maxed) {
             choresBanner.setWidth(displaySize.getWidth());
-            maxed = true;
+            newChoreButton.setTranslateX(400);
 
-            choresNotes.setFont(Font.font(28));
-            choresNotes.setPrefHeight(900);
-            choresNotes.setPrefWidth(1500);
-            choresNotes.setTranslateX(170);
-
-            choresSquare.setHeight(900);
-            choresSquare.setWidth(1500);
-            choresSquare.setTranslateX(240);
         }
     }
+
+    //behaviour if stage is or isn't maxed used by max/resize button
+    // rewrite this logic for desired effect and reference weather controller
+    public void maxedChoresElements(MouseEvent mouseEvent) throws IOException {
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        choresMaxButton.setEffect(new Glow(.0));
+        if (!stage.isMaximized()) {
+            stage.setMaximized(true);
+            maxed = true;
+        } else if ((stage.isMaximized() && savedScene.equals("choresInProgress.fxml"))) {
+            stage.setMaximized(false);
+            maxed = false;
+        } else if (stage.isMaximized()) {
+            stage.setMaximized(false);
+            maxed = false;
+        }
+        setChoresScene(savedScene, mouseEvent);
+    }
+
+    public static void setChoresScene(String fileName, MouseEvent mouseEvent) throws IOException {
+        final double[] xOffset = {0};
+        final double[] yOffset = {0};
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(WeatherController.class.getResource(relativePath + fileName)));
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.setX(355);
+        stage.setY(50);
+        stage.show();
+        root.setOnMousePressed(event -> {
+            xOffset[0] = event.getSceneX();
+            yOffset[0] = event.getSceneY();
+        });
+
+        root.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xOffset[0]);
+            stage.setY(event.getScreenY() - yOffset[0]);
+
+        });
+        savedScene = fileName;
+    }
+
+    public static boolean isMaxed() {
+        return maxed;
+    }
 }
+
+
+
