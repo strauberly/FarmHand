@@ -1,4 +1,6 @@
 
+import Chores.DataModel.Chore;
+import Chores.DataModel.choredb.ChoreDB;
 import Weather.weatherdb.WeatherDB;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +13,7 @@ import javafx.stage.StageStyle;
 public class Main extends javafx.application.Application {
     public void start(Stage primaryStage) throws Exception {
         WeatherDB.createWeatherDB();
+        ChoreDB.createChoreDB();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
@@ -24,5 +27,7 @@ public class Main extends javafx.application.Application {
 
     public static void main(String[] args) {
         launch(args);
+        Chore chore = new Chore("clean", "clean up", "high", "22 mar 2022", "24 mar 2022" );
+        System.out.println(chore.toString());
     }
 }
