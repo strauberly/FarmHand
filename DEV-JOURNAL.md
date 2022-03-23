@@ -39,7 +39,6 @@ package. Updated Dev tickets.
   - Begin reconfiguring Chores GUI to create new chore and create displays for chore items. Use list views. 
 
 ---
-
 -- 28 Feb 2022 ---
 
 Have begun mapping out tasks in a todo file in the Chores package.
