@@ -6,17 +6,16 @@ public class Chore {
     private String choreName;
     private String description;
     private String priority;
-    private Date   dateCreated;
-    private Date   dateDue;
-    private boolean insideChore;
+    private String  dateCreated;
+    private String   dateDue;
 
-    public Chore(String choreName, String description, String priority, Date dateCreated, Date dateDue, boolean insideChore) {
+
+    public Chore(String choreName, String description, String priority, String dateCreated, String dateDue) {
         this.choreName = choreName;
         this.description = description;
         this.priority = priority;
         this.dateCreated = dateCreated;
         this.dateDue = dateDue;
-        this.insideChore = insideChore;
     }
 
     public String getChoreName() {
@@ -43,27 +42,30 @@ public class Chore {
         this.priority = priority;
     }
 
-    public Date getDateCreated() {
+    public String getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
     }
 
-    public Date getDateDue() {
+    public String getDateDue() {
         return dateDue;
     }
 
-    public void setDateDue(Date dateDue) {
+    public void setDateDue(String dateDue) {
         this.dateDue = dateDue;
     }
 
-    public boolean isInsideChore() {
-        return insideChore;
-    }
-
-    public void setInsideChore(boolean insideChore) {
-        this.insideChore = insideChore;
+    @Override
+    public String toString() {
+        return "Chore{" +
+                "choreName= '" + choreName + '\'' +
+                ", description= '" + description + '\'' +
+                ", priority= '" + priority + '\'' +
+                ", dateCreated= '" + dateCreated + '\'' +
+                ", dateDue= '" + dateDue + '\'' +
+                '}';
     }
 }
