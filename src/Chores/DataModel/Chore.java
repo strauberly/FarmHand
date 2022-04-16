@@ -5,15 +5,18 @@ import java.util.Date;
 public class Chore {
     private String choreName;
     private String description;
+
+    private String location;
     private String priority;
     private String  dateCreated;
     private String   dateDue;
 
 
-    public Chore(String choreName, String description, String priority, String dateCreated, String dateDue) {
+    public Chore(String choreName, String location, String priority, String description,  String dateCreated, String dateDue) {
         this.choreName = choreName;
-        this.description = description;
+        this.location = location;
         this.priority = priority;
+        this.description = description;
         this.dateCreated = dateCreated;
         this.dateDue = dateDue;
     }
@@ -24,6 +27,14 @@ public class Chore {
 
     public void setChoreName(String choreName) {
         this.choreName = choreName;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getDescription() {
@@ -62,8 +73,9 @@ public class Chore {
     public String toString() {
         return "Chore{" +
                 "choreName= '" + choreName + '\'' +
-                ", description= '" + description + '\'' +
+                ", location = '" + location + '\'' +
                 ", priority= '" + priority + '\'' +
+                ", description= '" + description + '\'' +
                 ", dateCreated= '" + dateCreated + '\'' +
                 ", dateDue= '" + dateDue + '\'' +
                 '}';

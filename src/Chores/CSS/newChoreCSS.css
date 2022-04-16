@@ -21,7 +21,12 @@
 -fx-color: transparent;
 }
 
+.radio-button .radio{
+-fx-background-color: rgba(166, 132, 105, 1);
+}
+
 .radio-button:selected .radio{
+-fx-background-color: rgba(166, 132, 105, 1);
 -fx-border-radius: 50;
 -fx-border-width: 3px;
 -fx-border-color: yellow;
