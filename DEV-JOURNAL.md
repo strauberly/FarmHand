@@ -8,6 +8,26 @@ Notation is as though between a project manager and two devs, but all are me. :)
 Cheers!
 
 ---
+
+-- 16 Apr 2022 --
+
+Dev 2 : Completed initial layout of new chore modal window. 
+
+Dev 1 : Restructured model of Chore class to better reflect input gained from
+the user.
+
+Tickets are updated.
+
+- Dev 1
+  - Continue working through best practices for database usage in application and mapping out data joins and seperations.
+  - Begin building chores database as soon as Dev 2 completes modal window.
+
+- Dev 2
+  - Program input from user to be stored as object that Dev 1 can use for their tasks.
+  - Program buttons according to their function.
+  - Please also implement ability to move the modal window around the screen.
+
+---
 -- 15 Apr 2022 --
 
 Dev 2 : Began work on modal window for a new chore.

@@ -228,6 +228,12 @@ public class ChoresController implements Initializable {
     public static boolean isMaxed() {
         return maxed;
     }
+
+    public void newChoreCloseExit(MouseEvent mouseEvent) {
+    }
+
+    public void newChoreCloseEnter(MouseEvent mouseEvent) {
+    }
 }
 
 
