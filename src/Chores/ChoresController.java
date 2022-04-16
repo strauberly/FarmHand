@@ -18,6 +18,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -139,7 +140,15 @@ public class ChoresController implements Initializable {
     public void newChoreExited(MouseEvent mouseEvent) {
     }
 
-    public void newChoreReleased(MouseEvent mouseEvent) {
+    public void newChoreReleased(MouseEvent mouseEvent) throws IOException {
+        Stage newChore = new Stage();
+        newChore.initStyle(StageStyle.TRANSPARENT);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Chores/FXML/newChoreWindow.fxml"));
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        newChore.setScene(scene);
+        newChore.show();
     }
 
 
