@@ -12,6 +12,7 @@ public class Observations {
 
     // weather reports
     // possibly organize this as a map with switch statements as it grows
+    // create map of weather definitions
     // possibly add observations based on data from recorded days and weeks to look for trends
     public static String weatherReport() {
         String weatherReport;
