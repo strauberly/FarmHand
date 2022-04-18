@@ -2,6 +2,17 @@
 -fx-background-color: rgba(89, 67, 47, .75);
 }
 
+.button{
+-fx-font-size: 22px;
+-fx-text-fill: rgba(254, 225, 187, 1);
+-fx-background-color: transparent;
+
+}
+
+.button:hover {
+    -fx-text-fill: yellow;
+}
+
 #newChoreBannerText{
 -fx-font-family: Sawasdee;
 -fx-font-size: 36pt;
@@ -23,18 +34,22 @@
 
 .radio-button .radio{
 -fx-background-color: rgba(166, 132, 105, 1);
+-fx-padding:5px;
 }
 
 .radio-button:selected .radio{
 -fx-background-color: rgba(166, 132, 105, 1);
 -fx-border-radius: 50;
 -fx-border-width: 3px;
--fx-border-color: yellow;
+ -fx-border-color: yellow;
+ -fx-padding:2px;
 -fx-background-insets: 0px;
  -fx-mark-highlight-color: transparent ;
   -fx-mark-color: transparent ;
+}
 
-
+.radio-button:selected .radio .dot{
+-fx-background-insets: 0px;
 }
 
 #priorityButtonLow:selected .radio .dot{
@@ -51,4 +66,5 @@
  -fx-mark-highlight-color: red ;
   -fx-mark-color: red ;
 }
-
+/*
+ -fx-border-color: yellow;
