@@ -9,6 +9,29 @@ Cheers!
 
 ---
 
+-- 17 Apr 2022 --
+
+Dev 2 : New Chore window is mostly complete with controller updated with fields 
+for Dev 2 to begin their tasks. Will create method for moving a stages position and update application
+in all applicable classes.
+
+Dev 1 : Reviewing Dev 2's work and considering implementations to database. Will start
+work to store values to new variables that can be called to Chore object.
+
+Tickets are updated.
+
+- Dev 1
+  - Continue mapping out data joins and seperations.
+  - Get values from input fields and begin building database use best practices.
+  - Begin building chores database as soon as Dev 2 completes modal window.
+
+- Dev 2
+  - Continue styling out new chore window, calendar specifically.
+  - Implement your suggested method for moving stages around.
+  
+
+---
+
 -- 16 Apr 2022 --
 
 Dev 2 : Completed initial layout of new chore modal window. 
