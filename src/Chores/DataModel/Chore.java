@@ -3,7 +3,7 @@ package Chores.DataModel;
 import java.util.Date;
 
 public class Chore {
-    private String choreName;
+    private static String choreName;
     private String description;
 
     private String location;
@@ -21,7 +21,7 @@ public class Chore {
         this.dateDue = dateDue;
     }
 
-    public String getChoreName() {
+    public static String getChoreName() {
         return choreName;
     }
 
