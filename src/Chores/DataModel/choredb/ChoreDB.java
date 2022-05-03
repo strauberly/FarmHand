@@ -19,8 +19,9 @@ public class ChoreDB {
             Statement statement = conn.createStatement();
 
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS chores " +
-                    " (chore_id_ INTEGER PRIMARY KEY AUTOINCREMENT, chore_name STRING,location String, description STRING, priority STRING, date_created STRING," +
-                    " date_due STRING)");
+                    " (chore_id_ INTEGER PRIMARY KEY AUTOINCREMENT, chore_name STRING, location String," +
+                    " description STRING, priority STRING, date_created STRING," +
+                    " date_due STRING, responsible_person String, parent_chore String)");
             statement.close();
             conn.close();
         } catch (SQLException e) {

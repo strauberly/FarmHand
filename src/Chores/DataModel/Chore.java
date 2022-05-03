@@ -3,25 +3,30 @@ package Chores.DataModel;
 import java.util.Date;
 
 public class Chore {
-    private static String choreName;
+    private String choreName;
     private String description;
-
     private String location;
     private String priority;
     private String  dateCreated;
     private String   dateDue;
 
+    private String responsiblePerson;
 
-    public Chore(String choreName, String location, String priority, String description,  String dateCreated, String dateDue) {
+    private String parentChore;
+
+
+    public Chore(String choreName, String location, String priority, String description, String dateCreated, String dateDue, String responsiblePerson, String parentChore) {
         this.choreName = choreName;
         this.location = location;
         this.priority = priority;
         this.description = description;
         this.dateCreated = dateCreated;
         this.dateDue = dateDue;
+        this.responsiblePerson = responsiblePerson;
+        this.parentChore = parentChore;
     }
 
-    public static String getChoreName() {
+    public String getChoreName() {
         return choreName;
     }
 
@@ -69,6 +74,22 @@ public class Chore {
         this.dateDue = dateDue;
     }
 
+    public String getResponsiblePerson() {
+        return responsiblePerson;
+    }
+
+    public void setResponsiblePerson(String responsiblePerson) {
+        this.responsiblePerson = responsiblePerson;
+    }
+
+    public String getParentChore() {
+        return parentChore;
+    }
+
+    public void setParentChore(String parentChore) {
+        this.parentChore = parentChore;
+    }
+
     @Override
     public String toString() {
         return "Chore{" +
@@ -78,6 +99,8 @@ public class Chore {
                 ", description= '" + description + '\'' +
                 ", dateCreated= '" + dateCreated + '\'' +
                 ", dateDue= '" + dateDue + '\'' +
+                ", responsible person= '" + responsiblePerson + '\'' +
+                ", parent chore= '" + parentChore + '\'' +
                 '}';
     }
 }
