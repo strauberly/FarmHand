@@ -27,7 +27,7 @@ public class Main extends javafx.application.Application {
 
     public static void main(String[] args) {
         launch(args);
-        Chore chore = new Chore("clean","inside","high","clean up","04 mar 2022", "25 mar 2022");
+        Chore chore = new Chore("clean","inside","high","clean up","04 mar 2022", "25 mar 2022", "Tom", "NA");
         System.out.println(chore.toString());
     }
 }

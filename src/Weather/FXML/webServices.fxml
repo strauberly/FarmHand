@@ -48,17 +48,7 @@
                 <Font size="24.0"/>
             </font>
         </Button>
-        <Button fx:id="wunderButton" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0"
-                mnemonicParsing="false" onMouseEntered="#wunderButtonEnter" onMouseExited="#wunderButtonExit"
-                onMousePressed="#wunderButtonPressed" onMouseReleased="#wunderButtonReleased"
-                stylesheets="@../CSS/WeatherCSS.css" text="WunderGround">
-            <VBox.margin>
-                <Insets top="60.0"/>
-            </VBox.margin>
-            <font>
-                <Font size="24.0"/>
-            </font>
-        </Button>
+
         <Button fx:id="accuButton" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="36.0"
                 mnemonicParsing="false" onMouseEntered="#accuButtonEnter" onMouseExited="#accuButtonExit"
                 onMousePressed="#accuButtonPressed" onMouseReleased="#accuButtonReleased"

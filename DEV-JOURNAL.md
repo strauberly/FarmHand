@@ -8,6 +8,57 @@ Notation is as though between a project manager and two devs, but all are me. :)
 Cheers!
 
 ---
+-- 2 May 2022 --
+
+Dev 2 : Updated new chore form with fields for the person responsible for the chore and
+a field to name the parent chore if applicable.
+
+Dev 1 : Adjusted data model and objects to reflect Dev 2's changes. Chore object now created in
+full.
+
+Tickets are updated.
+
+- Dev 1
+  - Begin building Database. 1 table for outside chores, and 1 table for inside chores.
+  - Create method for writing to which table and encompassing logic.
+  - Begin working on filter queries, display by inside, outside, priority, date for starters
+  - Then begin work on update, delete, marking complete, and progress 
+
+- Dev 2
+  - Continue styling out new chore window, calendar specifically, then ake a look at the text fields.
+  - Implement your suggested method for moving stages around.
+  - Start thinking about styling out list view and description of a chore.
+
+
+---
+
+
+
+
+Upon examination into the origins of the weather service Weather Underground's origins
+and fascination with clinging to that legacy, a decision has been reached to exclude that service
+from my application effective immediately.
+
+I do not support extremism, nor class based servitude.
+
+United we stand, divided we fall. We have allowed them to divide us, and they have won.
+All hail our brilliant overloads in their ivory towers. Rejoice in your servitude or unite, 
+take responsibility for your own existence, learn to love your neighbor despite your differences and conduct yourself
+in a manner that considers those around you. 
+
+In short, stop sucking. 
+
+"The company is based in San Francisco, California and was founded in 1995 as an offshoot 
+of the University of Michigan Internet weather database. 
+The name is a reference to the 1960s militant radical student group the Weather Underground,
+which also originated at the University of Michigan.[3]"
+
+Schwartz, John; Stelter, Brian (July 3, 2012). "Fans Howl After Weather Site Buys Out Rival". The New York Times.
+
+
+
+---
+
 
 -- 17 Apr 2022 --
 

@@ -103,26 +103,6 @@ public class WebServicesController implements Initializable {
     }
 
 
-    @FXML
-    private void wunderButtonEnter() {
-        wunderButton.setEffect(new Glow(.25));
-    }
-
-    @FXML
-    private void wunderButtonExit() {
-        wunderButton.setEffect(new Glow(.0));
-    }
-
-    @FXML
-    private void wunderButtonPressed() {
-        wunderButton.setEffect(new Glow(.80));
-    }
-
-    @FXML
-    private void wunderButtonReleased() {
-        setWebViewer("https://www.wunderground.com/");
-    }
-
 
     @FXML
     private void accuButtonEnter() {
